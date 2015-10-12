@@ -1,19 +1,11 @@
 package main
 
-/**
-Web Resident Application for Image Strips
-
-Need to take a URI like: http://data.oceandrilling.org/imagestrips/stripset/_05xx/0504B/0504B256M_1
-and display it.
-go get code.google.com/p/gorilla/mux
-go get code.google.com/p/graphics-go/graphics
-go get code.google.com/p/go.imagesdss
-**/
-
 import (
 	"code.google.com/p/gorilla/mux"
 	"log"
 	"net/http"
+	"opencoredata.org/ocdWeb/doc"
+	"opencoredata.org/ocdWeb/dx"
 	// _ "net/http/pprof"
 )
 
@@ -23,12 +15,37 @@ func main() {
 	rcommon.PathPrefix("/common/").Handler(http.StripPrefix("/common", http.FileServer(http.Dir("./static"))))
 	http.Handle("/common/", rcommon)
 
-	// ROOT
+	// ParkingPage
+	parking := mux.NewRouter()
+	parking.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static/ParkingPage"))))
+	http.Handle("/", parking)
+
+	// New Root to replace the old Root
 	root := mux.NewRouter()
-	//root.Headers("Access-Control-Allow-Origin", "*")
-	//root.Headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-	root.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static/ROOT"))))
-	http.Handle("/", root)
+	root.PathPrefix("/root/").Handler(http.StripPrefix("/root/", http.FileServer(http.Dir("./static/Material"))))
+	http.Handle("/root/", root)
+
+	// recall /id is going to be our dx..   all items that come in with that will be looked up and 303'd
+	dxroute := mux.NewRouter()
+	dxroute.HandleFunc("/id/", dx.Redirection)
+	http.Handle("/dx/", dxroute)
+
+	//Browser by id redirection to doc  (gets a specific dataset)  http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B
+	docroute := mux.NewRouter()
+	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
+	http.Handle("/doc/", docroute)
+
+	// Browse by collection   measurement leg site hole
+	// collection := mux.NewRouter()
+	// collection.PathPrefix("/collection").Handler(http.StripPrefix("/collection", http.FileServer(http.Dir("./static/ROOT"))))
+	// http.Handle("/", collection)
+
+	// Browse by expedition    leg site hole
+	// expedition := mux.NewRouter()
+	// expedition.PathPrefix("/expedition").Handler(http.StripPrefix("/expedition", http.FileServer(http.Dir("./static/ROOT"))))
+	// http.Handle("/", expedition)
+
+	// Later Browse options might include:  units, observations
 
 	// Start the server...
 	log.Printf("About to listen on 9900. Go to http://127.0.0.1:9900/")
