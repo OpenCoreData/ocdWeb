@@ -36,9 +36,9 @@ func main() {
 	http.Handle("/doc/", docroute)
 
 	// Browse by collection   measurement leg site hole
-	// collection := mux.NewRouter()
-	// collection.PathPrefix("/collection").Handler(http.StripPrefix("/collection", http.FileServer(http.Dir("./static/ROOT"))))
-	// http.Handle("/", collection)
+	collections := mux.NewRouter()
+	collections.HandleFunc("/measuremetns", colls.ByMeasure)
+	http.Handle("/measurements/", collections)
 
 	// Browse by expedition    leg site hole
 	// expedition := mux.NewRouter()
