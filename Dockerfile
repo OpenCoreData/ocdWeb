@@ -19,7 +19,8 @@ chown -R gorunner:gorunner /go/src/opencoredata.org/ocdWeb
 # Build the outyet command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-RUN go get code.google.com/p/gorilla/mux
+RUN go get github.com/gorilla/mux
+RUN go get gopkg.in/mgo.v2
 #RUN go install opencoredata.org/ocdWeb
 
 # set user

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"code.google.com/p/gorilla/mux"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"opencoredata.org/ocdWeb/colls"
