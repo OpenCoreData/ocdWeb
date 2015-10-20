@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="description" content="Open Core Data">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Open Core Data</title>
     <!-- Add to homescreen for Chrome on Android -->
@@ -46,21 +46,34 @@
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-            <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-            </div>
-            <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-                <h3>Open Core Data Collection: {{.Measure}} for Leg: {{.Leg}}</h3>
-            </div>
-            <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-            </div>
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-                <a href="#overview" class="mdl-layout__tab is-active">Overview</a>
-                <a href="#features" class="mdl-layout__tab">Measurements</a>
-                <a href="#features" class="mdl-layout__tab">Expeditions (LSH)</a>
-                <a href="#features" class="mdl-layout__tab">FAQ</a>
-            </div>
-        </header>
+       
+
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Open Core Data</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+         <a class="mdl-navigation__link" href="/">Home</a>
+      <a class="mdl-navigation__link" href="/collections/measurements/">Janus Overview</a>
+
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Open Core Data</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/">Home</a>
+      <a class="mdl-navigation__link" href="/collections/measurements/">Janus Overview</a>
+
+    </nav>
+  </div>
+
+
         <main class="mdl-layout__content">
             <div class="mdl-layout__tab-panel is-active" id="overview">
                

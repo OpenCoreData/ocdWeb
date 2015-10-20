@@ -20,7 +20,7 @@ html, body {
   padding: 0;
 }
 .mdl-demo .mdl-layout__header-row {
-  padding-left: 40px;
+  padding-left: 90px;
 }
 .mdl-demo .mdl-layout.is-small-screen .mdl-layout__header-row h3 {
   font-size: inherit;
@@ -49,6 +49,12 @@ html, body {
   height: 64px;
   line-height: 64px;
 }
+
+.mdl-navigation__link {
+  height: 64px;
+  line-height: 64px;
+}
+
 .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab.is-active::after {
   background-color: white;
   height: 4px;
