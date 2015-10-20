@@ -9,13 +9,20 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"html/template"
+	"opencoredata.org/ocdWeb/services"
 )
 
-type MLSet struct {
-	id      string   `bson:"_id,omitempty"` // I don't really want the ID, so leave it lower case
-	Leg     string   `json:"leg"`
-	Measure string   `json:"measure"`
-	Urls    []string `json:"urls"`
+type URLSet struct {
+	id      string    `bson:"_id,omitempty"` // I don't really want the ID, so leave it lower case
+	Leg     string    `json:"leg"`
+	Measure string    `json:"measure"`
+	Refdata []Refdata `json:"refdata"`
+}
+
+type Refdata struct {
+	Url  string `json:"url"`
+	Lat  string `json:"latitude"`
+	Long string `json:"longitude"`
 }
 
 func MLCounts(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +42,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	// call mongo and lookup the redirection to use...
-	session, err := mgo.Dial("127.0.0.1")
+	session, err := services.GetMongoCon()
 	if err != nil {
 		panic(err)
 	}
@@ -45,15 +52,14 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 	session.SetMode(mgo.Monotonic, true)
 	c := session.DB("test").C("aggregation_janusURLSet")
 
-	log.Print(c.FullName)
-
-	var results MLSet
+	var results URLSet
 	err = c.Find(bson.M{"measure": vars["measurements"], "leg": vars["leg"]}).One(&results)
 	if err != nil {
 		log.Printf("Error calling aggregation_janusURLSet : %v", err)
 	}
 
-	log.Print(results)
+	// log.Print(results)
+	// need to build simple metadata package around schema.org/DataCatalog
 
 	ht, err := template.New("some template").ParseFiles("templates/measureSet.html") //open and parse a template text file
 	if err != nil {

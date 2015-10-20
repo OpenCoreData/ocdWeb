@@ -32,32 +32,24 @@ func main() {
 	servroute.HandleFunc("/services/grid", services.GetGrid)
 	http.Handle("/services/", servroute)
 
-	// recall /id is going to be our dx..   all items that come in with that will be looked up and 303'd
-	// example URL:  http://opencoredata.org/id/dataset/c2d80e2a-cc30-430c-b0bd-cee9092688e3
+	// Recall /id is going to be our dx..   all items that come in with that will be looked up and 303'd
+	// Example URL:  http://opencoredata.org/id/dataset/c2d80e2a-cc30-430c-b0bd-cee9092688e3
 	dxroute := mux.NewRouter()
 	dxroute.HandleFunc("/id/dataset/{UUID}", dx.Redirection)
 	http.Handle("/id/", dxroute)
 
 	//Browser by id redirection to doc  (gets a specific dataset)  http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B
-	// http://opencoredata.org/doc/dataset/c2d80e2a-cc30-430c-b0bd-cee9092688e3
-	// http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B
 	docroute := mux.NewRouter()
 	docroute.HandleFunc("/doc/dataset/{UUID}", doc.UUIDRender)
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 	http.Handle("/doc/", docroute)
 
 	// Browse by collection   measurement leg site hole
+	// Later Browse options might include:  units, observations. geologic time
 	collections := mux.NewRouter()
 	collections.HandleFunc("/collections/measurements/", colls.MLCounts)
 	collections.HandleFunc("/collections/{measurements}/{leg}", colls.MLURLSets) //  called from the matrix page
 	http.Handle("/collections/", collections)
-
-	// Browse by expedition    leg site hole
-	// expedition := mux.NewRouter()
-	// expedition.PathPrefix("/expedition").Handler(http.StripPrefix("/expedition", http.FileServer(http.Dir("./static/ROOT"))))
-	// http.Handle("/", expedition)
-
-	// Later Browse options might include:  units, observations
 
 	// Start the server...
 	log.Printf("About to listen on 9900. Go to http://127.0.0.1:9900/")
@@ -66,5 +58,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }

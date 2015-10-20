@@ -64,17 +64,17 @@
         <main class="mdl-layout__content">
             <div class="mdl-layout__tab-panel is-active" id="overview">
                
-{{ range $url := .Urls }}
+{{ range $data := .Refdata }}
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                    <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                        <i class="material-icons">play_circle_filled</i>
-                        <p>Put a map here</p>
+                    <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                       <!--  <i class="material-icons">play_circle_filled</i> -->
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{$data.Lat}},+{{$data.Long}}&zoom=1&scale=false&size=200x200&maptype=satellite&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{$data.Lat}},+{{$data.Long}}" alt="Google Map of {{$data.Lat}}, {{$data.Long}}">
                     </header>
                     <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card__supporting-text">
                             <h5>Dataset: <br/>
-                            <a href="{{$url}}">{{$url}}</a>
+                            <a href="{{$data.Url}}">{{$data.Url}}</a>
                             </h5> 
 
                             <p>Create web componet for this section</p>

@@ -22,7 +22,7 @@ type MLCount struct {
 func GetGrid(w http.ResponseWriter, r *http.Request) {
 
 	// call mongo and lookup the redirection to use...
-	session, err := mgo.Dial("127.0.0.1")
+	session, err := GetMongoCon()
 	if err != nil {
 		panic(err)
 	}
