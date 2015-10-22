@@ -112,6 +112,7 @@ type TemplateForDoc struct {
 	CSVW         CSVWMeta
 	Schemastring string
 	Csvwstring   string
+	UUID         string
 }
 
 // Note being used really...
@@ -180,7 +181,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 		log.Printf("template parse failed: %s", err)
 	}
 
-	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: string(jsonldtext), Csvwstring: string(csvwtext)}
+	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: string(jsonldtext), Csvwstring: string(csvwtext), UUID: vars["UUID"]}
 
 	err = ht.ExecuteTemplate(w, "T", dataForTemplate) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
 	if err != nil {

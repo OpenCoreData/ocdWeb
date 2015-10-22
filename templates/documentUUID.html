@@ -99,9 +99,9 @@
                 <div class="mdl-layout__tab-panel is-active" id="overview">
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                         <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                            <div class="mdl-cell">
-                                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}" alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
-                            </div>
+                            
+                                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}" alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
+                          
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
@@ -128,19 +128,19 @@
                                     <div class="section__circle-container__circle mdl-color--primary"></div>
                                 </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5>{{.Schema.Name}}</h5> Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis
+                                    <h5><a href="http://opencoredata.org/documents/download/{{.Schema.Name}}">{{.Schema.Name}}</a></h5> Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis
                                 </div>
                                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                                     <div class="section__circle-container__circle mdl-color--primary"></div>
                                 </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5>Data JSON-LD</h5> Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis
+                                    <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/JSON">Data JSON-LD</a></h5> Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis
                                 </div>
                                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                                     <div class="section__circle-container__circle mdl-color--primary"></div>
                                 </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5>Metadata</h5> Links here to the CSVW metadata and the schema.org aspects. LiPD would also link in here when we get it.
+                                    <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/CSVW">Metadata</a></h5> Links here to the CSVW metadata and the schema.org aspects. LiPD would also link in here when we get it.
                                 </div>
                             </div>
                         </div>
