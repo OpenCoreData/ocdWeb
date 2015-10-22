@@ -41,6 +41,7 @@
         margin-bottom: 40px;
         z-index: 900;
     }
+
     </style>
     <!-- Elements for the jqGrid -->
     <!-- The jQuery library is a prerequisite for all jqSuite products -->
@@ -111,7 +112,7 @@
                 </section>
             </div> -->
             <section class="section--footer mdl-color--white mdl-grid">
-                <div class="mdl-card mdl-cell mdl-cell--11-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--7-col-tablet mdl-cell--5-col-phone">
                     <div class="mdl-card__supporting-text">
                         <table id="jqGrid"></table>
                         <div id="jqGridPager"></div>
@@ -1196,11 +1197,13 @@ $(document).ready(function() {
         }],
         loadonce: true,
         shrinkToFit: false, // must be set with frozen columns, otherwise columns will be shrank to fit the grid width
-        width:900,
+        autowidth: true,
+        //width:900,
         height: 600,
         rowNum: 40,
         pager: "#jqGridPager"
     });
+    //$('#Grid1').setGridWidth(705, false);
     $("#jqGrid").jqGrid("setFrozenColumns");
 });
 </script>

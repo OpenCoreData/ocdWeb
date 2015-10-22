@@ -4,12 +4,13 @@ import (
 	"log"
 	"net/http"
 	// "net/url"
-	// "fmt"
+	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"html/template"
 	"opencoredata.org/ocdWeb/services"
+	"text/template" // text not html since we don't want to escape our JSON-LD and we don't worry about the HTML autoescape here
 )
 
 type URLSet struct {
@@ -25,6 +26,36 @@ type Refdata struct {
 	Long string `json:"longitude"`
 }
 
+// schema.org Datacatalog struct
+type SchemaDatacatalog struct {
+	Context     string         `json:"@context"`
+	Type        string         `json:"@type"`
+	Author      SchemaAuthor   `json:"author"`
+	Dataset     []ShemaDataset `json:"dataset"`
+	Description string         `json:"description"`
+	Name        string         `json:"name"`
+	URL         string         `json:"url"`
+}
+
+type ShemaDataset struct {
+	Type string `json:"@type"`
+	URL  string `json:"url"`
+}
+
+type SchemaAuthor struct {
+	Type        string `json:"@type"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	URL         string `json:"url"`
+}
+
+type TemplateForColls struct {
+	URLdata URLSet
+	Schema  string
+}
+
+// The template render doesn't do anything at time..  the .js in the page does all that for now
+// Likely will do something wih the template later
 func MLCounts(w http.ResponseWriter, r *http.Request) {
 	ht, err := template.New("some template").ParseFiles("templates/collections.html") //open and parse a template text file
 	if err != nil {
@@ -60,13 +91,33 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 
 	// log.Print(results)
 	// need to build simple metadata package around schema.org/DataCatalog
+	authorInfo := SchemaAuthor{Type: "Organization", Name: "Joides Resolution Science Office",
+		URL: "http://iodp.org", Description: "NSF funded operator for International Ocean Discvery Project"}
+	dataSets := []ShemaDataset{}
+	for _, d := range results.Refdata {
+		dataSet := ShemaDataset{Type: "Dataset", URL: d.Url}
+		dataSets = append(dataSets, dataSet)
+	}
+	dataCatalog := SchemaDatacatalog{Context: "http://schema.org",
+		Type:        "DataCatalog",
+		Author:      authorInfo,
+		Dataset:     dataSets,
+		Description: fmt.Sprintf("Data set for measurement %s and leg %s", vars["measurements"], vars["leg"]),
+		Name:        fmt.Sprintf("%s%s", vars["measurements"], vars["leg"]),
+		URL:         fmt.Sprintf("http://opencoredata.org/collections/%s/%s", vars["measurements"], vars["leg"])}
+
+	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
+
+	data := TemplateForColls{URLdata: results, Schema: string(schematext)}
 
 	ht, err := template.New("some template").ParseFiles("templates/measureSet.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
 
-	err = ht.ExecuteTemplate(w, "T", results) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+	// tmpl.Execute(out, template.HTML(`<b>World</b>`))
+
+	err = ht.ExecuteTemplate(w, "T", data) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
 	if err != nil {
 		log.Printf("htemplate execution failed: %s", err)
 	}

@@ -41,7 +41,17 @@
         margin-bottom: 40px;
         z-index: 900;
     }
+
+     img {
+        width: 100%;
+        /* or any custom size */
+        height: 100%;
+        object-fit: contain;
+    }
     </style>
+        <script type="application/ld+json">
+        {{.Schema}}
+    </script>
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -77,7 +87,7 @@
         <main class="mdl-layout__content">
             <div class="mdl-layout__tab-panel is-active" id="overview">
                
-{{ range $data := .Refdata }}
+{{ range $data := .URLdata.Refdata }}
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                     <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
