@@ -98,7 +98,8 @@
             <main class="mdl-layout__content">
                 <div class="mdl-layout__tab-panel is-active" id="overview">
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+                       <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+
                             
                                 <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}" alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
                           
@@ -146,8 +147,7 @@
                         </div>
                     </section>
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                        </header>
+                   
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
                                 <h4>Details</h4>

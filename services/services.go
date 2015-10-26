@@ -20,7 +20,6 @@ type MLCount struct {
 
 // Redirection handler
 func GetGrid(w http.ResponseWriter, r *http.Request) {
-
 	// call mongo and lookup the redirection to use...
 	session, err := GetMongoCon()
 	if err != nil {
@@ -43,7 +42,7 @@ func GetGrid(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	measures := UniqueMeasurements(results)
-	fmt.Printf("Found %d items: %v", len(measures), measures)
+	fmt.Printf("Found %d items: %v\n", len(measures), measures)
 
 	// this is stupid..  I should be able to make a struct and build this out...
 	// but I don't see how the struct can't be anything other than something that
@@ -52,7 +51,8 @@ func GetGrid(w http.ResponseWriter, r *http.Request) {
 	var buffer bytes.Buffer
 	buffer.WriteString("{\"rows\": [")
 	for i, mes := range measures {
-		buffer.WriteString(fmt.Sprintf("{\"Measurement\": \"%s\",\n", mes))
+		// buffer.WriteString(fmt.Sprintf("{\"Measurement\": \"%s\",\n", mes)) // make a link to a collection too?
+		buffer.WriteString(fmt.Sprintf("{\"Measurement\": \"<a href='/collections/measurement/%s'>%s</a>\",\n", mes, mes)) // make a link to a collection too?
 		tosi := 1
 		si := CountLegs(mes, results)
 		for _, subelem := range results {

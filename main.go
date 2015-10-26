@@ -30,6 +30,7 @@ func main() {
 	// Simpler services to support the web UI  (other services in ocdService)
 	servroute := mux.NewRouter()
 	servroute.HandleFunc("/services/grid", services.GetGrid)
+	servroute.HandleFunc("/services/csdco", services.CSDCOGrid)
 	http.Handle("/services/", servroute)
 
 	// Recall /id is going to be our dx..   all items that come in with that will be looked up and 303'd
@@ -46,8 +47,11 @@ func main() {
 
 	// Browse by collection   measurement leg site hole
 	// Later Browse options might include:  units, observations. geologic time
+	// TODO  worry about namespace collision here...  (need operator ID ?)
 	collections := mux.NewRouter()
 	collections.HandleFunc("/collections/measurements/", colls.MLCounts)
+	collections.HandleFunc("/collections/csdco/", colls.CSDCOOverview)
+	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)
 	collections.HandleFunc("/collections/{measurements}/{leg}", colls.MLURLSets) //  called from the matrix page
 	http.Handle("/collections/", collections)
 
