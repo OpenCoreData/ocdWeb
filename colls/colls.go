@@ -54,10 +54,15 @@ type TemplateForColls struct {
 	Schema  string
 }
 
+type TemplateForMeasurement struct {
+	URLdata []URLSet
+	Schema  string
+}
+
 // The template render doesn't do anything at time..  the .js in the page does all that for now
 // Likely will do something wih the template later
 func MLCounts(w http.ResponseWriter, r *http.Request) {
-	ht, err := template.New("some template").ParseFiles("templates/collections.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/matrix_jrso.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -86,7 +91,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 	var results URLSet
 	err = c.Find(bson.M{"measure": vars["measurements"], "leg": vars["leg"]}).One(&results)
 	if err != nil {
-		log.Printf("Error calling aggregation_janusURLSet : %v", err)
+		log.Printf("Error calling aggregation_janusURLSet MLURLSet : %v", err)
 	}
 
 	// log.Print(results)
@@ -110,7 +115,119 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 
 	data := TemplateForColls{URLdata: results, Schema: string(schematext)}
 
-	ht, err := template.New("some template").ParseFiles("templates/measureSet.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/jrso_MS.html") //open and parse a template text file
+	if err != nil {
+		log.Printf("template parse failed: %s", err)
+	}
+
+	// tmpl.Execute(out, template.HTML(`<b>World</b>`))
+
+	err = ht.ExecuteTemplate(w, "T", data) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+	if err != nil {
+		log.Printf("htemplate execution failed: %s", err)
+	}
+}
+
+func MesSets(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	// call mongo and lookup the redirection to use...
+	session, err := services.GetMongoCon()
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+	c := session.DB("test").C("aggregation_janusURLSet")
+
+	var results []URLSet
+	err = c.Find(bson.M{"measure": vars["measurements"]}).All(&results)
+	if err != nil {
+		log.Printf("Error calling aggregation_janusURLSet: in MesSet %v", err)
+	}
+
+	// log.Print(results)
+	// need to build simple metadata package around schema.org/DataCatalog
+	authorInfo := SchemaAuthor{Type: "Organization", Name: "Joides Resolution Science Office",
+		URL: "http://iodp.org", Description: "NSF funded operator for International Ocean Discvery Project"}
+	dataSets := []ShemaDataset{}
+	for _, dp := range results {
+		for _, d := range dp.Refdata {
+			dataSet := ShemaDataset{Type: "Dataset", URL: d.Url}
+			dataSets = append(dataSets, dataSet)
+		}
+	}
+	dataCatalog := SchemaDatacatalog{Context: "http://schema.org",
+		Type:        "DataCatalog",
+		Author:      authorInfo,
+		Dataset:     dataSets,
+		Description: fmt.Sprintf("Data set for measurement %s ", vars["measurements"]),
+		Name:        fmt.Sprintf("%s%s", vars["measurements"]),
+		URL:         fmt.Sprintf("http://opencoredata.org/collections/measurement/%s", vars["measurements"])}
+
+	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
+
+	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
+
+	ht, err := template.New("some template").ParseFiles("templates/jrso_ML.html") //open and parse a template text file
+	if err != nil {
+		log.Printf("template parse failed: %s", err)
+	}
+
+	// tmpl.Execute(out, template.HTML(`<b>World</b>`))
+
+	err = ht.ExecuteTemplate(w, "T", data) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+	if err != nil {
+		log.Printf("htemplate execution failed: %s", err)
+	}
+}
+
+func LegSets(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	// call mongo and lookup the redirection to use...
+	session, err := services.GetMongoCon()
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+	c := session.DB("test").C("aggregation_janusURLSet")
+
+	var results []URLSet
+	err = c.Find(bson.M{"leg": vars["leg"]}).All(&results)
+	if err != nil {
+		log.Printf("Error calling aggregation_janusURLSet: in LegSet %v", err)
+	}
+
+	// log.Print(results)
+	// need to build simple metadata package around schema.org/DataCatalog
+	authorInfo := SchemaAuthor{Type: "Organization", Name: "Joides Resolution Science Office",
+		URL: "http://iodp.org", Description: "NSF funded operator for International Ocean Discvery Project"}
+	dataSets := []ShemaDataset{}
+	for _, dp := range results {
+		for _, d := range dp.Refdata {
+			dataSet := ShemaDataset{Type: "Dataset", URL: d.Url}
+			dataSets = append(dataSets, dataSet)
+		}
+	}
+	dataCatalog := SchemaDatacatalog{Context: "http://schema.org",
+		Type:        "DataCatalog",
+		Author:      authorInfo,
+		Dataset:     dataSets,
+		Description: fmt.Sprintf("Data set for leg %s ", vars["leg"]),
+		Name:        fmt.Sprintf("%s%s", vars["leg"]),
+		URL:         fmt.Sprintf("http://opencoredata.org/collections/leg/%s", vars["leg"])}
+
+	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
+
+	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
+
+	ht, err := template.New("some template").ParseFiles("templates/jrso_ML.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

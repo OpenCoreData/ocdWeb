@@ -42,7 +42,7 @@ type CSDCO struct {
 }
 
 func CSDCOOverview(w http.ResponseWriter, r *http.Request) {
-	ht, err := template.New("some template").ParseFiles("templates/CSDCOovervew.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/matrix_csdco.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -75,7 +75,7 @@ func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 	log.Print(vars["HoleID"])
 	log.Print(results)
 
-	ht, err := template.New("some template").ParseFiles("templates/CSDCOcollections.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/catalog_csdco.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

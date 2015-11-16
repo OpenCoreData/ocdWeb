@@ -176,7 +176,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	}
 	csvwtext, _ := json.MarshalIndent(result2, "", " ") // results as embeddale JSON-LD
 
-	ht, err := template.New("some template").ParseFiles("templates/documentUUID.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/jrso_dataset.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

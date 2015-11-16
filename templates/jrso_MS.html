@@ -1,0 +1,137 @@
+{{define "T"}}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Open Core Data">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Core Data</title>
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"   rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+    <!-- <link rel="stylesheet" href="material.min.css"> -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.teal-blue.min.css" />
+    <link rel="stylesheet" href="/common/Material/ocdstyle.css">
+    <style>
+    #view-source {
+        position: fixed;
+        display: block;
+        right: 0;
+        bottom: 0;
+        margin-right: 40px;
+        margin-bottom: 40px;
+        z-index: 900;
+    }
+    
+    img {
+        width: 100%;
+        /* or any custom size */
+        height: 100%;
+        object-fit: contain;
+    }
+    </style>
+    <script type="application/ld+json">
+        {{.Schema}}
+    </script>
+</head>
+
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Open Core Data</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <a class="mdl-navigation__link" href="/">Home</a>
+                        <a class="mdl-navigation__link" href="/collections/matrix">Janus Overview</a>
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Open Core Data</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="/">Home</a>
+                    <a class="mdl-navigation__link" href="/collections/matrix">Janus Overview</a>
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+                <div class="mdl-layout__tab-panel is-active" id="overview">
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                            <img src="/common/images/300px-JOIDES_Resolution,_2009.jpg"/>
+                        </header>
+                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Data Collection: <br/>
+                            </h5>
+                                <p>The following collection is for measurement XXX on leg XXX.  You also
+                                download all the files concatonated into one file or as a zip.  Data citations are made at a file level. </p>
+                            </div>
+                        <!--     <div class="mdl-card__actions">
+                                <a href="#" class="mdl-button">Details on this dataset</a>
+                            </div> -->
+                        </div>
+                    </section>
+                    {{ range $data := .URLdata.Refdata }}
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{$data.Lat}},+{{$data.Long}}&zoom=2&scale=false&size=400x400&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{$data.Lat}},+{{$data.Long}}" alt="Google Map of {{$data.Lat}}, {{$data.Long}}">
+                        </header>
+                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Dataset: <br/>
+                            <a href="{{$data.Url}}">{{$data.Url}}</a>
+                            </h5>
+                                <p>Use the link above to access details on this dataset and download options</p>
+                            </div>
+                            <div class="mdl-card__actions">
+                                <a href="#" class="mdl-button">Details on this dataset</a>
+                            </div>
+                        </div>
+                    </section>
+                    {{ end }}
+                </div>
+                <footer class="mdl-mega-footer">
+                    <div class="mdl-mega-footer--middle-section">
+                    </div>
+                    <div class="mdl-mega-footer--bottom-section">
+                        <div class="mdl-logo">
+                            More Information
+                        </div>
+                        <ul class="mdl-mega-footer--link-list">
+                            <li><a href="https://developers.google.com/web/starter-kit/">IEDA</a></li>
+                            <li><a href="#">JRSO</a></li>
+                            <li><a href="#">CSDCO</a></li>
+                            <li><a href="#">COL</a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </main>
+        </div>
+</body>
+
+</html>
+{{end}}
