@@ -9,16 +9,23 @@
 </head>
 
 <body>
-    <p>An example of <code>&lt;seed-element&gt;</code>:</p>
-    <button>Say Something</button>
-    <seed-element author='{"name": "Lord Meowser", "image": "http://placekitten.com/g/200/300"}' fancy>
-        <h2>Hello seed-element</h2>
-    </seed-element>
-    <script>
-    document.querySelector('button').addEventListener('click', function() {
-        alert(document.querySelector('seed-element').sayHello('Hallo!'));
-    });
-    </script>
+    <p>Example web component</p>
+    <button>Button test</button>
+    <p>The button above is connected to the function in the web component via the script below. An example of binding to a component function. </p>
+    <p>For demontration, hr lines preceed and follow the components. </p>
+    <hr/>
+    <p>
+        <seed-element dataset='{"host": "Open Core Data",
+        "hosturl":"http://opencoredata.org",  "url": "http://opencoredata.org/id/dataset/650f47bb-9715-4f58-be51-0fab02af1b68"}'>  
+        </seed-element>
+        <script>
+        document.querySelector('button').addEventListener('click', function() {
+            alert(document.querySelector('seed-element').sayHello('Hallo!'));
+        });
+        </script>
+    </p>
+    <hr/>
+    <p>end</p>
 </body>
 
 </html>
