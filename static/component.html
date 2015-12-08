@@ -6,6 +6,18 @@
     <title>seed-element Demo</title>
     <script src="/common/components/dataset-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="/common/components/dataset-element/seed-element.html">
+    <link rel="import" href="/common/components/leaflet-element/bower_components/leaflet-map/leaflet-map.html">
+    <style>
+    html,
+    body {
+        margin: 0;
+        height: 100%;
+    }
+    
+    leaflet-map {
+        height: 100%;
+    }
+    </style>
 </head>
 
 <body>
@@ -16,7 +28,7 @@
     <hr/>
     <p>
         <seed-element dataset='{"host": "Open Core Data",
-        "hosturl":"http://opencoredata.org",  "url": "http://opencoredata.org/id/dataset/650f47bb-9715-4f58-be51-0fab02af1b68"}'>  
+        "hosturl":"http://opencoredata.org",  "url": "http://opencoredata.org/id/dataset/650f47bb-9715-4f58-be51-0fab02af1b68"}'>
         </seed-element>
         <script>
         document.querySelector('button').addEventListener('click', function() {
@@ -25,7 +37,14 @@
         </script>
     </p>
     <hr/>
-    <p>end</p>
+    <leaflet-map fit-to-markers>
+        <leaflet-marker longitude="77.2" latitude="28.4">
+            Marker I
+        </leaflet-marker>
+        <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+            Round
+        </leaflet-circle>
+    </leaflet-map>
 </body>
 
 </html>

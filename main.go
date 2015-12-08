@@ -46,7 +46,7 @@ func main() {
 	rdfdocs := mux.NewRouter()
 	rdfdocs.PathPrefix("/rdf/").Handler(http.StripPrefix("/rdf/", http.FileServer(http.Dir("./static/rdf"))))
 	http.Handle("/rdf/", rdfdocs)
-
+	
 	// Display Vocabulary entries.  A simple human view..
 	// For machines, check for accepts headers?
 	// no 303 for these?

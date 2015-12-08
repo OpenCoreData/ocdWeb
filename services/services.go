@@ -18,7 +18,7 @@ type MLCount struct {
 	Count   int    `json:"count"`
 }
 
-// Redirection handler
+// GetGrid finds the aggregation for the display matrix
 func GetGrid(w http.ResponseWriter, r *http.Request) {
 	// call mongo and lookup the redirection to use...
 	session, err := GetMongoCon()
