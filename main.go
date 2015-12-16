@@ -46,7 +46,7 @@ func main() {
 	rdfdocs := mux.NewRouter()
 	rdfdocs.PathPrefix("/rdf/").Handler(http.StripPrefix("/rdf/", http.FileServer(http.Dir("./static/rdf"))))
 	http.Handle("/rdf/", rdfdocs)
-	
+
 	// Display Vocabulary entries.  A simple human view..
 	// For machines, check for accepts headers?
 	// no 303 for these?
@@ -68,14 +68,15 @@ func main() {
 	// Later Browse options might include:  units, observations. geologic time
 	// TODO  worry about namespace collision here...  (need operator ID ?)
 	collections := mux.NewRouter()
+	// collections.HandleFunc("/collections", colls.Landing)
 	collections.HandleFunc("/collections/matrix", colls.MLCounts)
 	// collections.HandleFunc("/collections/januslegs", colls.JanusLegs)
 	// collections.HandleFunc("/collections/janusmeasurements", colls.JanusMeasurements)
 	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)
-	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)
-	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets) //  called from the matrix page
-	collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)                  //  called from the matrix page
-	collections.HandleFunc("/collections/{measurements}/{leg}", colls.MLURLSets)     //  called from the matrix page
+	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection) //  landing page for collection of files with a HoleID
+	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)
+	collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)
+	collections.HandleFunc("/collections/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	http.Handle("/collections/", collections)
 
 	// Start the server...

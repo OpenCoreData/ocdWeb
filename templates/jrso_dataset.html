@@ -98,18 +98,15 @@
             <main class="mdl-layout__content">
                 <div class="mdl-layout__tab-panel is-active" id="overview">
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                       <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-
-                            
-                                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}" alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
-                          
+                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}" alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
                                 <h4> {{.Schema.OpenCoreLeg}} {{.Schema.OpenCoreSite}} {{.Schema.OpenCoreHole}}</h4>
                                 <h6> {{.Schema.URL}}</h6>
                                 <p>
-                                    The dataset is provided under the license XYZ. It has a citation DOI or XYZ. If you have questions about this dataset please contact XYZ (Lat: {{.Schema.Spatial.Geo.Latitude}} Long: {{.Schema.Spatial.Geo.Longitude}})
+                                    This is a scientific drilling daataset from the DSDP/ODP/IODP/IODP expedition XYZ with coordinates: (Lat: {{.Schema.Spatial.Geo.Latitude}} Long: {{.Schema.Spatial.Geo.Longitude}})
                                 </p>
                             </div>
                         </div>
@@ -129,33 +126,33 @@
                                     <div class="section__circle-container__circle mdl-color--primary"></div>
                                 </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5><a href="http://opencoredata.org/documents/download/{{.Schema.Name}}">{{.Schema.Name}}</a></h5> Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis
+                                    <h5><a href="http://opencoredata.org/documents/download/{{.Schema.Name}}">{{.Schema.Name}}</a></h5> Dataset downloads following the W3C CSV for the web guidelines. Additional formats including JSON-LD and CSV will be available later in OCD development.
                                 </div>
                                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                                     <div class="section__circle-container__circle mdl-color--primary"></div>
                                 </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/JSON">Data JSON-LD</a></h5> Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis
+                                    <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/JSON">schema.org metadata</a></h5> This is a direct link to the schema.org metadata associated with this file. This metadata is also embedded into the host page (this page). This resource type is <a target="_blank" href="http://schema.org/DataSet">schema.org/Dataset</a>.
                                 </div>
                                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                                     <div class="section__circle-container__circle mdl-color--primary"></div>
                                 </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/CSVW">Metadata</a></h5> Links here to the CSVW metadata and the schema.org aspects. LiPD would also link in here when we get it.
+                                    <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/CSVW">CSV for web metadata</a></h5> This is the direct link tot he W3C CSV for the web metadata packge (ref: <a target="_blank" href="http://www.w3.org/TR/2015/WD-tabular-data-model-20150416/">Model for Tabular Data and Metadata on the Web</a>). Like the schema.org metadata this data is linked directly into the hosting page (this page).
                                 </div>
                             </div>
                         </div>
                     </section>
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                   
-                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col">
+                            <!-- <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone"> -->
                             <div class="mdl-card__supporting-text">
                                 <h4>Details</h4>
                                 <div>
-                                    This dataset containes the following parameter names and types.
+                                    The following table give an example of the parameters in the hosted dataset and links out to the vocabulary terms. These are the terms, units and description for the the associated dataset.
                                 </div>
                                 <div>
-                                    <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                                    <table style="width:100%" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
                                         <thead>
                                             <tr>
                                                 <th class="mdl-data-table__cell--non-numeric">Name</th>
@@ -167,7 +164,7 @@
                                         <tr>
                                             <td class="mdl-data-table__cell--non-numeric"> {{$data.Name}}</td>
                                             <td class="mdl-data-table__cell--non-numeric"> {{$data.Datatype}}</td>
-                                            <td class="mdl-data-table__cell--non-numeric"> {{$data.Dc_description}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{$data.Dc_description}}   </td>
                                         </tr>
                                         {{end}}
                                     </table>
