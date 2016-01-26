@@ -121,24 +121,37 @@
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                         <div class="mdl-card mdl-cell mdl-cell--12-col">
                             <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                                <h4 class="mdl-cell mdl-cell--12-col">Downloads</h4>
-                                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                                    <div class="section__circle-container__circle mdl-color--primary"></div>
-                                </div>
+                                <h4 class="mdl-cell mdl-cell--12-col">Data Set Download(s)</h4>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                    <span class="material-icons mdl-badge">file_download</span>
                                     <h5><a href="http://opencoredata.org/documents/download/{{.Schema.Name}}">{{.Schema.Name}}</a></h5> Dataset downloads following the W3C CSV for the web guidelines. Additional formats including JSON-LD and CSV will be available later in OCD development.
                                 </div>
-                                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                                    <div class="section__circle-container__circle mdl-color--primary"></div>
-                                </div>
-                                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                          
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col">
+                            <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                                <h4 class="mdl-cell mdl-cell--12-col">Metadata</h4>
+                                      <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                    <span class="material-icons mdl-badge">file_download</span>
                                     <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/JSON">schema.org metadata</a></h5> This is a direct link to the schema.org metadata associated with this file. This metadata is also embedded into the host page (this page). This resource type is <a target="_blank" href="http://schema.org/DataSet">schema.org/Dataset</a>.
                                 </div>
-                                <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                                    <div class="section__circle-container__circle mdl-color--primary"></div>
-                                </div>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                    <span class="material-icons mdl-badge">file_download</span>
                                     <h5><a href="http://opencoredata.org/documents/download/{{.UUID}}/CSVW">CSV for web metadata</a></h5> This is the direct link tot he W3C CSV for the web metadata packge (ref: <a target="_blank" href="http://www.w3.org/TR/2015/WD-tabular-data-model-20150416/">Model for Tabular Data and Metadata on the Web</a>). Like the schema.org metadata this data is linked directly into the hosting page (this page).
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col">
+                            <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                                <h4 class="mdl-cell mdl-cell--12-col">Citation</h4>
+                                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                    <h5>Citation format</h5> Ocean Drilling Program; (1976-1983): Janus Thermal Conductivity for Leg 123, Site 1234, Hole B;
+                                    <br/>Joides Resolution Science Office, Interdisciplinary Earth Data Alliance: Open Core Data. MONTH YEAR http://dx.doi.org/xx.xxxx/XXX/XXX/XXX
                                 </div>
                             </div>
                         </div>
@@ -147,7 +160,7 @@
                         <div class="mdl-card mdl-cell mdl-cell--12-col">
                             <!-- <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone"> -->
                             <div class="mdl-card__supporting-text">
-                                <h4>Details</h4>
+                                <h4>Parameters and Descriptions</h4>
                                 <div>
                                     The following table give an example of the parameters in the hosted dataset and links out to the vocabulary terms. These are the terms, units and description for the the associated dataset.
                                 </div>
@@ -164,7 +177,7 @@
                                         <tr>
                                             <td class="mdl-data-table__cell--non-numeric"> {{$data.Name}}</td>
                                             <td class="mdl-data-table__cell--non-numeric"> {{$data.Datatype}}</td>
-                                            <td class="mdl-data-table__cell--non-numeric"> {{$data.Dc_description}}   </td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{$data.Dc_description}} </td>
                                         </tr>
                                         {{end}}
                                     </table>

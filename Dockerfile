@@ -21,6 +21,7 @@ chown -R gorunner:gorunner /go/src/opencoredata.org/ocdWeb
 # either manually or with a tool like "godep".)
 RUN go get github.com/gorilla/mux
 RUN go get gopkg.in/mgo.v2
+RUN go get github.com/knakk/sparql
 #RUN go install opencoredata.org/ocdWeb
 
 # set user

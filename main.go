@@ -13,16 +13,22 @@ import (
 	// _ "net/http/pprof"
 )
 
+type MyServer struct {
+	r *mux.Router
+}
+
 func main() {
 	// Common files, css, js, images, etc...
 	rcommon := mux.NewRouter()
 	rcommon.PathPrefix("/common/").Handler(http.StripPrefix("/common/", http.FileServer(http.Dir("./static"))))
-	http.Handle("/common/", rcommon)
+	// http.Handle("/common/", rcommon)
+	http.Handle("/common/", &MyServer{rcommon})
 
 	// ParkingPage
 	parking := mux.NewRouter()
 	parking.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static/ParkingPage"))))
-	http.Handle("/", parking)
+	// http.Handle("/", parking)
+	http.Handle("/", &MyServer{parking})
 
 	// New Root to replace the old Root
 	root := mux.NewRouter()
@@ -85,5 +91,36 @@ func main() {
 	err := http.ListenAndServe(":9900", nil)
 	if err != nil {
 		log.Fatal(err)
+	}
+}
+
+// ref http://stackoverflow.com/questions/12830095/setting-http-headers-in-golang
+func (s *MyServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+	rw.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	rw.Header().Set("Access-Control-Allow-Headers",
+		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+
+	// if origin := req.Header.Get("Origin"); origin != "" {
+	// 	rw.Header().Set("Access-Control-Allow-Origin", origin)
+	// 	rw.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	// 	rw.Header().Set("Access-Control-Allow-Headers",
+	// 		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	// }
+
+	// Stop here if its Preflighted OPTIONS request
+	// if req.Method == "OPTIONS" {
+	// 	return
+	// }
+
+	// Lets Gorilla work
+	s.r.ServeHTTP(rw, req)
+}
+
+func addDefaultHeaders(fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		fn(w, r)
 	}
 }

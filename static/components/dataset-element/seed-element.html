@@ -19,6 +19,8 @@ Example:
 <dom-module id="seed-element">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" crossorigin="anonymous"></script>
     <link rel="import" href="./bower_components/polymer/polymer.html">
+      <link rel="import" href="./bower_components/iron-ajax/iron-ajax.html">
+
     <!-- <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css"> -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -50,15 +52,35 @@ Example:
             <img src="{{author.image}}"> Cheers, <span class="name">{{author.name}}</span>
         </p> -->
         <div class="row" style="height:200px">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <img src="http://maps.googleapis.com/maps/api/staticmap?center=2.77,+-110.57&zoom=2&scale=false&size=400x400&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C2.77,+-110.57" alt="Google Map of 2.77, -110.57">
             </div>
             <div class="cols-md-4">
-                <h5>Dataset: <br/>
+                <h5>The Dataset: <br/>
                             <a target="_blank" href="{{dataset.url}}">{{dataset.url}}</a>
                             </h5>
                 <p>Use the link above to access details on this dataset and download options</p>
                 <p><a target="_blank" href="{{dataset.hosturl}}" class="mdl-button">Dataset hosted by {{dataset.host}}</a>
+                <p>SPARQL</p>
+                <p> {{callGeoLinkPerson("Douglas Fils")}}  </p>
+
+
+ <!-- url="http://data.geolink.org:8890/sparql?default-graph-uri=&query=select+distinct+%3Furi+where+%7B%3Furi+rdfs%3Alabel+%22Fils%2C+Douglas%22%7D&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on" -->
+   
+<iron-ajax
+    auto
+    url="http://data.oceandrilling.org/sparql?default-graph-uri=&query=select+distinct+%3Furi+where+%7B%3Furi+rdfs%3Alabel+%22Fils%2C+Douglas%22%7D&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on"
+    handle-as="json"
+    debounce-duration="300"         
+    last-response="{{ajaxResponse}}"</iron-ajax>
+
+
+      <template is="dom-repeat" items="[[ajaxResponse.items]]">
+          <div class="horizontal-section">
+            <h2>[[url(item)]]</h2>
+          </div>
+        </template>
+
                 </p>
             </div>
         </div>
@@ -152,6 +174,22 @@ Polymer({
     sayHello: function(greeting) {
         var response = greeting || 'Hello World!';
         return 'seed-element says, ' + response;
+    },
+
+
+    /**
+     * First SPARQL plumbing
+     *     select distinct ?uri where {?uri rdfs:label "Fils, Douglas"}
+     *     Simple JSON example call URI
+     *  http://data.geolink.org:8890/sparql?default-graph-uri=&query=select+distinct+%3Furi+where+%7B%3Furi+rdfs%3Alabel+%22Fils%2C+Douglas%22%7D&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on
+     * @param {string} a label value
+     * @return {string} The full response.
+     */
+    callGeoLinkPerson: function(value) {
+        var response = value || 'No Value Provided';
+
+
+        return 'spaql call response: ' + response;
     },
 
     /**
