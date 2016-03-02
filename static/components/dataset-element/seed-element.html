@@ -48,7 +48,7 @@ Example:
     <template>
         <iron-ajax auto url="http://data.oceandrilling.org/sparql?default-graph-uri=&query=PREFIX+iodp%3A+%3Chttp%3A%2F%2Fdata.oceandrilling.org%2Fcore%2F1%2F%3E%0D%0ASELECT+DISTINCT+%3Furi%0D%0AFROM+%3Chttp%3A%2F%2Fdata.oceandrilling.org%2Fcodices%23%3E+%0D%0AWHERE%7B%0D%0A%3Furi+iodp%3Aexpedition+%22113%22+.%0D%0A%3Furi+%3Fp+%3Fo+.%0D%0A%7D%0D%0ALIMIT+4&should-sponge=&format=application%2Fsparql-results%2Bjson&CXML_redir_for_subjs=121&CXML_redir_for_hrefs=&timeout=0&debug=on" handle-as="json" headers='{"Accept": "application/sparql-results+json"}' debounce-duration="300" last-response="{{ajaxResponse}}">
         </iron-ajax>
-        <div class="row" style="height:300px">
+        <div class="row" style="height:225px">
             <div class="col-md-4">
                 <img style="margin:5px" src="http://maps.googleapis.com/maps/api/staticmap?center=2.77,+-110.57&zoom=2&scale=false&size=400x400&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C2.77,+-110.57" alt="Google Map of 2.77, -110.57">
             </div>
@@ -56,9 +56,7 @@ Example:
                 <h5>The Dataset: <br/>
                             <a target="_blank" href="{{dataset.url}}">{{dataset.url}}</a>
                             </h5>
-                <p>Use the link above to access details on this dataset and download options</p>
                 <p><a target="_blank" href="{{dataset.hosturl}}" class="mdl-button">Dataset hosted by {{dataset.host}}</a></p>
-                <p>SPARQL</p>
                 <p> {{callGeoLinkPerson("Douglas Fils")}} </p>
                 <template is="dom-repeat" items="[[ajaxResponse.results.bindings]]">
                     <a target="_blank" href="[[item.uri.value]]">[[item.uri.value]]</a>
