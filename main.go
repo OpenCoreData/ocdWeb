@@ -45,6 +45,9 @@ func main() {
 	// Example URL:  http://opencoredata.org/id/dataset/c2d80e2a-cc30-430c-b0bd-cee9092688e3
 	dxroute := mux.NewRouter()
 	dxroute.HandleFunc("/id/dataset/{UUID}", dx.Redirection)
+	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}/{HOLE}", dx.Expedition)
+	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}", dx.Expedition)
+	dxroute.HandleFunc("/id/expedition/{LEG}", dx.Expedition)
 	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.RDFRedirection)
 	http.Handle("/id/", dxroute)
 
@@ -66,6 +69,9 @@ func main() {
 	//Browser by id redirection to doc  (gets a specific dataset)  http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B
 	docroute := mux.NewRouter()
 	docroute.HandleFunc("/doc/dataset/{UUID}", doc.UUIDRender)
+	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}/{HOLE}", doc.ShowFeature)
+	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}", doc.ShowFeature)
+	docroute.HandleFunc("/doc/expedition/{LEG}", doc.ShowExpedition)
 	docroute.HandleFunc(`/doc/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.ResourceRender)
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 	http.Handle("/doc/", docroute)
@@ -76,13 +82,15 @@ func main() {
 	collections := mux.NewRouter()
 	// collections.HandleFunc("/collections", colls.Landing)
 	collections.HandleFunc("/collections/matrix", colls.MLCounts)
+	collections.HandleFunc("/collections/expeditions", doc.AllExpeditions)
+	// collections.HandleFunc("/collections/expeditions/{LEG}", doc.ShowExpedition)
 	// collections.HandleFunc("/collections/januslegs", colls.JanusLegs)
 	// collections.HandleFunc("/collections/janusmeasurements", colls.JanusMeasurements)
 	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)
-	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection) //  landing page for collection of files with a HoleID
+	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)             //  landing page for collection of files with a HoleID
+	collections.HandleFunc("/collections/measurement/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)
 	collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)
-	collections.HandleFunc("/collections/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	http.Handle("/collections/", collections)
 
 	// Start the server...

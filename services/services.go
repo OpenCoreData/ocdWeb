@@ -58,7 +58,7 @@ func GetGrid(w http.ResponseWriter, r *http.Request) {
 		for _, subelem := range results {
 			if strings.Contains(subelem.Measure, mes) {
 				// print the line
-				buffer.WriteString(fmt.Sprintf("\"%s\" : \"<a href='/collections/%s/%s'>%d</a>\"", subelem.Leg, mes, subelem.Leg, subelem.Count))
+				buffer.WriteString(fmt.Sprintf("\"%s\" : \"<a href='/collections/measurement/%s/%s'>%d</a>\"", subelem.Leg, mes, subelem.Leg, subelem.Count))
 				if tosi < si {
 					buffer.WriteString(",\n")
 				}

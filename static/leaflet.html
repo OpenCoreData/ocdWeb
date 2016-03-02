@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>seed-element Demo</title>
     <script src="/common/components/dataset-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/common/components/leaflet-element/bower_components/leaflet-map/demo-header.html">
     <link rel="import" href="/common/components/leaflet-element/bower_components/leaflet-map/leaflet-map.html">
-    <style>
+    <link rel="import" href="/common/components/leaflet-element/bower_components/leaflet-map/demo-advanced.html">
+    <link rel="import" href="/common/components/dataset-element/bower_components/iron-ajax/iron-ajax.html">    
+<style>
     html,
     body {
         margin: 0;
@@ -26,7 +29,7 @@
             <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>
         </leaflet-tilelayer>
         <template is="dom-bind">
-            <iron-ajax url="https://leaflet-extras.github.io/leaflet-map/demo-geojson.json" last-response="{{data}}" auto>
+            <iron-ajax url="demo-geojson.json" last-response="{{data}}" auto>
             </iron-ajax>
             <leaflet-geojson color="#FF0000" data="[[data]]"></leaflet-geojson>
         </template>

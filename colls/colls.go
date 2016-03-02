@@ -109,7 +109,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 		Dataset:     dataSets,
 		Description: fmt.Sprintf("Data set for measurement %s and leg %s", vars["measurements"], vars["leg"]),
 		Name:        fmt.Sprintf("%s%s", vars["measurements"], vars["leg"]),
-		URL:         fmt.Sprintf("http://opencoredata.org/collections/%s/%s", vars["measurements"], vars["leg"])}
+		URL:         fmt.Sprintf("http://opencoredata.org/collections/measurement/%s/%s", vars["measurements"], vars["leg"])}
 
 	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
 
@@ -164,7 +164,7 @@ func MesSets(w http.ResponseWriter, r *http.Request) {
 		Author:      authorInfo,
 		Dataset:     dataSets,
 		Description: fmt.Sprintf("Data set for measurement %s ", vars["measurements"]),
-		Name:        fmt.Sprintf("%s%s", vars["measurements"]),
+		Name:        fmt.Sprintf("%s", vars["measurements"]),
 		URL:         fmt.Sprintf("http://opencoredata.org/collections/measurement/%s", vars["measurements"])}
 
 	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
