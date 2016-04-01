@@ -32,22 +32,22 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.teal-blue.min.css" />
     <link rel="stylesheet" href="/common/Material/ocdstyle.css">
     <style>
-    #view-source {
-        position: fixed;
-        display: block;
-        right: 0;
-        bottom: 0;
-        margin-right: 40px;
-        margin-bottom: 40px;
-        z-index: 900;
-    }
-    
-    img {
-        width: 100%;
-        /* or any custom size */
-        height: 100%;
-        object-fit: contain;
-    }
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+        
+        img {
+            width: 100%;
+            /* or any custom size */
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 
@@ -79,85 +79,85 @@
                 <div class="mdl-layout__tab-panel is-active" id="overview">
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                         <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Lat}},+{{.Schema.Long}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Lat}},+{{.Schema.Long}}" alt="Google Map of {{.Schema.Lat}}, {{.Schema.Long}}">
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Lat}},+{{.Schema.Long}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Lat}},+{{.Schema.Long}}"
+                                alt="Google Map of {{.Schema.Lat}}, {{.Schema.Long}}">
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h5>Expedition Info <br/>
-                            </h5>
-                                <p>Information on the {{.Schema.Program}} expedition
-                                {{.Schema.Expedition}}_{{.Schema.Site}}{{.Schema.Hole}}</p>
-                            </div>
-                           <!--  <div class="mdl-card__actions">
-                                <a href="#" class="mdl-button">Sets in this collection</a>
-                            </div> -->
-                        </div>
-                    </section>
-                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                        </header>
-                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                            <h5>Expedition</h5>
-                            <div class="mdl-card__actions">
-                                <a href="#" class="mdl-button">Further information here</a>                       
-
-<p> Uri  {{if .Schema.Uri}}  {{.Schema.Uri}} {{end}}  </p>
-<p> Lat  {{if .Schema.Lat}} {{.Schema.Lat}} {{end}}  </p>
-<p> Long  {{if .Schema.Long}} {{.Schema.Long}} {{end}}  </p>
-<p> Hole  {{if .Schema.Hole}} {{.Schema.Hole}} {{end}}  </p>
-<p> Expedition  {{if .Schema.Expedition}} {{.Schema.Expedition}} {{end}}  </p>
-<p> Site  {{if .Schema.Site}} {{.Schema.Site}} {{end}}  </p>
-<p> Program   {{if .Schema.Program }} {{.Schema.Program }} {{end}}  </p>
-<p> Waterdepth  {{if .Schema.Waterdepth}} {{.Schema.Waterdepth}} {{end}}  </p>
-<p> CoreCount   {{if .Schema.CoreCount }} {{.Schema.CoreCount }} {{end}}  </p>
-<p> Initialreportvolume   {{if .Schema.Initialreportvolume }} {{.Schema.Initialreportvolume }} {{end}}  </p>
-<p> Coredata  {{if .Schema.Coredata}} {{.Schema.Coredata}} {{end}}  </p>
-<p> Logdata   {{if .Schema.Logdata }} {{.Schema.Logdata }} {{end}}  </p>
-<p> Geom  {{if .Schema.Geom}} {{.Schema.Geom}} {{end}}  </p>
-<p> Scientificprospectus  {{if .Schema.Scientificprospectus}} {{.Schema.Scientificprospectus}} {{end}}  </p>
-<p> CoreRecovery  {{if .Schema.CoreRecovery}} {{.Schema.CoreRecovery}} {{end}}  </p>
-<p> Penetration   {{if .Schema.Penetration }} {{.Schema.Penetration }} {{end}}  </p>
-<p> Scientificreportvolume  {{if .Schema.Scientificreportvolume}} {{.Schema.Scientificreportvolume}} {{end}}  </p>
-<p> Expeditionsite  {{if .Schema.Expeditionsite}} {{.Schema.Expeditionsite}} {{end}}  </p>
-<p> Preliminaryreport   {{if .Schema.Preliminaryreport }} {{.Schema.Preliminaryreport }} {{end}}  </p>
-<p> CoreInterval  {{if .Schema.CoreInterval}} {{.Schema.CoreInterval}} {{end}}  </p>
-<p> PercentRecovery   {{if .Schema.PercentRecovery }} {{.Schema.PercentRecovery }} {{end}}  </p>
-<p> Drilled   {{if .Schema.Drilled }} {{.Schema.Drilled }} {{end}}  </p>
-<p> Vcdata  {{if .Schema.Vcdata}} {{.Schema.Vcdata}} {{end}}  </p>
-<p> Note  {{if .Schema.Note}} {{.Schema.Note}} {{end}}  </p>
-<p> Prcoeedingreport  {{if .Schema.Prcoeedingreport}} {{.Schema.Prcoeedingreport}} {{end}}  </p>
-
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                           
-                        </header>
-                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                            <div class="mdl-card__supporting-text">
-                                <h5>Available Datasets for this Expedition</h5>
-
-{{range $ITEMS := .Datasets}}
-
- <a href="{{.URL}}">{{.OpenCoreMeasurement}} for 
- {{if .OpenCoreLeg}}{{.OpenCoreLeg}} {{end}}
- {{if .OpenCoreSite}}{{.OpenCoreSite}} {{end}}
- {{if .OpenCoreHole}}{{.OpenCoreHole}} {{end}}
-</a><br/>
-{{end}}
-
-
-
+                                <h5>Leg [Site] Information</h5>
+                                </h5>
+                                <p>Information on the {{.Schema.Program}} expedition {{.Schema.Expedition}}_{{.Schema.Site}}{{.Schema.Hole}}
+                                </p>
                             </div>
                             <!--  <div class="mdl-card__actions">
                                 <a href="#" class="mdl-button">Sets in this collection</a>
                             </div> -->
                         </div>
                     </section>
-
-                    
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Available Datasets for this Expedition</h5>
+                                <div>
+                                    <table style="width:100%" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                                        <thead>
+                                            <tr>
+                                                <th class="mdl-data-table__cell--non-numeric">Measurement</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Leg</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Site</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Hole</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Download</th>
+                                            </tr>
+                                        </thead>
+                                        {{range $ITEMS := .Datasets}}
+                                        <tr>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreMeasurement}}{{.OpenCoreMeasurement}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreLeg}}{{.OpenCoreLeg}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreSite}}{{.OpenCoreSite}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreHole}}{{.OpenCoreHole}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> <a href="{{.URL}}">View Landing Page for Dataset</a></td>
+                                        </tr> {{end}}
+                                    </table>
+                                </div>
+                            </div>
+                            <!--  <div class="mdl-card__actions">
+                                <a href="#" class="mdl-button">Sets in this collection</a>
+                            </div> -->
+                        </div>
+                    </section>
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Details</h5>
+                                <div class="mdl-card__actions">
+                                      {{if .Schema.Lat}} <p> Lat {{.Schema.Lat}} </p>{{end}} 
+                                      {{if .Schema.Long}}<p> Long {{.Schema.Long}} </p>{{end}} 
+                                      {{if .Schema.Hole}} <p> Hole {{.Schema.Hole}} </p>{{end}} 
+                                      {{if .Schema.Expedition}}  <p> Expedition {{.Schema.Expedition}} </p> {{end}}
+                                       {{if .Schema.Site}} <p> Site {{.Schema.Site}} </p> {{end}}
+                                       {{if .Schema.Program }} <p> Program {{.Schema.Program }} </p> {{end}}
+                                       {{if .Schema.Waterdepth}} <p>Waterdepth {{.Schema.Waterdepth}} </p> {{end}}
+                                       {{if .Schema.CoreCount }} <p>CoreCount {{.Schema.CoreCount }} </p> {{end}}
+                                       {{if .Schema.Initialreportvolume }} <p>Initialreportvolume  <a target='_blank' href='{{.Schema.Initialreportvolume }}'>{{.Schema.Initialreportvolume }}</a> </p> {{end}}
+                                       {{if .Schema.Coredata}} <p>Coredata  <a target='_blank' href='{{.Schema.Coredata }}'>{{.Schema.Coredata }}</a></p> {{end}}
+                                       {{if .Schema.Logdata }} <p>Logdata {{.Schema.Logdata }} </p> {{end}}
+                                       {{if .Schema.Geom}} <p>Geom {{.Schema.Geom}} </p> {{end}}
+                                       {{if .Schema.Scientificprospectus}} <p>Scientificprospectus  <a target='_blank' href='{{.Schema.Scientificprospectus}}'>{{.Schema.Scientificprospectus}}</a> </p> {{end}}
+                                       {{if .Schema.CoreRecovery}} <p>CoreRecovery {{.Schema.CoreRecovery}} </p> {{end}}
+                                       {{if .Schema.Penetration }} <p>Penetration {{.Schema.Penetration }} </p> {{end}}
+                                       {{if .Schema.Scientificreportvolume}} <p>Scientificreportvolume  <a target='_blank' href='{{.Schema.Scientificreportvolume}}'>{{.Schema.Scientificreportvolume}}</a> </p> {{end}}
+                                       {{if .Schema.Expeditionsite}} <p>Expeditionsite {{.Schema.Expeditionsite}} </p> {{end}}
+                                       {{if .Schema.Preliminaryreport }} <p>Preliminaryreport  <a target='_blank' href='{{.Schema.Preliminaryreport }}'>{{.Schema.Preliminaryreport }}</a> </p> {{end}}
+                                       {{if .Schema.CoreInterval}} <p>CoreInterval {{.Schema.CoreInterval}} </p> {{end}}
+                                       {{if .Schema.PercentRecovery }} <p>PercentRecovery {{.Schema.PercentRecovery }} </p> {{end}}
+                                       {{if .Schema.Drilled }} <p>Drilled {{.Schema.Drilled }} </p> {{end}}
+                                       {{if .Schema.Vcdata}} <p>Vcdata {{.Schema.Vcdata}} </p> {{end}}
+                                       {{if .Schema.Note}} <p>Note {{.Schema.Note}} </p> {{end}}
+                                       {{if .Schema.Prcoeedingreport}} <p>Prcoeedingreport  <a target='_blank' href='{{.Schema.Prcoeedingreport}}'>{{.Schema.Prcoeedingreport}}</a> </p> {{end}}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
                 <footer class="mdl-mega-footer">
                     <div class="mdl-mega-footer--middle-section">

@@ -103,11 +103,14 @@
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h4> {{.Schema.OpenCoreLeg}} {{.Schema.OpenCoreSite}} {{.Schema.OpenCoreHole}}</h4>
-                                <h6> {{.Schema.URL}}</h6>
+                                <h4>{{.Schema.OpenCoreLeg}}_{{.Schema.OpenCoreSite}}{{if .Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}}</h4>                                <h6> {{.Schema.URL}}</h6>
                                 <p>
-                                    This is a scientific drilling daataset from the DSDP/ODP/IODP/IODP expedition XYZ with coordinates: (Lat: {{.Schema.Spatial.Geo.Latitude}} Long: {{.Schema.Spatial.Geo.Longitude}})
-                                </p>
+                                    This is a scientific drilling daataset from the DSDP/ODP/IODP/IODP expedition 
+                                    {{.Schema.OpenCoreLeg}}_{{.Schema.OpenCoreSite}}{{if .Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}}
+                                     with coordinates: (Lat: {{.Schema.Spatial.Geo.Latitude}} Long: {{.Schema.Spatial.Geo.Longitude}}).
+                                    <br/>
+                                    Keywords: {{.Schema.Keywords}}
+                                </p> 
                             </div>
                         </div>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
@@ -121,7 +124,7 @@
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                         <div class="mdl-card mdl-cell mdl-cell--12-col">
                             <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                                <h4 class="mdl-cell mdl-cell--12-col">Data Set Download(s)</h4>
+                                <h4 class="mdl-cell mdl-cell--12-col">Data</h4>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                                     <span class="material-icons mdl-badge">file_download</span>
                                     <h5><a href="http://opencoredata.org/api/v1/documents/download/{{.Schema.Name}}">{{.Schema.Name}}</a></h5> Dataset downloads following the W3C CSV for the web guidelines. Additional formats including JSON-LD and CSV will be available later in OCD development.
@@ -150,7 +153,8 @@
                             <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
                                 <h4 class="mdl-cell mdl-cell--12-col">Citation</h4>
                                 <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                                    <h5>Citation format</h5> Ocean Drilling Program; (1976-1983): Janus Thermal Conductivity for Leg 123, Site 1234, Hole B;
+                                    <h5>Citation format (place hoder..  under development)</h5> Ocean Drilling Program; (1976-1983): Janus Measurement 
+                                    for Leg {{.Schema.OpenCoreLeg}}, Site {{.Schema.OpenCoreSite}}, Hole {{if .Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}};
                                     <br/>Joides Resolution Science Office, Interdisciplinary Earth Data Alliance: Open Core Data. MONTH YEAR http://dx.doi.org/xx.xxxx/XXX/XXX/XXX
                                 </div>
                             </div>

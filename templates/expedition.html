@@ -32,29 +32,42 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.teal-blue.min.css" />
     <link rel="stylesheet" href="/common/Material/ocdstyle.css">
     <!-- Load leaflet component -->
-    <!--  <script type="text/javascript" src="/common/components/leaflet-element/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="/common/components/leaflet-element/bower_components/leaflet-map/leaflet-map.html"> -->
+    <!--<script src="/common/components/leaflet-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/common/components/leaflet-element/bower_components/leaflet-map/leaflet-map.html">
+    <link rel="import" href="/common/components/leaflet-element/bower_components/iron-ajax/iron-ajax.html">
+   -->
+    <!-- leaflet stuff -->
+    <link rel="stylesheet" href="/common/js/leaflet/leaflet.css" />
+    <script src="/common/js/leaflet/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.Default.css" />
+    <script src="/common/js/markercluster/dist/leaflet.markercluster-src.js"></script>
     <style>
-    #view-source {
-        position: fixed;
-        display: block;
-        right: 0;
-        bottom: 0;
-        margin-right: 40px;
-        margin-bottom: 40px;
-        z-index: 900;
-    }
-    
-    img {
-        width: 100%;
-        /* or any custom size */
-        height: 100%;
-        obj ect-fit: contain;
-    }
-    
-    leaflet-map {
-        height: 100%;
-    }
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+        
+        #map {
+            height: 500px;
+        }
+        
+        img {
+            width: 100%;
+            /* or any custom size */
+            height: 100%;
+            obj ect-fit: contain;
+        }
+        
+        leaflet-map {
+            height: 100%;
+        }
     </style>
 </head>
 
@@ -90,82 +103,72 @@
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h5>Expedition Info </h5>
+                                <h5>Expedition Information </h5>
                                 <p>Cruise Type: {{.Cruise.Program}}</p>
-                                <p>Site/Hole links for {{.Cruise.Expedition}}</p>
-                                {{ range $LSH := .LSHSlice}}
-                                <span>
-                                    <a href="{{.}}">{{.}}</a>
-                                </span><br/>
-                                {{end}}
                             </div>
                             <!--  <div class="mdl-card__actions">
                                 <a href="#" class="mdl-button">Sets in this collection</a>
                             </div> -->
                         </div>
                     </section>
-
- 
-
-
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                        </header>
-                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                            <h5>Expedition</h5>
-                            <div id="map" style="height:400px;width:400px" class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                                <script>
-                                var map;
-
-                                function initMap() {
-                                    map = new google.maps.Map(document.getElementById('map'), {
-                                        zoom: 2,
-                                        center: {
-                                            lat: 16,
-                                            lng: -79
-                                        }
-                                    });
-
-                                    // NOTE: This uses cross-domain XHR, and may not work on older browsers.
-                                    map.data.loadGeoJson('http://opencoredata.org/api/v1/spatial/expedition/165');
-                                }
-                                </script>
-                                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1nmQ5Ad2FadwPlms-AUu_pnbjXMQ5-_8&signed_in=true&callback=initMap">
-                                </script>
-                            </div>
-                            <div class="mdl-card__actions">
-                                <a href="#" class="mdl-button">Links 
-                                to Site Hole features here.</a>
+                        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Expedition Sites and Holes</h5>
+                                <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                                    {{ range $LSH := .LSHSlice}}
+                                    <span>
+                                <a href="{{.}}">{{.}}</a>  
+                                 </span>
+                                    <br/> {{end}}
+                                </div>
                             </div>
                         </div>
                     </section>
-
                     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                           
-                        </header>
-                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <h5>Map</h5>
+                            <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                                <div style="margin:5px;height:400px;width:100%">
+                                    <div id="map"></div>
+                                    <div id="info">
+                                        <h5>Building map...  please wait...</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
                                 <h5>Available Datasets for this Expedition</h5>
-
-{{range $ITEMS := .Datasets}}
-
- <a href="{{.URL}}">{{.OpenCoreMeasurement}} for 
- {{if .OpenCoreLeg}}{{.OpenCoreLeg}} {{end}}
- {{if .OpenCoreSite}}{{.OpenCoreSite}} {{end}}
- {{if .OpenCoreHole}}{{.OpenCoreHole}} {{end}}
-</a><br/>
-{{end}}
-
-
-
+                                <div>
+                                    <table style="width:100%" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                                        <thead>
+                                            <tr>
+                                                <th class="mdl-data-table__cell--non-numeric">Measurement</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Leg</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Site</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Hole</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Download</th>
+                                            </tr>
+                                        </thead>
+                                        {{range $ITEMS := .Datasets}}
+                                        <tr>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreMeasurement}}{{.OpenCoreMeasurement}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreLeg}}{{.OpenCoreLeg}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreSite}}{{.OpenCoreSite}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> {{if .OpenCoreHole}}{{.OpenCoreHole}} {{end}}</td>
+                                            <td class="mdl-data-table__cell--non-numeric"> <a href="{{.URL}}">View Landing Page for Dataset</a></td>
+                                        </tr> {{end}}
+                                    </table>
+                                </div>
                             </div>
                             <!--  <div class="mdl-card__actions">
                                 <a href="#" class="mdl-button">Sets in this collection</a>
                             </div> -->
                         </div>
                     </section>
-
                 </div>
                 <footer class="mdl-mega-footer">
                     <div class="mdl-mega-footer--middle-section">
@@ -185,6 +188,78 @@
             </main>
         </div>
 </body>
+<script type="text/javascript">
+    // Create the map
+    //refs:  https://gist.github.com/alexgleith/7112515
+
+    // Old school ajax caller..  needs updating so not on main thread sync event
+    jQuery.extend({
+        getValues: function(url) {
+            var result = null;
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                async: false,
+                success: function(data) {
+                    result = data;
+                }
+            });
+            return result;
+        }
+    });
+
+    // Set up the ESRI tiles and the initial map object        
+    var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 18,
+            attribution: '&copy; ESRI'
+        }),
+
+        latlng = L.latLng(0.78, 102.37);
+
+    var map = L.map('map', {
+        center: latlng,
+        zoom: 1,
+        layers: [tiles]
+    });
+
+    // Get the ocean data
+    var geoJsonData = $.getValues("http://3623821d.ngrok.io/api/v1/spatial/expedition/{{.Cruise.Expedition}}");
+    var geojsonMarkerOptions = {
+        radius: 10,
+        fillColor: "rgb(255,0,195)",
+        color: "#fff",
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 1
+    };
+
+    var geojson = L.geoJson(geoJsonData, {
+        pointToLayer: function(feature, latlng) {
+            var popupOptions = {
+                maxWidth: 300
+            };
+            var popupContent = feature.properties.URL;
+            return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupContent, popupOptions);
+        }
+    });
+
+    // Marker cluster settings
+    var markers = L.markerClusterGroup({
+        spiderfyOnMaxZoom: false,
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true,
+        disableClusteringAtZoom: 6
+    });
+
+    // Finish adding things to the map and present
+    // markers.addLayer(geojson);
+    map.addLayer(geojson);
+
+    map.fitBounds(geojson.getBounds());
+    // markers.addTo(map)
+    $("#info").fadeOut(500);
+</script>
 
 </html>
 {{end}}

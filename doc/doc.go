@@ -115,7 +115,9 @@ type TemplateForDoc struct {
 	UUID         string
 }
 
-// Note being used really...
+// Render A document view function
+// Note NOT being used ...  
+// called from main for measurement view  (need to FIX THIS)
 // not sure if I want a M/L/S/H URL open or not at this time...
 func Render(w http.ResponseWriter, r *http.Request) {
 	session, err := services.GetMongoCon()
@@ -160,7 +162,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("test").C("schemaorg")
 	c2 := session.DB("test").C("csvwmeta")
 
-	// Get the schema.org datasets
+	// Get the schema.org data
 	URI := fmt.Sprintf("http://opencoredata.org/id/dataset/%s", vars["UUID"])
 	result := SchemaOrgMetadata{}
 	err = c.Find(bson.M{"url": URI}).One(&result)
@@ -169,6 +171,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	}
 	jsonldtext, _ := json.MarshalIndent(result, "", " ") // results as embeddale JSON-LD
 
+    // Get the CSVW  data
 	result2 := CSVWMeta{}
 	err = c2.Find(bson.M{"url": URI}).One(&result2)
 	if err != nil {

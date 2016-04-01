@@ -85,10 +85,12 @@
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h5>Expedition Info <br/>
+                                <h5>Expedition {{$Schema.Expedition}} <br/>
                             </h5>
-                                <p>Information on {{$Schema.Program}} expedition
-                                {{$Schema.Expedition}} with track {{$Schema.Track}}</p>
+                                <p>Further information on this expedition can be found at
+                                    <a href="/collections/leg/{{$Schema.Expedition}}">
+                                    http://opencoredata.org/collections/leg/{{$Schema.Expedition}}</a>
+                                </p>
                             </div>
                            <!--  <div class="mdl-card__actions">
                                 <a href="#" class="mdl-button">Sets in this collection</a>
@@ -96,19 +98,7 @@
                         </div>
                     </section>
                     {{end}}
-                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                        </header>
-                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                            <h5>Expedition</h5>
-                        
-                            <div class="mdl-card__actions">
-                                <a href="#" class="mdl-button">Further information here</a>
-                            </div>
-                        
-
-                        </div>
-                    </section>
+                  
                 </div>
                 <footer class="mdl-mega-footer">
                     <div class="mdl-mega-footer--middle-section">

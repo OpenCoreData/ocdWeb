@@ -128,13 +128,8 @@ func ShowExpedition(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error calling for ShowExpeditions: %v", err)
 	}
 
-	// Parse the string and create a slice of the results.
-	// Pass the slice to the template and display
+	// These slices are hideous..  some have trailing /'s that alter resolution
 	lshSlice := strings.Split(results.Legsitehole, " ")
-	// log.Printf("%v", lshSlice)
-
-	// Collect datasets for display
-	// call a function to get datasets
 
 	// Make a new struct and put results and lshslice into it and pass it along
 	type TemplateStruct struct {
