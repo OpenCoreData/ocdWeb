@@ -153,7 +153,7 @@ var map = L.map('map', {
 });
 
 // Get the ocean data
-var geoJsonData = $.getValues("http://4883470e.ngrok.io/api/v1/spatial/expeditions");
+var geoJsonData = $.getValues("http://opencoredata.org/api/v1/spatial/expeditions");
 var geojsonMarkerOptions = {
     radius: 10,
     fillColor: "rgb(255,0,195)",
@@ -174,7 +174,7 @@ var geojson = L.geoJson(geoJsonData, {
 });
 
 // Get the continental data
-var csdcoData = $.getValues("http://4883470e.ngrok.io/api/v1/spatial/continental");
+var csdcoData = $.getValues("http://opencoredata.org/api/v1/spatial/continental");
 var csdcoMarkerOptions = {
     radius: 10,
     fillColor: "rgb(0,255,195)",

@@ -224,7 +224,7 @@
     });
 
     // Get the ocean data
-    var geoJsonData = $.getValues("http://3623821d.ngrok.io/api/v1/spatial/expedition/{{.Cruise.Expedition}}");
+    var geoJsonData = $.getValues("http://opencoredata.org/api/v1/spatial/expedition/{{.Cruise.Expedition}}");
     var geojsonMarkerOptions = {
         radius: 10,
         fillColor: "rgb(255,0,195)",

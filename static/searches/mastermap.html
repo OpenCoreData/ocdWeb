@@ -164,7 +164,7 @@ var markers = L.markerClusterGroup();
 
 $.ajax({
     type: "GET",
-     url: 'http://dc5caf92.ngrok.io/api/v1/spatial/expeditions',
+     url: 'http://opencoredata.org/api/v1/spatial/expeditions',
     dataType: 'json',
     success: function (response) {
         geojsonLayer = L.geoJson(response, { onEachFeature: yourOnEachFeatureFunction
