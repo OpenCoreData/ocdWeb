@@ -46,15 +46,15 @@ Example:
     }
     </style>
     <template>
-        <iron-ajax auto url="http://data.geolink.org:8890/sparql?default-graph-uri=&query=SELECT+%3Fs+%3Flabel+%3Fgraph%0D%0AWHERE+%7B++GRAPH+%3Fgraph+%7B%0D%0A+++%3Fs+%3Chttp%3A%2F%2Fschema.geolink.org%2Fdev%2Fview%23nameFamily%3E+%22Murray%22+.%0D%0A+++%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Flabel+.%0D%0A%7D%0D%0A%7D%0D%0A&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on" handle-as="json" headers='{"Accept": "application/sparql-results+json"}' debounce-duration="300" last-response="{{ajaxResponse}}">
+        <iron-ajax auto url="http://data.geolink.org:8890/sparql?default-graph-uri=&query=SELECT+%3Fs+%3Flabel+%3Fgraph%0D%0AWHERE+%7B++GRAPH+%3Fgraph+%7B%0D%0A+++%3Fs+%3Chttp%3A%2F%2Fschema.geolink.org%2Fdev%2Fview%23nameFamily%3E+%22{{params.uri}}%22+.%0D%0A+++%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Flabel+.%0D%0A%7D%0D%0A%7D%0D%0A&format=application%2Fsparql-results%2Bjson&timeout=0&debug=on" handle-as="json" headers='{"Accept": "application/sparql-results+json"}' debounce-duration="300" last-response="{{ajaxResponse}}">
         </iron-ajax>
         <div class="row" style="height:225px">
             <div class="col-md-4">
-                <img style="margin:5px" src="./images/searcher.jpg">
+                <img style="margin:5px" src="./images/eclogo.png">
             </div>
             <div class="cols-md-4">
-                <h5>GeoLink Person Component for fname {{dataset.fname}} </h5>
-                <p> {{callGeoLinkPerson(dataset.fname)}} </p>
+                <h5>GeoLink Person:{{params.uri}} </h5>
+                <!--<p> {{callGeoLinkPerson(params.uri)}} </p>-->
                 <p>Other connection for this resource from the GeoLink graph</p>
                 <div style="overflow:scroll; height:100px ; width:400px">
                     <template is="dom-repeat" items="[[ajaxResponse.results.bindings]]">
@@ -85,7 +85,7 @@ Polymer({
          *
          * @type {{name: string, image: string}}
          */
-        dataset: {
+        params: {
             type: Object,
             // Use `value` to provides a default value for a property, by setting it
             // on your element's prototype.
