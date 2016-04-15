@@ -168,7 +168,8 @@ var geojson = L.geoJson(geoJsonData, {
         var popupOptions = {
             maxWidth: 300
         };
-        var popupContent = feature.properties.URI;
+        // var popupContent = feature.properties.URI;
+        var popupContent = "<a target='_blank' href='" + feature.properties.URI + "'>" + feature.properties.URI + "</a>"
         return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupContent, popupOptions);
     }
 });
@@ -187,7 +188,8 @@ var csdcoMarkerOptions = {
 var csdco = L.geoJson(csdcoData, {
      pointToLayer: function (feature, latlng) {
         var popupOptions = {maxWidth: 600};
-        var popupContent = feature.properties.URI;
+       // var popupContent = feature.properties.URI;
+        var popupContent = "<a target='_blank' href='" + feature.properties.URI + "'>" + feature.properties.URI + "</a>"
         return L.circleMarker(latlng, csdcoMarkerOptions).bindPopup(popupContent,popupOptions);
     }
 });
