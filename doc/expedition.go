@@ -196,12 +196,12 @@ func AllExpeditions(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("expedire").C("expeditions")
 
 	var results []CruiseGL
-	err = c.Find(bson.M{}).All(&results)
+	err = c.Find(bson.M{}).Sort("-expedition").All(&results) ///.Sort("expedition")
 	if err != nil {
 		log.Printf("Error calling for AllExpeditions: %v", err)
 	}
 
-	ht, err := template.New("some template").ParseFiles("templates/expeditionsAll.html")
+	ht, err := template.New("some template").ParseFiles("templates/expeditionsAll_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

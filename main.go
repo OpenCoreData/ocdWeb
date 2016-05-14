@@ -26,7 +26,7 @@ func main() {
 
 	// ParkingPage
 	parking := mux.NewRouter()
-	parking.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static/ParkingPage"))))
+	parking.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static"))))
 	// http.Handle("/", parking)
 	http.Handle("/", &MyServer{parking})
 
@@ -81,12 +81,12 @@ func main() {
 	// TODO  worry about namespace collision here...  (need operator ID ?)
 	collections := mux.NewRouter()
 	// collections.HandleFunc("/collections", colls.Landing)
-	collections.HandleFunc("/collections/matrix", colls.MLCounts)
-	collections.HandleFunc("/collections/expeditions", doc.AllExpeditions)
+	collections.HandleFunc("/collections/matrix", colls.MLCounts)   //  IODP matrix
+	collections.HandleFunc("/collections/expeditions", doc.AllExpeditions)   // Big list view
 	// collections.HandleFunc("/collections/expeditions/{LEG}", doc.ShowExpedition)
 	// collections.HandleFunc("/collections/januslegs", colls.JanusLegs)
 	// collections.HandleFunc("/collections/janusmeasurements", colls.JanusMeasurements)
-	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)
+	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)   // CSDCO Matrix
 	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)             //  landing page for collection of files with a HoleID
 	collections.HandleFunc("/collections/measurement/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)

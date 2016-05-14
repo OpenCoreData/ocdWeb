@@ -31,43 +31,46 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.teal-blue.min.css" />
     <link rel="stylesheet" href="/common/Material/ocdstyle.css">
     <style>
-    #view-source {
-        position: fixed;
-        display: block;
-        right: 0;
-        bottom: 0;
-        margin-right: 40px;
-        margin-bottom: 40px;
-        z-index: 900;
-    }
-    
-    img {
-        width: 100%;
-        /* or any custom size */
-        height: 100%;
-        object-fit: contain;
-    }
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+        
+        img {
+            width: 100%;
+            /* or any custom size */
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
     <style>
-    .demo-card-square.mdl-card {
-        width: 320px;
-        height: 320px;
-    }
-    
-    .demo-card-square > .mdl-card__title {
-        color: #fff;
-    }
+        .demo-card-square.mdl-card {
+            width: 320px;
+            height: 320px;
+        }
+        
+        .demo-card-square > .mdl-card__title {
+            color: #fff;
+        }
     </style>
     <style>
-    .mdl-layout__content {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-    }
+        .mdl-layout__content {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
     </style>
     <script type="application/ld+json">
-        {{.Schema}}
+        {
+            {.Schema
+            }
+        }
     </script>
 </head>
 
@@ -96,20 +99,23 @@
                     <a class="mdl-navigation__link" href="/">Common Search</a>
                 </nav>
             </div>
-            <main class="mdl-layout__content">
+            <main class="mdl-layout__content"  style="flex: 1 0 auto;">
                 <!-- <div class="mdl-layout__tab-panel is-active" id="overview"> -->
                 <!-- <section class="section--center mdl-grid mdl-grid--no-spacing "> -->
                 <div class="section--center  mdl-grid">
-                    <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-cell mdl-cell--6-col">
                         <div class="mdl-card__title mdl-card--expand">
                             <img style="width:350px" src="/common/ParkingPage/background1.jpg" />
                         </div>
                         <div class="mdl-card__supporting-text">
-                            <div class="typo-styles__demo mdl-typography--display-1">Open Core Data Searching</div>
+                            <div class="typo-styles__demo mdl-typography--display-1">Open Core Data</div>
                         </div>
                     </div>
-                </div>
-                <div class="section--center  mdl-grid">
+                    <!--</div> -->
+
+
+
+                    <!--  <div class="section--center  mdl-grid">-->
                     <div class="mdl-cell mdl-cell--4-col demo-card-square mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title mdl-card--expand">
                             <img style="width:125px" src="/common/images/JRSO_logo.svg" />
@@ -174,17 +180,11 @@
                 <div class="mdl-layout-spacer"></div>
                 <!--  Pushes the footer down -->
                 <footer class="mdl-mini-footer">
-                    <div class="mdl-mini-footer--middle-section">
-                    </div>
-                    <div class="mdl-mini-footer--bottom-section">
-                        <div class="mdl-logo">
-                            More Information
-                        </div>
-                        <ul class="mdl-mini-footer--link-list">
-                            <li><a href="https://developers.google.com/web/starter-kit/">IEDA</a></li>
-                            <li><a href="#">JRSO</a></li>
-                            <li><a href="#">CSDCO</a></li>
-                            <li><a href="#">COL</a></li>
+                    <div class="mdl-mini-footer__left-section">
+                        <div class="mdl-logo">Open Core Data</div>
+                        <ul class="mdl-mini-footer__link-list">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Help</a></li>
                         </ul>
                     </div>
                 </footer>

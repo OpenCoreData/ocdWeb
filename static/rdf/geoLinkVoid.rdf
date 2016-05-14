@@ -28,25 +28,6 @@
         foaf:mbox         <mailto:dfils@oceanleadership.org> .
 
 
-<#GeolinkSPARQL> a sd:Service;
-    sd:defaultDatasetDescription [
-        a sd:Dataset;
-        dcterms:title “GeoLink Public SPARQL Endpoint";
-        dcterms:description "A good description of GeoLink";
-        sd:defaultGraph [
-            a sd:Graph, void:Dataset;
-            dcterms:title “GeoLink Graph and Dataset Descriptions";
-            dcterms:description "Contains a copy of this SD+VoID file!";
-        ];
-        sd:namedGraph [
-            sd:name <http://data.geolink.org/id/r2r>;
-            sd:graph [
-                a sd:Graph, void:Dataset;
-                dcterms:title “R2R Graph";
-                void:dataDump <http://wsu.edu/r2r_enhanced_dump.rdf>; 
-            ];
-        ];
-
 <http://opencoredata.org/id/rdf/JRSO_cruises_gl>
         a                           void:Dataset , dctypes:Dataset ;
         dcterms:accrualPeriodicity  "Irregular" ;
