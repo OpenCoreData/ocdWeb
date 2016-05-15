@@ -184,58 +184,60 @@ func MesSets(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func LegSets(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
+// The following function is deprectated.  I am leaving it in for a while in case I discovery some reference I need to deal with. 
+//
+// func LegSets(w http.ResponseWriter, r *http.Request) {
+// 	vars := mux.Vars(r)
 
-	// call mongo and lookup the redirection to use...
-	session, err := services.GetMongoCon()
-	if err != nil {
-		panic(err)
-	}
-	defer session.Close()
+// 	// call mongo and lookup the redirection to use...
+// 	session, err := services.GetMongoCon()
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	defer session.Close()
 
-	// Optional. Switch the session to a monotonic behavior.
-	session.SetMode(mgo.Monotonic, true)
-	c := session.DB("test").C("aggregation_janusURLSet")
+// 	// Optional. Switch the session to a monotonic behavior.
+// 	session.SetMode(mgo.Monotonic, true)
+// 	c := session.DB("test").C("aggregation_janusURLSet")
 
-	var results []URLSet
-	err = c.Find(bson.M{"leg": vars["leg"]}).All(&results)
-	if err != nil {
-		log.Printf("Error calling aggregation_janusURLSet: in LegSet %v", err)
-	}
+// 	var results []URLSet
+// 	err = c.Find(bson.M{"leg": vars["leg"]}).All(&results)
+// 	if err != nil {
+// 		log.Printf("Error calling aggregation_janusURLSet: in LegSet %v", err)
+// 	}
 
-	// log.Print(results)
-	// need to build simple metadata package around schema.org/DataCatalog
-	authorInfo := SchemaAuthor{Type: "Organization", Name: "Joides Resolution Science Office",
-		URL: "http://iodp.org", Description: "NSF funded operator for International Ocean Discvery Project"}
-	dataSets := []ShemaDataset{}
-	for _, dp := range results {
-		for _, d := range dp.Refdata {
-			dataSet := ShemaDataset{Type: "Dataset", URL: d.Url}
-			dataSets = append(dataSets, dataSet)
-		}
-	}
-	dataCatalog := SchemaDatacatalog{Context: "http://schema.org",
-		Type:        "DataCatalog",
-		Author:      authorInfo,
-		Dataset:     dataSets,
-		Description: fmt.Sprintf("Data set for leg %s ", vars["leg"]),
-		Name:        fmt.Sprintf("%s%s", vars["leg"]),
-		URL:         fmt.Sprintf("http://opencoredata.org/collections/leg/%s", vars["leg"])}
+// 	// log.Print(results)
+// 	// need to build simple metadata package around schema.org/DataCatalog
+// 	authorInfo := SchemaAuthor{Type: "Organization", Name: "Joides Resolution Science Office",
+// 		URL: "http://iodp.org", Description: "NSF funded operator for International Ocean Discvery Project"}
+// 	dataSets := []ShemaDataset{}
+// 	for _, dp := range results {
+// 		for _, d := range dp.Refdata {
+// 			dataSet := ShemaDataset{Type: "Dataset", URL: d.Url}
+// 			dataSets = append(dataSets, dataSet)
+// 		}
+// 	}
+// 	dataCatalog := SchemaDatacatalog{Context: "http://schema.org",
+// 		Type:        "DataCatalog",
+// 		Author:      authorInfo,
+// 		Dataset:     dataSets,
+// 		Description: fmt.Sprintf("Data set for leg %s ", vars["leg"]),
+// 		Name:        fmt.Sprintf("%s", vars["leg"]),
+// 		URL:         fmt.Sprintf("http://opencoredata.org/doc/expedition/%s", vars["leg"])}
 
-	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
+// 	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
 
-	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
+// 	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
 
-	ht, err := template.New("some template").ParseFiles("templates/jrso_ML.html") //open and parse a template text file
-	if err != nil {
-		log.Printf("template parse failed: %s", err)
-	}
+// 	ht, err := template.New("some template").ParseFiles("templates/jrso_ML.html") //open and parse a template text file
+// 	if err != nil {
+// 		log.Printf("template parse failed: %s", err)
+// 	}
 
-	// tmpl.Execute(out, template.HTML(`<b>World</b>`))
+// 	// tmpl.Execute(out, template.HTML(`<b>World</b>`))
 
-	err = ht.ExecuteTemplate(w, "T", data) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
-	if err != nil {
-		log.Printf("htemplate execution failed: %s", err)
-	}
-}
+// 	err = ht.ExecuteTemplate(w, "T", data) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+// 	if err != nil {
+// 		log.Printf("htemplate execution failed: %s", err)
+// 	}
+// }

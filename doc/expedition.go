@@ -94,7 +94,7 @@ func ShowFeature(w http.ResponseWriter, r *http.Request) {
 	}
 	jsonldtext, _ := json.MarshalIndent(result, "", " ") // results as embeddale JSON-LD
 
-	ht, err := template.New("some template").ParseFiles("templates/feature.html")
+	ht, err := template.New("some template").ParseFiles("templates/feature_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -140,7 +140,7 @@ func ShowExpedition(w http.ResponseWriter, r *http.Request) {
 
 	SendToTemplate := TemplateStruct{Cruise: results, LSHSlice: lshSlice, Datasets: GetDatasets(EXPEDITION, "")}
 
-	ht, err := template.New("some template").ParseFiles("templates/expedition.html")
+	ht, err := template.New("some template").ParseFiles("templates/expedition_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

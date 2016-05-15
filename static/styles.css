@@ -16,6 +16,12 @@
   font-weight: 300;
 }
 
+.mdl-layout__titlesmall {
+  font-size: 10px;
+  text-align: center;
+  font-weight: 300;
+}
+
 .is-compact .mdl-layout__title span {
   display: none;
 }

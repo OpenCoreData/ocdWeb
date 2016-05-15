@@ -90,7 +90,7 @@ func main() {
 	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)             //  landing page for collection of files with a HoleID
 	collections.HandleFunc("/collections/measurement/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)
-	collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)
+	// collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)  DEPRECTATED for /doc/expedition/{leg}
 	http.Handle("/collections/", collections)
 
 	// Start the server...

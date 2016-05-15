@@ -1,0 +1,200 @@
+ {{define "T"}}
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Open Core Data</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="/common/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Open Core Data</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
+                    <a class="mdl-navigation__link" href="/community.html">Community</a>
+                    <a class="mdl-navigation__link" href="/about.html">About</a>
+                    <a class="mdl-navigation__link" href="/contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
+                <a class="mdl-navigation__link" href="/community.html">Community</a>
+                <a class="mdl-navigation__link" href="/about.html">About</a>
+                <a class="mdl-navigation__link" href="/contact.html">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+
+
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img border="0" alt="" class="article-image" src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=400x400&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}"
+                            alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
+                    </div>
+
+                </div>
+
+                <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Dataset landing page</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
+                        <h6> {{.Schema.URL}}</h6>
+                        <p>
+                            This is a scientific drilling daataset from the DSDP/ODP/IODP/IODP expedition {{.Schema.OpenCoreLeg}}_{{.Schema.OpenCoreSite}}{{if .Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}} with coordinates: (Lat: {{.Schema.Spatial.Geo.Latitude}} Long: {{.Schema.Spatial.Geo.Longitude}}).
+                            <br/> Keywords: {{.Schema.Keywords}}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__title">
+                        <h3 class="mdl-card__title-text"> Data Set (CSVW) </h3>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                       <p>
+                        <a href="http://opencoredata.org/api/v1/documents/download/{{.Schema.Name}}">{{.Schema.Name}}</a> 
+                        </p>
+                        <p>
+                        Dataset downloads following the W3C CSV for the web guidelines. Additional formats including JSON-LD and CSV will be available later in OCD development.
+</p>
+                    </div>
+
+                </div>
+
+
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"> Schema.org Metadata </h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      
+                        <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                            <h5><a href="http://opencoredata.org/api/v1/documents/download/{{.UUID}}/CSVW">CSV for web metadata</a></h5> This is the direct link tot he W3C CSV for the web metadata packge (ref: <a target="_blank" href="http://www.w3.org/TR/2015/WD-tabular-data-model-20150416/">Model for Tabular Data and Metadata on the Web</a>). Like the schema.org
+                            metadata this data is linked directly into the hosting page (this page).
+                        </div>
+                    </div>
+                </div>
+                
+                         <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"> CSVW Metadata </h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                            <h5><a href="http://opencoredata.org/api/v1/documents/download/{{.UUID}}/JSON">schema.org metadata</a></h5> This is a direct link to the schema.org metadata associated with this file. This metadata is also embedded into the host page (this page). This resource type is <a target="_blank" href="http://schema.org/DataSet">schema.org/Dataset</a>.
+                        </div>
+                      
+                    </div>
+                </div>
+
+
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"> Citation Example </h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
+                        <h5>Citation format (place holder..  format under development)</h5> Ocean Drilling Program; (1976-1983): Janus Measurement for Leg {{.Schema.OpenCoreLeg}}, Site {{.Schema.OpenCoreSite}}, Hole {{if .Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}};
+                        <br/>Joides Resolution Science Office, Interdisciplinary Earth Data Alliance: Open Core Data. MONTH YEAR http://dx.doi.org/xx.xxxx/XXX/XXX/XXX
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"> Parameters and Descriptions (Description data coming)</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
+                        The following table give an example of the parameters in the hosted dataset and links out to the vocabulary terms. These are the terms, units and description for the the associated dataset.
+
+                        <table style="width:100%" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                            <thead>
+                                <tr>
+                                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Datatype</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                                </tr>
+                            </thead>
+                            {{ range $data := .CSVW.TableSchema.Columns }}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"> {{$data.Name}}</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{$data.Datatype}}</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{$data.Dc_description}} </td>
+                            </tr>
+                            {{end}}
+                        </table>
+
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Open Core Data</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Funded by the Nation Science Foundation</a></li>
+                        <!--<li><a href="#">Privacy & Terms</a></li>-->
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+</body>
+
+
+</html>
+
+{{end}}

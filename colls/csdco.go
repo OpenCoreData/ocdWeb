@@ -36,8 +36,8 @@ type CSDCO struct {
 	StorageLocationArchive string
 	SampleType             string
 	Comment                string
-	mblfT                  string
-	mblfB                  string
+	MblfT                  string
+	MblfB                  string
 	MetadataSource         string
 }
 
@@ -75,7 +75,7 @@ func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 	log.Print(vars["HoleID"])
 	log.Print(results)
 
-	ht, err := template.New("some template").ParseFiles("templates/catalog_csdco.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/catalog_csdco_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
