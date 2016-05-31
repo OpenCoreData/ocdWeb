@@ -45,7 +45,7 @@
         void:dataDump               <http://opencoredata.org/rdf/JRSO_cruises_gl.ttl> ;
         dcterms:source              <http://iodp.tamu.edu/web/page/of/info> ;
         pav:derivedFrom             <http://iodp.tamu.edu/web/page/of/info> ;
-        pav:version                 "0.1" ;
+        pav:version                 "0.2" ;
         dcat:landingPage            <http://opencoredata.org/doc/rdf/JRSO_cruises_gl> ;
         dcat:downloadURL            <http://opencoredata.org/rdf/JRSO_cruises_gl.ttl> ;
         dcat:mediaType              "rdf" .
@@ -67,7 +67,7 @@
         void:dataDump               <http://opencoredata.org/rdf/JRSO_deployments_gl.ttl> ;
         dcterms:source              <http://iodp.tamu.edu/web/page/of/info> ;
         pav:derivedFrom             <http://iodp.tamu.edu/web/page/of/info> ;
-        pav:version                 "0.1" ;
+        pav:version                 "0.2" ;
         dcat:landingPage            <http://opencoredata.org/doc/rdf/JRSO_deployments_gl> ;
         dcat:downloadURL            <http://opencoredata.org/rdf/JRSO_deployments_gl.ttl> ;
         dcat:mediaType              "rdf" .
@@ -89,7 +89,7 @@
         void:dataDump               <http://opencoredata.org/rdf/JRSO_holes_gl.ttl> ;
         dcterms:source              <http://iodp.tamu.edu/web/page/of/info> ;
         pav:derivedFrom             <http://iodp.tamu.edu/web/page/of/info> ;
-        pav:version                 "0.1" ;
+        pav:version                 "0.2" ;
         dcat:landingPage            <http://opencoredata.org/doc/rdf/JRSO_holes_gl> ;
         dcat:downloadURL            <http://opencoredata.org/rdf/JRSO_holes_gl.ttl> ;
         dcat:mediaType              "rdf" .

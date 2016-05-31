@@ -3,7 +3,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix datacite: <http://purl.org/spar/datacite/> .
-@prefix glperson: <http://schema.geolink.org/dev/view#Person> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix rdfa: <http://www.w3.org/ns/rdfa#> .
@@ -11,7 +10,7 @@
 @prefix chronos: <http://chronos.org/voc/1/> .
 @prefix mlgs: <http://data.oceandrilling.org/core/MLGS/> .
 @prefix iodp: <http://data.oceandrilling.org/core/iodp/> .
-@prefix glview: <http://schema.geolink.org/dev/view#> .
+@prefix glview: <http://schema.geolink.org/1.0/base/main#> .
 @prefix ocd: <http://opencoredata.org/voc/1/> .
 @prefix ocdjanus: <http://opencoredata.org/voc/janus/1/> .
 
