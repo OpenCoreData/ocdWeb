@@ -16,10 +16,12 @@ func ResourceRender(w http.ResponseWriter, r *http.Request) {
 	// log.Printf("for resource: %s\n", r.URL.Path)
 	log.Printf("for resource: %s\n", vars["resourcepath"])
 
-	res := services.GetRDFResource(fmt.Sprintf("http://opencoredata.org/id/resource/%s", vars["resourcepath"]))
+    URI := fmt.Sprintf("http://opencoredata.org/id/resource/%s", vars["resourcepath"])
+
+	res := services.GetRDFResource(URI)
 	// fmt.Printf("%s", res)
 
-	ht, err := template.New("some template").ParseFiles("templates/rdfResource.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/rdfResource_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -36,6 +38,10 @@ func ResourceRender(w http.ResponseWriter, r *http.Request) {
 		solutionsMap[ps] = os
 		fmt.Printf("KEY: %v \t\tVALUE %v \n", i["p"], i["o"])
 	}
+
+	solutionsMap["URI"] = URI
+
+	// add the resource ID to the Map too
 
 	err = ht.ExecuteTemplate(w, "T", solutionsMap) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
 	if err != nil {

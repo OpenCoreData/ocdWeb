@@ -43,9 +43,9 @@
     }
     
     img {
-        width: 100%;
+        width: 66%;
         /* or any custom size */
-        height: 100%;
+        height: 66%;
         object-fit: contain;
     }
     </style>
@@ -96,17 +96,15 @@
 
                             
                            
-                          <p>put a map in it</p>
+                         <img alt="RDF resource" src="/common/images/rdf.png">
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h4> Pull out let site hole here</h4>
-                                <h6> Resource URI here</h6>
+                                <h4> Open Core Data Resource Information</h4>
+                                <h6> {{.URI}}   </h6>
                                 <p>
-                                    The dataset is provided under the license XYZ.
-                                     It has a citation DOI or XYZ. If you have questions about this 
-                                     dataset please contact XYZ (Lat:
-                                      Long:)
+                                    This is a RDF resources. A set of predicates and values associated with the resource listed
+                                    above.  
                                 </p>
                             </div>
                         </div>
@@ -119,17 +117,16 @@
                             <div class="mdl-card__supporting-text">
                                 <h4>Details</h4>
                                 <div>
-                                    This dataset containes the following parameter names and types.
+                                    This resource containes the following predicate and associated objects.
                                 </div>
                                 <div>
                                     <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
                                         <thead>
                                             <tr>
-                                                <th class="mdl-data-table__cell--non-numeric">Voc</th>
-                                                <th class="mdl-data-table__cell--non-numeric">Datatype</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Predicate</th>
+                                                <th class="mdl-data-table__cell--non-numeric">Object</th>
                                             </tr>
                                         </thead>
-                                        <p>Tables of relations known about this reosurce</p>
                           
                                     {{range $i, $v := .}}
                                     <tr>

@@ -24,6 +24,12 @@ WHERE {
   <{{.URI}}> ?p ?o .
 }
 
+#tag: blazetest
+SELECT *
+WHERE {
+  <{{.URI}}> ?p ?o .
+}
+
 `
 
 // GetRDFResource takes a URI as an arugment and returns information about the RDF resource

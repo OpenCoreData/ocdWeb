@@ -72,6 +72,30 @@
         dcat:downloadURL            <http://opencoredata.org/rdf/JRSO_deployments_gl.ttl> ;
         dcat:mediaType              "rdf" .
 
+<http://opencoredata.org/id/rdf/IODPPeople>
+        a                           void:Dataset , dctypes:Dataset ;
+        dcterms:accrualPeriodicity  "Irregular" ;
+        dcterms:description         "Collection of Science Party information collected for GeoLink"@en ;
+        dcterms:issued              "2016-06-10T00:00:00.69Z"^^xsd:dateTime ;
+        dcterms:license             <http://creativecommons.org/licenses/by-sa/3.0/> ;
+        dcterms:publisher           <http://opencordata.org> ;
+        dcterms:title               "Open Core Data IODP Science Party  Information GeoLink Dataset"@en ;
+        pav:authoredBy              <http://orcid.org/0000-0002-2257-9127> ;
+        pav:curatedBy               <http://orcid.org/0000-0002-2257-9127> ;
+        void:vocabulary             <http://purl.org/dc/terms/> ;
+        void:vocabulary             <http://schema.geolink.org/voc/> ;
+        void:vocabulary             <http://opencoredata.org/voc/1/> ;
+        void:vocabulary             <http://opencoredata.org/voc/janus/1/> ;
+        void:dataDump               <http://opencoredata.org/rdf/IODPPeople.ttl> ;
+        dcterms:source              <http://iodp.tamu.edu/web/page/of/info> ;
+        pav:derivedFrom             <http://iodp.tamu.edu/web/page/of/info> ;
+        pav:version                 "0.2" ;
+        dcat:landingPage            <http://opencoredata.org/doc/rdf/IODPPeople> ;
+        dcat:downloadURL            <http://opencoredata.org/rdf/IODPPeople.ttl> ;
+        dcat:mediaType              "rdf" .
+
+        
+
 <http://opencoredata.org/id/rdf/JRSO_holes_gl>
         a                           void:Dataset , dctypes:Dataset ;
         dcterms:accrualPeriodicity  "Irregular" ;
