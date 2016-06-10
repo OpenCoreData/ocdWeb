@@ -10,7 +10,7 @@
 @prefix ocdjanus: <http://opencoredata.org/voc/janus/1/> .
 @prefix mlgs: <http://data.oceandrilling.org/core/MLGS/> .
 @prefix glview: <http://schema.geolink.org/1.0/base/main#> .
-
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 <http://opencoredata.org/id/resource/people/v1/078cfa0b-21df-11e6-878a-c8bcc89d1645> a foaf:Person, glview:Person ;
 	
@@ -410,7 +410,8 @@
     glview:hasFullName  "Alan T. Linde" .
 
 <http://opencoredata.org/id/resource/people/v1/078d1714-21df-11e6-8d2a-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:mix@coas.oregonstate.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/c86fd916-4995-4eb6-9931-1afc5a4050da> ;
+foaf:mbox <mailto:mix@coas.oregonstate.edu> ;  
 	foaf:name "Alan C. Mix" ;
 	rdfs:label "Alan C. Mix" ;
 	foaf:givenname "Alan" ;
@@ -655,6 +656,7 @@
     glview:hasFullName  "Alistair Bent" .
 
 <http://opencoredata.org/id/resource/people/v1/078d1bef-21df-11e6-888a-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/2afacbb0-9136-4502-8c70-544af02cce3e> ;
 	foaf:mbox <mailto:aharding@ucsd.edu> ;  
 	foaf:name "Alistair J. Harding" ;
 	rdfs:label "Alistair J. Harding" ;
@@ -921,6 +923,7 @@
     glview:hasFullName  "Andreas Mackensen" .
 
 <http://opencoredata.org/id/resource/people/v1/078d1e88-21df-11e6-8c5d-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/7fb6725f-c265-4507-bc59-37094fdf9d4a> ;
 	foaf:mbox <mailto:teske@email.unc.edu> ;  
 	foaf:name "Andreas Teske" ;
 	rdfs:label "Andreas Teske" ;
@@ -1115,7 +1118,8 @@
     glview:hasFullName  "Andrew Greene" .
 
 <http://opencoredata.org/id/resource/people/v1/078d210c-21df-11e6-80ea-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:afisher@ucsc.edu> ;  
+    owl:sameAs <http://data.geolink.org/id/person/d67670d9-30b7-4e20-b48b-3baaa3b014c7> ;
+    foaf:mbox <mailto:afisher@ucsc.edu> ;  
 	foaf:name "Andrew Thomas Fisher" ;
 	rdfs:label "Andrew Thomas Fisher" ;
 	foaf:givenname "Andrew" ;
@@ -2044,6 +2048,7 @@
     glview:hasFullName  "Benoît Lehman" .
 
 <http://opencoredata.org/id/resource/people/v1/078d2b06-21df-11e6-8d19-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/1dceafd7-2e3c-42e7-848c-b4ace3b60b3b> ;
 	foaf:mbox <mailto:bjc@ldeo.columbia.edu> ;  
 	foaf:name "Bernard J. Coakley" ;
 	rdfs:label "Bernard J. Coakley" ;
@@ -2188,6 +2193,7 @@
     glview:hasFullName  "Beth Caissie" .
 
 <http://opencoredata.org/id/resource/people/v1/078d2cbd-21df-11e6-8b02-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/7b4a6ba7-544d-4e51-8e0e-bfd8721f223c> ;
 	foaf:mbox <mailto:borcutt@bigelow.org> ;  
 	foaf:name "Beth Noelle Orcutt" ;
 	rdfs:label "Beth Noelle Orcutt" ;
@@ -2279,7 +2285,7 @@
     glview:hasFullName  "Bob Findlay" .
 
 <http://opencoredata.org/id/resource/people/v1/078d2db4-21df-11e6-8942-c8bcc89d1645> a foaf:Person, glview:Person ;
-	
+	owl:sameAs <http://data.geolink.org/id/person/5a74c037-a130-4414-b8af-82591ad2cae8> ;
 	foaf:mbox <mailto:bc00@ns.cc.lehigh.edu> ;  
 	foaf:name "Bobb Carson" ;
 	rdfs:label "Bobb Carson" ;
@@ -2422,6 +2428,7 @@
     glview:hasFullName  "Brandi Reese" .
 
 <http://opencoredata.org/id/resource/people/v1/078d2f4b-21df-11e6-84db-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/0446c3fc-b06a-48cf-aaa9-ab30c5e3de0a> ;
 	foaf:mbox <mailto:dugan@rice.edu> ;  
 	foaf:name "Brandon Eric Dugan" ;
 	rdfs:label "Brandon Eric Dugan" ;
@@ -2484,6 +2491,7 @@
     glview:hasFullName  "Brian D. Bornhold" .
 
 <http://opencoredata.org/id/resource/people/v1/078d3002-21df-11e6-89ce-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/aa5ad2c0-8d70-4597-affa-eb3ff5da76ba> ;
 	foaf:mbox <mailto:btucholke@whoi.edu> ;  
 	foaf:name "Brian E. Tucholke" ;
 	rdfs:label "Brian E. Tucholke" ;
@@ -2555,7 +2563,8 @@
     glview:hasFullName  "Brian Romans" .
 
 <http://opencoredata.org/id/resource/people/v1/078d30aa-21df-11e6-863b-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:taylor@soest.hawaii.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/8123a110-46b0-46f9-a643-0edfebaa41a6> ;
+foaf:mbox <mailto:taylor@soest.hawaii.edu> ;  
 	foaf:name "Brian Taylor" ;
 	rdfs:label "Brian Taylor" ;
 	foaf:givenname "Brian" ;
@@ -3674,6 +3683,7 @@
     glview:hasFullName  "Christopher Sinton" .
 
 <http://opencoredata.org/id/resource/people/v1/078d3e90-21df-11e6-8245-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/9b09465b-a50c-4694-8d33-c287a512e89b> ;
 	foaf:mbox <mailto:ccharles@ucsd.edu> ;  
 	foaf:name "Christopher Dana Charles" ;
 	rdfs:label "Christopher Dana Charles" ;
@@ -3974,6 +3984,7 @@
     glview:hasFullName  "Craig Sloss" .
 
 <http://opencoredata.org/id/resource/people/v1/078d45dc-21df-11e6-82e3-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/5bd8fe8a-5696-45af-9096-da61a962083f> ;
 	foaf:mbox <mailto:craig@ig.utexas.edu> ;  
 	foaf:name "Craig Stephen Fulthorpe" ;
 	rdfs:label "Craig Stephen Fulthorpe" ;
@@ -4098,7 +4109,8 @@
     glview:hasFullName  "Daisuke Endo" .
 
 <http://opencoredata.org/id/resource/people/v1/078d4839-21df-11e6-8cd1-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:dale@rice.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/ff370ffa-cfca-4080-95c6-3207939c786d> ;
+foaf:mbox <mailto:dale@rice.edu> ;  
 	foaf:name "Dale S. Sawyer" ;
 	rdfs:label "Dale S. Sawyer" ;
 	foaf:givenname "Dale S." ;
@@ -4475,7 +4487,8 @@
     glview:hasFullName  "David T. Heggie" .
 
 <http://opencoredata.org/id/resource/people/v1/078d4e01-21df-11e6-8bec-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:dgraham@coas.oregonstate.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/20ec6013-0968-4810-8c70-61ae50d0cb53> ;
+foaf:mbox <mailto:dgraham@coas.oregonstate.edu> ;  
 	foaf:name "David W. Graham" ;
 	rdfs:label "David W. Graham" ;
 	foaf:givenname "David W." ;
@@ -4596,7 +4609,8 @@
     glview:hasFullName  "David Kemp" .
 
 <http://opencoredata.org/id/resource/people/v1/078d4f5c-21df-11e6-8394-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:dcsmith@gso.uri.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/5f860d18-33ee-4011-8726-9725c7c40562> ;
+foaf:mbox <mailto:dcsmith@gso.uri.edu> ;  
 	foaf:name "David Charles Smith" ;
 	rdfs:label "David Charles Smith" ;
 	foaf:givenname "David" ;
@@ -4756,6 +4770,7 @@
     glview:hasFullName  "Debora Berti" .
 
 <http://opencoredata.org/id/resource/people/v1/078d5211-21df-11e6-8482-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/c75b5960-9b7e-406c-8a9d-f725b89cae36> ;
 	foaf:mbox <mailto:kelley@ocean.washington.edu> ;  
 	foaf:name "Deborah S. Kelley" ;
 	rdfs:label "Deborah S. Kelley" ;
@@ -5088,6 +5103,7 @@
     glview:hasFullName  "Donna Meyerhoff Hull" .
 
 <http://opencoredata.org/id/resource/people/v1/078d55b3-21df-11e6-8a68-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/f7e763d8-3c82-4667-83c5-0df49a77606f> ;
 	foaf:mbox <mailto:djs@ldeo.columbia.edu> ;  
 	foaf:name "Donna J. Shillington" ;
 	rdfs:label "Donna J. Shillington" ;
@@ -5098,6 +5114,7 @@
     glview:hasFullName  "Donna Shillington" .
 
 <http://opencoredata.org/id/resource/people/v1/078d55cb-21df-11e6-8eaa-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/d38daf8a-fa7c-4bbc-b565-d77cb93afd1f> ;
 	foaf:mbox <mailto:dblackman@ucsd.edu> ;  
 	foaf:name "Donna Kay Blackman" ;
 	rdfs:label "Donna Kay Blackman" ;
@@ -5502,6 +5519,7 @@
     glview:hasFullName  "Ellen Thomas" .
 
 <http://opencoredata.org/id/resource/people/v1/078d5abc-21df-11e6-8ac9-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/3d701a77-32df-47a2-9626-488ffde29e39> ;
 	foaf:mbox <mailto:cowanea@appstate.edu> ;  
 	foaf:name "Ellen Anne Cowan" ;
 	rdfs:label "Ellen Anne Cowan" ;
@@ -5937,7 +5955,8 @@
     glview:hasFullName  "Evan C. Leitch" .
 
 <http://opencoredata.org/id/resource/people/v1/078d5f7c-21df-11e6-8898-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:esolomn@uw.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/9b2e78bd-7bd0-4e95-a773-df3bb85c6f62> ;
+foaf:mbox <mailto:esolomn@uw.edu> ;  
 	foaf:name "Evan Alan Solomon" ;
 	rdfs:label "Evan Alan Solomon" ;
 	foaf:givenname "Evan" ;
@@ -6571,6 +6590,7 @@
     glview:hasFullName  "Gabriele Dürr" .
 
 <http://opencoredata.org/id/resource/people/v1/078d676a-21df-11e6-8465-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/19b81460-a98a-4df6-99f7-c2a3264947eb> ;
 	foaf:mbox <mailto:gail@ig.utexas.edu> ;  
 	foaf:name "Gail Lynn Christeson" ;
 	rdfs:label "Gail Lynn Christeson" ;
@@ -7247,7 +7267,8 @@
     glview:hasFullName  "Gregory D. Harper" .
 
 <http://opencoredata.org/id/resource/people/v1/078d6f5a-21df-11e6-81ab-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:gmoore@hawaii.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/50ad783c-2b36-42ed-b17a-6253766a9a89> ;
+foaf:mbox <mailto:gmoore@hawaii.edu> ;  
 	foaf:name "Gregory F. Moore" ;
 	rdfs:label "Gregory F. Moore" ;
 	foaf:givenname "Gregory F." ;
@@ -7279,6 +7300,7 @@
     glview:hasFullName  "Gregory R. Simmons" .
 
 <http://opencoredata.org/id/resource/people/v1/078d6fa6-21df-11e6-8cc9-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/27c04db6-14a4-4b10-bd05-76d44807e435> ;
 	foaf:mbox <mailto:gmtn@rci.rutgers.edu> ;  
 	foaf:name "Gregory S. Mountain" ;
 	rdfs:label "Gregory S. Mountain" ;
@@ -8059,6 +8081,7 @@
     glview:hasFullName  "Henry Vallius" .
 
 <http://opencoredata.org/id/resource/people/v1/078d78db-21df-11e6-8d19-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/f1913ac0-510d-4755-844b-6357fb651002> ;
 	foaf:mbox <mailto:hdick@whoi.edu> ;  
 	foaf:name "Henry J.B. Dick" ;
 	rdfs:label "Henry J.B. Dick" ;
@@ -8639,6 +8662,7 @@
     glview:hasFullName  "Hubert M. Arnaud" .
 
 <http://opencoredata.org/id/resource/people/v1/078d7eec-21df-11e6-87f4-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/89d11bdb-e675-4641-b3ed-e9d7208f7ef7> ;
 	foaf:mbox <mailto:hstaudigel@ucsd.edu> ;  
 	foaf:name "Hubert Staudigel" ;
 	rdfs:label "Hubert Staudigel" ;
@@ -9011,6 +9035,7 @@
     glview:hasFullName  "Ivana Novosel" .
 
 <http://opencoredata.org/id/resource/people/v1/078d82ba-21df-11e6-8725-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/14f971b5-8dac-40ad-a48d-01ff8a6be870> ;
 	foaf:mbox <mailto:iaiello@mlml.calstate.edu> ;  
 	foaf:name "Ivano Walter Aiello" ;
 	rdfs:label "Ivano Walter Aiello" ;
@@ -9386,6 +9411,7 @@
     glview:hasFullName  "James P. Kennett" .
 
 <http://opencoredata.org/id/resource/people/v1/078d8664-21df-11e6-8e57-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/9a3a0259-289c-42b0-99c1-0a5a8b119f47> ;
 	foaf:mbox <mailto:jrc@ldeo.columbia.edu> ;  
 	foaf:name "James R. Cochran" ;
 	rdfs:label "James R. Cochran" ;
@@ -9478,6 +9504,7 @@
     glview:hasFullName  "James McEvoy" .
 
 <http://opencoredata.org/id/resource/people/v1/078d874b-21df-11e6-8065-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/67123ded-5e8b-421a-a5cb-e43499073c76> ;
 	foaf:mbox <mailto:mcmanus@coas.oregonstate.edu> ;  
 	foaf:name "James McManus" ;
 	rdfs:label "James McManus" ;
@@ -9558,6 +9585,7 @@
     glview:hasFullName  "James Brophy" .
 
 <http://opencoredata.org/id/resource/people/v1/078d87ff-21df-11e6-8a1d-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/bc5419b4-6f2d-4d5a-988d-e0499d626182> ;
 	foaf:mbox <mailto:jnatland@rsmas.miami.edu> ;  
 	foaf:name "James H. Natland" ;
 	rdfs:label "James H. Natland" ;
@@ -10156,6 +10184,7 @@
     glview:hasFullName  "Jeffrey Ryan" .
 
 <http://opencoredata.org/id/resource/people/v1/078d93b6-21df-11e6-80e3-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/3243d46e-8834-40ff-9f6c-9b0f756f1eb7> ;
 	foaf:mbox <mailto:jsgee@ucsd.edu> ;  
 	foaf:name "Jeffrey S. Gee" ;
 	rdfs:label "Jeffrey S. Gee" ;
@@ -10411,6 +10440,7 @@
     glview:hasFullName  "Ji Hoon Kim" .
 
 <http://opencoredata.org/id/resource/people/v1/078d97a5-21df-11e6-8a7e-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/6f106a06-75d5-43e1-92a9-c1c15b845b5d> ;
 	foaf:mbox <mailto:jlin@whoi.edu> ;  
 	foaf:name "Jian Lin" ;
 	rdfs:label "Jian Lin" ;
@@ -10778,7 +10808,7 @@
     glview:hasFullName  "John A. Barron" .
 
 <http://opencoredata.org/id/resource/people/v1/078d9b8c-21df-11e6-89d6-c8bcc89d1645> a foaf:Person, glview:Person ;
-	 
+	 owl:sameAs <http://data.geolink.org/id/person/665e72d2-213c-4130-aad1-75d04fca1ad6> ;
 	foaf:name "John A. Collins" ;
 	rdfs:label "John A. Collins" ;
 	foaf:givenname "John A." ;
@@ -11023,7 +11053,8 @@
     glview:hasFullName  "John Malpas" .
 
 <http://opencoredata.org/id/resource/people/v1/078d9e30-21df-11e6-8256-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:jorcutt@ucsd.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/285039e3-0fb2-4b18-89a1-2e231507df9c> ;
+foaf:mbox <mailto:jorcutt@ucsd.edu> ;  
 	foaf:name "John Orcutt" ;
 	rdfs:label "John Orcutt" ;
 	foaf:givenname "John" ;
@@ -11103,6 +11134,7 @@
     glview:hasFullName  "John Reijmer" .
 
 <http://opencoredata.org/id/resource/people/v1/078d9ef6-21df-11e6-85d8-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/dcca759a-ccb4-4ce3-8f3e-ec213e755ae4> ;
 	foaf:mbox <mailto:jmjaeger@ufl.edu> ;  
 	foaf:name "John Michael Jaeger" ;
 	rdfs:label "John Michael Jaeger" ;
@@ -12174,6 +12206,7 @@
     glview:hasFullName  "Kathryn Ford" .
 
 <http://opencoredata.org/id/resource/people/v1/078daabc-21df-11e6-8acc-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/f5b48703-35c2-4cc9-9966-ebadddceddf9> ;
 	foaf:mbox <mailto:kmoran@uvic.ca> ;  
 	foaf:name "Kathryn Moran" ;
 	rdfs:label "Kathryn Moran" ;
@@ -12204,6 +12237,7 @@
     glview:hasFullName  "Katie Taladay" .
 
 <http://opencoredata.org/id/resource/people/v1/078dab06-21df-11e6-84ee-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/86751080-ff7b-4e5f-8d61-d82b5d4697b4> ;
 	foaf:mbox <mailto:kje@usc.edu> ;  
 	foaf:name "Katrina J. Edwards" ;
 	rdfs:label "Katrina J. Edwards" ;
@@ -12365,6 +12399,7 @@
     glview:hasFullName  "Keiichi Sasaki" .
 
 <http://opencoredata.org/id/resource/people/v1/078daca9-21df-11e6-8379-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/afac0a6c-94f3-460c-ab22-86fc91b1e758> ;
 	foaf:mbox <mailto:kbecker@rsmas.miami.edu> ;  
 	foaf:name "Keir Becker" ;
 	rdfs:label "Keir Becker" ;
@@ -12558,7 +12593,8 @@
     glview:hasFullName  "Kenneth Ridgway" .
 
 <http://opencoredata.org/id/resource/people/v1/078daed3-21df-11e6-822f-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:kgm@rci.rutgers.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/041dbf07-cece-4ec3-a4d1-7fdb4b4ea484> ;
+foaf:mbox <mailto:kgm@rci.rutgers.edu> ;  
 	foaf:name "Kenneth G. Miller" ;
 	rdfs:label "Kenneth G. Miller" ;
 	foaf:givenname "Kenneth" ;
@@ -12711,6 +12747,7 @@
     glview:hasFullName  "Kevin Welsh" .
 
 <http://opencoredata.org/id/resource/people/v1/078db05e-21df-11e6-8a1f-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/9fffd316-87b9-4ce2-a7fb-6fd08b03fed4> ;
 	foaf:mbox <mailto:kmbrown@ucsd.edu> ;  
 	foaf:name "Kevin M. Brown" ;
 	rdfs:label "Kevin M. Brown" ;
@@ -12781,6 +12818,7 @@
     glview:hasFullName  "Kimberly Novak" .
 
 <http://opencoredata.org/id/resource/people/v1/078db148-21df-11e6-836c-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/fb827e55-ff3d-4e0a-8f34-a16b6f0d4e1a> ;
 	foaf:mbox <mailto:kirk@utig.ig.utexas.edu> ;  
 	foaf:name "Kirk Duncan McIntosh" ;
 	rdfs:label "Kirk Duncan McIntosh" ;
@@ -13831,7 +13869,7 @@
     glview:hasFullName  "Lizette Leon-Rodriguez" .
 
 <http://opencoredata.org/id/resource/people/v1/078dbd41-21df-11e6-8458-c8bcc89d1645> a foaf:Person, glview:Person ;
-	
+	owl:sameAs <http://data.geolink.org/id/person/52461416-b190-4396-a5fa-d0ff78066858> ;
 	foaf:mbox <mailto:lkeigwin@whoi.edu> ;  
 	foaf:name "Lloyd D. Keigwin" ;
 	rdfs:label "Lloyd D. Keigwin" ;
@@ -14399,6 +14437,7 @@
     glview:hasFullName  "Margaret Goud Collins" .
 
 <http://opencoredata.org/id/resource/people/v1/078dc2b5-21df-11e6-8c85-c8bcc89d1645> a foaf:Person, glview:Person ;
+owl:sameAs <http://data.geolink.org/id/person/168eac5a-2f50-4eb9-88a5-21edd4af6c2f> ;
 	foaf:mbox <mailto:meg@kiwi.whoi.edu> ;  
 	foaf:name "Margaret K. Tivey" ;
 	rdfs:label "Margaret K. Tivey" ;
@@ -14890,7 +14929,8 @@
     glview:hasFullName  "Mark Lever" .
 
 <http://opencoredata.org/id/resource/people/v1/078dc842-21df-11e6-8638-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:mkurz@whoi.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/6eb88c81-60d4-48c9-bfa3-bdaa43ce2582> ;
+foaf:mbox <mailto:mkurz@whoi.edu> ;  
 	foaf:name "Mark David Kurz" ;
 	rdfs:label "Mark David Kurz" ;
 	foaf:givenname "Mark" ;
@@ -14950,6 +14990,7 @@
     glview:hasFullName  "Marta E. Vega Faundez" .
 
 <http://opencoredata.org/id/resource/people/v1/078dc8ce-21df-11e6-8d12-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/a7039026-5f1a-470a-bdeb-dca5cb7f283e> ;
 	foaf:mbox <mailto:mtorres@coas.oregonstate.edu> ;  
 	foaf:name "Marta E. Torres" ;
 	rdfs:label "Marta E. Torres" ;
@@ -15526,6 +15567,7 @@
     glview:hasFullName  "Matthew Salisbury" .
 
 <http://opencoredata.org/id/resource/people/v1/078dce76-21df-11e6-8231-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/1c3db9c5-efdb-4910-ab50-de7cdba66136> ;
 	foaf:mbox <mailto:matt.hornbach@gmail.com> ;  
 	foaf:name "Matthew J. Hornbach" ;
 	rdfs:label "Matthew J. Hornbach" ;
@@ -16024,6 +16066,7 @@
     glview:hasFullName  "Michael Acierno" .
 
 <http://opencoredata.org/id/resource/people/v1/078dd486-21df-11e6-85f3-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/b3f67cee-4a42-4443-bb18-9b3e66933005> ;
 	foaf:mbox <mailto:cheadle@uwyo.edu> ;  
 	foaf:name "Michael J. Cheadle" ;
 	rdfs:label "Michael J. Cheadle" ;
@@ -16276,7 +16319,8 @@
     glview:hasFullName  "Mikio Satoh" .
 
 <http://opencoredata.org/id/resource/people/v1/078dd759-21df-11e6-8c0a-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:mcoffin@ori.u-tokyo.ac.jp> ;  
+    owl:sameAs <http://data.geolink.org/id/person/0188cd3e-d471-4f1a-a3fe-d806fc1db889> ;
+    foaf:mbox <mailto:mcoffin@ori.u-tokyo.ac.jp> ;  
 	foaf:name "Millard F. Coffin" ;
 	rdfs:label "Millard F. Coffin" ;
 	foaf:givenname "Millard F." ;
@@ -16357,6 +16401,7 @@
     glview:hasFullName  "Miriam Baltuck" .
 
 <http://opencoredata.org/id/resource/people/v1/078dd83c-21df-11e6-8838-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/ced01032-0ea0-44e2-9880-c59e10b1f193> ;
 	foaf:mbox <mailto:mkastner@ucsd.edu> ;  
 	foaf:name "Miriam Kastner" ;
 	rdfs:label "Miriam Kastner" ;
@@ -16387,7 +16432,8 @@
     glview:hasFullName  "Mitchell Malone" .
 
 <http://opencoredata.org/id/resource/people/v1/078dd88a-21df-11e6-86a1-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:mlyle@coas.oregonstate.edu> ;  
+    owl:sameAs <http://data.geolink.org/id/person/05a76a5d-8823-42a4-ad83-b81e942c4ab6> ;
+    foaf:mbox <mailto:mlyle@coas.oregonstate.edu> ;  
 	foaf:name "Mitchell Wayne Lyle" ;
 	rdfs:label "Mitchell Wayne Lyle" ;
 	foaf:givenname "Mitchell" ;
@@ -16743,6 +16789,7 @@
     glview:hasFullName  "Nathalie Dubois" .
 
 <http://opencoredata.org/id/resource/people/v1/078ddf1c-21df-11e6-8c95-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/3f13bcf2-ace6-4286-abbe-4ac4a96d329f> ;
 	foaf:mbox <mailto:nathan@ig.utexas.edu> ;  
 	foaf:name "Nathan L. Bangs" ;
 	rdfs:label "Nathan L. Bangs" ;
@@ -16794,6 +16841,7 @@
     glview:hasFullName  "Neal A. Blackburn" .
 
 <http://opencoredata.org/id/resource/people/v1/078ddf95-21df-11e6-8070-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/c44e7673-6558-4cb3-989e-6490fec84880> ;
 	foaf:mbox <mailto:ndriscoll@whoi.edu> ;  
 	foaf:name "Neal Driscoll" ;
 	rdfs:label "Neal Driscoll" ;
@@ -16906,6 +16954,7 @@
     glview:hasFullName  "Nicholas W. Hayman" .
 
 <http://opencoredata.org/id/resource/people/v1/078de27f-21df-11e6-8ef2-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/eb34e103-059e-4abd-abb8-4f50a46d88cb> ;
 	foaf:mbox <mailto:ncb@lamont.ldgo.columbia.edu> ;  
 	foaf:name "Nicholas Christie-Blick" ;
 	rdfs:label "Nicholas Christie-Blick" ;
@@ -17496,6 +17545,7 @@
     glview:hasFullName  "Patricia Vanderaveroet" .
 
 <http://opencoredata.org/id/resource/people/v1/078de8ab-21df-11e6-89a9-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/f526c55c-01a1-4b3a-9aeb-38445d894810> ;
 	foaf:mbox <mailto:pfryer@hawaii.edu> ;  
 	foaf:name "Patricia B. Fryer" ;
 	rdfs:label "Patricia B. Fryer" ;
@@ -18002,6 +18052,7 @@
     glview:hasFullName  "Peter B. Kelemen" .
 
 <http://opencoredata.org/id/resource/people/v1/078dee5e-21df-11e6-8fef-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/89586a92-e83d-45f2-ae4e-d051cf50800d> ;
 	foaf:mbox <mailto:pdem@ldeo.columbia.edu> ;  
 	foaf:name "Peter B. deMenocal" ;
 	rdfs:label "Peter B. deMenocal" ;
@@ -18997,7 +19048,8 @@
     glview:hasFullName  "Ralph Moberly" .
 
 <http://opencoredata.org/id/resource/people/v1/078dfe35-21df-11e6-8be1-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:rstephen@whoi.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/824d6aef-adbd-4b72-8f7f-a9d90ec6ade8> ;
+foaf:mbox <mailto:rstephen@whoi.edu> ;  
 	foaf:name "Ralph A. Stephen" ;
 	rdfs:label "Ralph A. Stephen" ;
 	foaf:givenname "Ralph" ;
@@ -19372,7 +19424,8 @@
     glview:hasFullName  "Richard Berg" .
 
 <http://opencoredata.org/id/resource/people/v1/078e04b9-21df-11e6-82e8-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:rnorris@ucsd.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/68790d11-c2e9-45c7-8286-1caaee76f6d2> ;
+foaf:mbox <mailto:rnorris@ucsd.edu> ;  
 	foaf:name "Richard De Witt Norris" ;
 	rdfs:label "Richard De Witt Norris" ;
 	foaf:givenname "Richard" ;
@@ -19402,7 +19455,8 @@
     glview:hasFullName  "Richard Carlson" .
 
 <http://opencoredata.org/id/resource/people/v1/078e0501-21df-11e6-8540-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:rickm@bu.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/642b9126-6f35-4f67-8490-2ebe94541070> ;
+foaf:mbox <mailto:rickm@bu.edu> ;  
 	foaf:name "Richard William Murray" ;
 	rdfs:label "Richard William Murray" ;
 	foaf:givenname "Richard" ;
@@ -19798,6 +19852,7 @@
     glview:hasFullName  "Rochelle Wigley" .
 
 <http://opencoredata.org/id/resource/people/v1/078e0ac2-21df-11e6-8706-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/aaa48800-6a9b-4f27-bf2e-03202fe04596> ;
 	foaf:mbox <mailto:rbatiza@nsf.gov> ;  
 	foaf:name "Rodey Batiza" ;
 	rdfs:label "Rodey Batiza" ;
@@ -20093,6 +20148,7 @@
     glview:hasFullName  "Roy D. Hyndman" .
 
 <http://opencoredata.org/id/resource/people/v1/078e0fbb-21df-11e6-8867-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/4d6f3b90-596e-4fd0-ab93-d6341fb8927c> ;
 	foaf:mbox <mailto:rwilkens@hawaii.edu> ;  
 	foaf:name "Roy H. Wilkens" ;
 	rdfs:label "Roy H. Wilkens" ;
@@ -20652,6 +20708,7 @@
     glview:hasFullName  "Scott Slough" .
 
 <http://opencoredata.org/id/resource/people/v1/078e1a20-21df-11e6-858a-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/2e7ecd72-e040-436c-a7e9-435450631080> ;
 	foaf:mbox <mailto:shiggins@joiscience.org> ;  
 	foaf:name "Sean M. Higgins" ;
 	rdfs:label "Sean M. Higgins" ;
@@ -20662,7 +20719,8 @@
     glview:hasFullName  "Sean Higgins" .
 
 <http://opencoredata.org/id/resource/people/v1/078e1a4d-21df-11e6-8615-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:sean@ig.utexas.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/ae85f3aa-8bb1-4161-9653-586ed4c28eb6> ;
+foaf:mbox <mailto:sean@ig.utexas.edu> ;  
 	foaf:name "Sean Sandifer Gulick" ;
 	rdfs:label "Sean Sandifer Gulick" ;
 	foaf:givenname "Sean" ;
@@ -21864,6 +21922,7 @@
     glview:hasFullName  "Surat P. Srivastava" .
 
 <http://opencoredata.org/id/resource/people/v1/078e3f47-21df-11e6-8be2-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/7e629e03-92f0-4958-93f6-a408fb7bef83> ;
 	foaf:mbox <mailto:susan@copper.whoi.edu> ;  
 	foaf:name "Susan E. Humphris" ;
 	rdfs:label "Susan E. Humphris" ;
@@ -21986,7 +22045,8 @@
     glview:hasFullName  "Susanne Gylesjö" .
 
 <http://opencoredata.org/id/resource/people/v1/078e4087-21df-11e6-849f-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:smstraub@ldeo.columbia.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/de1b4710-f195-4dd2-83ad-bd13549e011c> ;
+foaf:mbox <mailto:smstraub@ldeo.columbia.edu> ;  
 	foaf:name "Susanne Martina Straub" ;
 	rdfs:label "Susanne Martina Straub" ;
 	foaf:givenname "Susanne" ;
@@ -22559,7 +22619,8 @@
     glview:hasFullName  "Tetsuya Sakuyama" .
 
 <http://opencoredata.org/id/resource/people/v1/078e46de-21df-11e6-86df-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:ted.moore@umich.edu> ;  
+owl:sameAs <http://data.geolink.org/id/person/6708f623-8b9c-4523-b85a-87ba85d25131> ;
+foaf:mbox <mailto:ted.moore@umich.edu> ;  
 	foaf:name "Theodore C. Moore, Jr." ;
 	rdfs:label "Theodore C. Moore, Jr." ;
 	foaf:givenname "Theodore" ;
@@ -22835,7 +22896,8 @@
     glview:hasFullName  "Tim White" .
 
 <http://opencoredata.org/id/resource/people/v1/078e49ab-21df-11e6-8ec5-c8bcc89d1645> a foaf:Person, glview:Person ;
-	foaf:mbox <mailto:Timothy_Herbert@brown.edu> ;  
+    owl:sameAs <http://data.geolink.org/id/person/df7f4b77-bb6b-4191-bbac-022f63256a4a> ;
+    foaf:mbox <mailto:Timothy_Herbert@brown.edu> ;  
 	foaf:name "Timothy D. Herbert" ;
 	rdfs:label "Timothy D. Herbert" ;
 	foaf:givenname "Timothy D." ;
@@ -24178,6 +24240,7 @@
     glview:hasFullName  "Wolfgang U. Dorn" .
 
 <http://opencoredata.org/id/resource/people/v1/078e5904-21df-11e6-8acd-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/5fd9e230-4adc-4c97-ab6e-a802e320cd81> ;
 	foaf:mbox <mailto:wbach@uni-bremen.de> ;  
 	foaf:name "Wolfgang Bach" ;
 	rdfs:label "Wolfgang Bach" ;
@@ -24471,6 +24534,7 @@
     glview:hasFullName  "Yifeng Chen" .
 
 <http://opencoredata.org/id/resource/people/v1/078e5c0b-21df-11e6-8c3e-c8bcc89d1645> a foaf:Person, glview:Person ;
+	owl:sameAs <http://data.geolink.org/id/person/6b913a01-8cc2-4630-bebc-942000740563> ;
 	foaf:mbox <mailto:dileky@miamioh.edu> ;  
 	foaf:name "Yildirim Dilek" ;
 	rdfs:label "Yildirim Dilek" ;
