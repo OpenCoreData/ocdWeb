@@ -72,6 +72,7 @@ func main() {
 	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}/{HOLE}", doc.ShowFeature)
 	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}", doc.ShowFeature)
 	docroute.HandleFunc("/doc/expedition/{LEG}", doc.ShowExpedition)
+    docroute.HandleFunc(`/doc/resource/people/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.PersonResourceRender)  // for GeoLink All Hands Demo, remove afterwards
 	docroute.HandleFunc(`/doc/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.ResourceRender)
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 	http.Handle("/doc/", docroute)

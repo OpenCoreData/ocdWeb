@@ -48,3 +48,42 @@ func ResourceRender(w http.ResponseWriter, r *http.Request) {
 		log.Printf("htemplate execution failed: %s", err)
 	}
 }
+
+
+func PersonResourceRender(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	// log.Printf("for resource: %s\n", r.URL.Path)
+	log.Printf("for person resource: %s\n", vars["resourcepath"])
+
+    URI := fmt.Sprintf("http://opencoredata.org/id/resource/people/%s", vars["resourcepath"])
+
+	res := services.GetRDFResource(URI)
+	// fmt.Printf("%s", res)
+
+	ht, err := template.New("some template").ParseFiles("templates/rdfPersonResource_new.html") //open and parse a template text file
+	if err != nil {
+		log.Printf("template parse failed: %s", err)
+	}
+
+	//  dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: string(jsonldtext), Csvwstring: string(csvwtext), UUID: vars["UUID"]}
+
+	solutionsTest := res.Solutions() // map[string][]rdf.Term
+	// make new map, pass to the template and call by key
+	var solutionsMap map[string]string
+	solutionsMap = make(map[string]string)
+	for _, i := range solutionsTest {
+		ps := fmt.Sprint(i["p"])
+		os := fmt.Sprint(i["o"])
+		solutionsMap[ps] = os
+		fmt.Printf("KEY: %v \t\tVALUE %v \n", i["p"], i["o"])
+	}
+
+	solutionsMap["URI"] = URI
+
+	// add the resource ID to the Map too
+
+	err = ht.ExecuteTemplate(w, "T", solutionsMap) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+	if err != nil {
+		log.Printf("htemplate execution failed: %s", err)
+	}
+}
