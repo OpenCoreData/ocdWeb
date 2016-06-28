@@ -115,7 +115,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 
 	data := TemplateForColls{URLdata: results, Schema: string(schematext)}
 
-	ht, err := template.New("some template").ParseFiles("templates/jrso_MS.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/jrso_MS_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

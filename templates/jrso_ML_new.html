@@ -28,6 +28,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
     <link rel="stylesheet" href="/common/styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <script type="application/ld+json">
+        {
+            {.Schema
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -59,49 +67,29 @@
         <main class="mdl-layout__content">
             <div class="mdl-grid portfolio-max-width">
 
+                {{ range $datap := .URLdata }} {{ range $data := $datap.Refdata }}
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{$data.Lat}},+{{$data.Long}}&zoom=2&scale=false&size=400x400&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{$data.Lat}},+{{$data.Long}}"
+                                alt="Google Map of {{$data.Lat}}, {{$data.Long}}">
+                        </header>
+                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Dataset: <br/>
+                            <a href="{{$data.Url}}">{{$data.Url}}</a>
+                            </h5>
+                                <p>Use the link above to access details on this dataset and download options</p>
 
-                <!--<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">  
-                    <div class="mdl-card__media">
-                         <img  border="0" alt="" class="article-image" src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Lat}},+{{.Schema.Long}}&zoom=1&scale=false&maptype=satellite&format=png&size=400x400&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Lat}},+{{.Schema.Long}}"
-                                alt="Google Map of {{.Schema.Lat}}, {{.Schema.Long}}">
-                    </div>
-                  
-                </div>-->
-
-                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">{{.URI}}  </h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-
-                        <p>This resource containes the following predicate and associated objects.
-                        </p>
-
-                        <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
-                            <thead>
-                                <tr>
-                                    <th class="mdl-data-table__cell--non-numeric">Predicate</th>
-                                    <th class="mdl-data-table__cell--non-numeric">Object</th>
-                                </tr>
-                            </thead>
-
-                            {{range $i, $v := .}}
-                            <tr>
-                                <td> {{$i}}</td>
-                                <td> {{$v}}</td>
-                            </tr>
-                            {{end}}
-
-                        </table>
-
-                    </div>
-                    <!--In the section below I could also link to what?  link to core images, link to publications?  other?-->
-
-                    <!--<div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="/doc/expedition/">View</a>
-                    </div>-->
+                                <p>Leg: {{$datap.Leg}} Measurement: {{$datap.Measure}}</p>
+                            </div>
+                            <!--     <div class="mdl-card__actions">
+                                <a href="#" class="mdl-button">Details on this dataset</a>
+                            </div> -->
+                        </div>
+                    </section>
                 </div>
+                {{ end }} {{end}}
 
             </div>
             <footer class="mdl-mini-footer">

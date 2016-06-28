@@ -6,10 +6,11 @@ import (
 	// "net/url"
 	"encoding/json"
 	"fmt"
+	"html/template"
+
 	"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"html/template"
 	"opencoredata.org/ocdWeb/services"
 )
 
@@ -62,23 +63,23 @@ type Columns struct {
 	Titles         []string `json:"titles"`
 }
 
-// schema.org Dataset metadata structs
+// schema.org Dataset metadata structs            	Context             []interface{} `json:"@context"`
 type SchemaOrgMetadata struct {
-	Context             []interface{} `json:"@context"`
-	Type                string        `json:"@type"`
-	Author              Author        `json:"author"`
-	Description         string        `json:"description"`
-	Distribution        Distribution  `json:"distribution"`
-	GlviewDataset       string        `json:"glview:dataset"`
-	GlviewKeywords      string        `json:"glview:keywords"`
-	OpenCoreLeg         string        `json:"opencore:leg"`
-	OpenCoreSite        string        `json:"opencore:site"`
-	OpenCoreHole        string        `json:"opencore:hole"`
-	OpenCoreMeasurement string        `json:"opencore:measurement"`
-	Keywords            string        `json:"keywords"`
-	Name                string        `json:"name"`
-	Spatial             Spatial       `json:"spatial"`
-	URL                 string        `json:"url"`
+	Context             string       `json:"@context"`
+	Type                string       `json:"@type"`
+	Author              Author       `json:"author"`
+	Description         string       `json:"description"`
+	Distribution        Distribution `json:"distribution"`
+	GlviewDataset       string       `json:"glview:dataset"`
+	GlviewKeywords      string       `json:"glview:keywords"`
+	OpenCoreLeg         string       `json:"opencore:leg"`
+	OpenCoreSite        string       `json:"opencore:site"`
+	OpenCoreHole        string       `json:"opencore:hole"`
+	OpenCoreMeasurement string       `json:"opencore:measurement"`
+	Keywords            string       `json:"keywords"`
+	Name                string       `json:"name"`
+	Spatial             Spatial      `json:"spatial"`
+	URL                 string       `json:"url"`
 }
 
 type Author struct {
@@ -110,13 +111,13 @@ type Geo struct {
 type TemplateForDoc struct {
 	Schema       SchemaOrgMetadata
 	CSVW         CSVWMeta
-	Schemastring string
-	Csvwstring   string
+	Schemastring template.JS
+	Csvwstring   template.JS
 	UUID         string
 }
 
 // Render A document view function
-// Note NOT being used ...  
+// Note NOT being used ...
 // called from main for measurement view  (need to FIX THIS)
 // not sure if I want a M/L/S/H URL open or not at this time...
 func Render(w http.ResponseWriter, r *http.Request) {
@@ -169,14 +170,24 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("URL lookup error: %v", err)
 	}
+
+	// result.Context = ` "opencore": "http://opencoredata.org/voc/1/", "glview": "http://geolink.org/view/1/", "schema": "http://schema.org/"`
+	result.Context = "http://schema.org"
+
 	jsonldtext, _ := json.MarshalIndent(result, "", " ") // results as embeddale JSON-LD
 
-    // Get the CSVW  data
+	// Get the CSVW  data
 	result2 := CSVWMeta{}
 	err = c2.Find(bson.M{"url": URI}).One(&result2)
 	if err != nil {
 		log.Printf("URL lookup error: %v", err)
 	}
+
+	// result.Context = ` "opencore": "http://opencoredata.org/voc/1/", "glview": "http://geolink.org/view/1/", "schema": "http://schema.org/"`
+	// needs to be:     "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
+	result2.Context = "http://www.w3.org/ns/csvw"
+
+
 	csvwtext, _ := json.MarshalIndent(result2, "", " ") // results as embeddale JSON-LD
 
 	ht, err := template.New("some template").ParseFiles("templates/jrso_dataset_new.html") //open and parse a template text file
@@ -184,7 +195,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 		log.Printf("template parse failed: %s", err)
 	}
 
-	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: string(jsonldtext), Csvwstring: string(csvwtext), UUID: vars["UUID"]}
+	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: template.JS(string(jsonldtext)), Csvwstring: template.JS(string(csvwtext)), UUID: vars["UUID"]}
 
 	err = ht.ExecuteTemplate(w, "T", dataForTemplate) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
 	if err != nil {

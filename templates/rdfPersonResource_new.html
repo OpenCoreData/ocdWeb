@@ -1,4 +1,4 @@
- {{define "T"}}
+ {{define "A"}}
 <!doctype html>
 <!--
   Material Design Lite
@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
  <!-- GeoLink Web component -->
-    <script src="http://glcomponents.tech/components/glperson-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="http://glcomponents.tech/components/glperson-element/glperson-element.html">
+    <script src="http://glcomponents.tech/components/glpersonol-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="http://glcomponents.tech/components/glpersonol-element/glpersonol-element.html">
 
 </head>
 
@@ -79,31 +79,43 @@
                         <h2 class="mdl-card__title-text">{{.URI}}  </h2>
                     </div>
                     <div class="mdl-card__supporting-text">
+{{end}}
+ {{define "T"}}
 
-                        <p>This resource containes the following predicate and associated objects.
-                        </p>
+                        <h4>Information available on this resource:
+                        </h4>
 
-                        <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+
+                            {{range $i, $v := .}}
+                             
+                                 <p> {{$v}}  Deployment:  <a href="{{$i}}">{{$i}}</a> </p>
+                             
+                            {{end}}
+
+{{end}}
+{{define "Z"}}
+
+                        <!--<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
                             <thead>
                                 <tr>
                                     <th class="mdl-data-table__cell--non-numeric">Predicate</th>
                                     <th class="mdl-data-table__cell--non-numeric">Object</th>
                                 </tr>
-                            </thead>
+                            </thead>-->
 
-                            {{range $i, $v := .}}
+                            <!--{{range $i, $v := .}}
                             <tr>
                                 <td> {{$i}}</td>
                                 <td> {{$v}}</td>
                             </tr>
-                            {{end}}
+                            {{end}}-->
 
-                        </table>
+                        <!--</table>-->
 
 
-                         <glperson-element params='{"host": "GeoLink",
+                         <glpersonol-element params='{"host": "GeoLink",
         "hosturl":"http://geolink.org",  "url": "{{.URI}}"}'>
-                    </glperson-element>
+                    </glpersonol-element>
 
                     </div>
                     <!--In the section below I could also link to what?  link to core images, link to publications?  other?-->
@@ -120,7 +132,7 @@
                 </div>
                 <div class="mdl-mini-footer__right-section">
                     <ul class="mdl-mini-footer__link-list">
-                        <li><a href="#">Funded by the Nation Science Foundation</a></li>
+                        <li><a href="#">Funded by the National Science Foundation</a></li>
                         <!--<li><a href="#">Privacy & Terms</a></li>-->
                     </ul>
                 </div>

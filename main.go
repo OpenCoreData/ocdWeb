@@ -72,7 +72,7 @@ func main() {
 	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}/{HOLE}", doc.ShowFeature)
 	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}", doc.ShowFeature)
 	docroute.HandleFunc("/doc/expedition/{LEG}", doc.ShowExpedition)
-    docroute.HandleFunc(`/doc/resource/people/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.PersonResourceRender)  // for GeoLink All Hands Demo, remove afterwards
+    docroute.HandleFunc(`/doc/resource/people/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.PersonResourceRender)  // for GeoLink All Hands Demo, remove afterwards, dont' want person specific version
 	docroute.HandleFunc(`/doc/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.ResourceRender)
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 	http.Handle("/doc/", docroute)
@@ -95,9 +95,9 @@ func main() {
 	http.Handle("/collections/", collections)
 
 	// Start the server...
-	log.Printf("About to listen on 9900. Go to http://127.0.0.1:9900/")
+	log.Printf("About to listen on 9990. Go to http://127.0.0.1:9990/")
 
-	err := http.ListenAndServe(":9900", nil)
+	err := http.ListenAndServe(":9990", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
