@@ -62,7 +62,7 @@ type TemplateForMeasurement struct {
 // The template render doesn't do anything at time..  the .js in the page does all that for now
 // Likely will do something wih the template later
 func MLCounts(w http.ResponseWriter, r *http.Request) {
-	ht, err := template.New("some template").ParseFiles("templates/matrix_jrso.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/matrix_jrso_test.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

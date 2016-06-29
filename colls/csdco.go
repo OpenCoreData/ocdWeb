@@ -42,7 +42,7 @@ type CSDCO struct {
 }
 
 func CSDCOOverview(w http.ResponseWriter, r *http.Request) {
-	ht, err := template.New("some template").ParseFiles("templates/matrix_csdco.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/matrix_csdco_test.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
