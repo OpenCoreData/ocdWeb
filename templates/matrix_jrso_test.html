@@ -1221,6 +1221,7 @@
                 width: 50,
                 sorttype: 'integer'
             }],
+            caption: "Janus Datasets ",
             loadonce: true,
             shrinkToFit: false, // must be set with frozen columns, otherwise columns will be shrank to fit the grid width
             autowidth: true,
@@ -1231,14 +1232,14 @@
         });
         //$('#Grid1').setGridWidth(705, false);
         $("#jqGrid").jqGrid("setFrozenColumns");
-        $('#jqGrid').jqGrid('setGridHeight', $(window).innerHeight() - 230);
+        $('#jqGrid').jqGrid('setGridHeight', $(window).innerHeight() - 185);
 
     });
 
 
 
     $(window).resize(function() {
-        $('#jqGrid').jqGrid('setGridHeight', $(window).innerHeight() - 230);
+        $('#jqGrid').jqGrid('setGridHeight', $(window).innerHeight() - 185);
     });
 </script>
 
