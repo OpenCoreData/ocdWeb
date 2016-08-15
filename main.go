@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 	"opencoredata.org/ocdWeb/colls"
 	"opencoredata.org/ocdWeb/doc"
 	"opencoredata.org/ocdWeb/dx"
@@ -51,6 +52,9 @@ func main() {
 	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.RDFRedirection)
 	http.Handle("/id/", dxroute)
 
+	// MD5 concept from indie web thoughts...
+	// psuedo code == dxroute.HandleFunc("/id/md5/{md5hash}, dx.MD5Redirection")
+
 	// Deal with void...  (show void..  allow .rdf file downloads)
 	rdfdocs := mux.NewRouter()
 	rdfdocs.PathPrefix("/rdf/").Handler(http.StripPrefix("/rdf/", http.FileServer(http.Dir("./static/rdf"))))
@@ -72,7 +76,7 @@ func main() {
 	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}/{HOLE}", doc.ShowFeature)
 	docroute.HandleFunc("/doc/expedition/{LEG}/{SITE}", doc.ShowFeature)
 	docroute.HandleFunc("/doc/expedition/{LEG}", doc.ShowExpedition)
-    docroute.HandleFunc(`/doc/resource/people/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.PersonResourceRender)  // for GeoLink All Hands Demo, remove afterwards, dont' want person specific version
+	docroute.HandleFunc(`/doc/resource/people/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.PersonResourceRender) // for GeoLink All Hands Demo, remove afterwards, dont' want person specific version
 	docroute.HandleFunc(`/doc/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.ResourceRender)
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 	http.Handle("/doc/", docroute)
@@ -82,12 +86,12 @@ func main() {
 	// TODO  worry about namespace collision here...  (need operator ID ?)
 	collections := mux.NewRouter()
 	// collections.HandleFunc("/collections", colls.Landing)
-	collections.HandleFunc("/collections/matrix", colls.MLCounts)   //  IODP matrix
-	collections.HandleFunc("/collections/expeditions", doc.AllExpeditions)   // Big list view
+	collections.HandleFunc("/collections/matrix", colls.MLCounts)          //  IODP matrix
+	collections.HandleFunc("/collections/expeditions", doc.AllExpeditions) // Big list view
 	// collections.HandleFunc("/collections/expeditions/{LEG}", doc.ShowExpedition)
 	// collections.HandleFunc("/collections/januslegs", colls.JanusLegs)
 	// collections.HandleFunc("/collections/janusmeasurements", colls.JanusMeasurements)
-	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)   // CSDCO Matrix
+	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)                        // CSDCO Matrix
 	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)             //  landing page for collection of files with a HoleID
 	collections.HandleFunc("/collections/measurement/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)
@@ -97,7 +101,7 @@ func main() {
 	// Start the server...
 	log.Printf("About to listen on 9990. Go to http://127.0.0.1:9990/")
 
-	err := http.ListenAndServe(":9990", nil)
+	err := http.ListenAndServe(":9900", nil)
 	if err != nil {
 		log.Fatal(err)
 	}

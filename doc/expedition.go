@@ -6,12 +6,13 @@ import (
 	// "net/url"
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"strings"
+
 	"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"html/template"
 	"opencoredata.org/ocdWeb/services"
-	"strings"
 )
 
 type CruiseGL struct {
@@ -108,6 +109,7 @@ func ShowFeature(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//ShowExpedition is the handler for URL patterns: http://localhost/doc/expedition/28
 func ShowExpedition(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
@@ -128,8 +130,17 @@ func ShowExpedition(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error calling for ShowExpeditions: %v", err)
 	}
 
+	// TODO  FIX!   The next 10 lines are hideous and should not need to be here.
+	// I am stripping the trailing / that is in the graph data.
 	// These slices are hideous..  some have trailing /'s that alter resolution
 	lshSlice := strings.Split(results.Legsitehole, " ")
+
+	// For each string in this slice need to check and remove any trailing /
+	for k, _ := range lshSlice {
+		if last := len(lshSlice[k]) - 1; last >= 0 && lshSlice[k][last] == '/' {
+			lshSlice[k] = lshSlice[k][:last]
+		}
+	}
 
 	// Make a new struct and put results and lshslice into it and pass it along
 	type TemplateStruct struct {

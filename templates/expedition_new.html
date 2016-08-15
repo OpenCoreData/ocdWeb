@@ -41,8 +41,8 @@
     <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.Default.css" />
     <script src="/common/js/markercluster/dist/leaflet.markercluster-src.js"></script>
-    
-      <style>
+
+    <style>
         #view-source {
             position: fixed;
             display: block;
@@ -68,7 +68,7 @@
             height: 100%;
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -80,7 +80,7 @@
                     <span class="mdl-layout__title">Open Core Data</span>
                 </span>
             </div>
-           <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
                     <a class="mdl-navigation__link" href="/community.html">Community</a>
@@ -102,17 +102,73 @@
 
 
 
-                <!--<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">-->  
-                      <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
                     <!--<div class="mdl-card__media">
                         <img class="article-image" src="/common/images/jr_Small.jpg" border="0" alt="">
                     </div>-->
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Expedition Information </h2>
+                        <h2 class="mdl-card__title-text">Expedition Information, Map and Data Links </h2>
                     </div>
                     <div class="mdl-card__supporting-text">
 
-                        <p>Site Hole details for this expedition
+
+                        <table style="width:100%" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                            <thead>
+                                <tr>
+                                    <th class="mdl-data-table__cell--non-numeric">Key</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Value</th>
+                                </tr>
+                            </thead>
+                            {{if .Cruise.Expedition}}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"> Expedition</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{.Cruise.Expedition}}</td>
+                            </tr>
+                            {{end}} {{if .Cruise.Cruisetype}}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"> Cruisetype</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{.Cruise.Cruisetype}}</td>
+                            </tr>
+                            {{end}} {{if .Cruise.Startportcall}}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"> Startportcall</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{.Cruise.Startportcall}}</td>
+                            </tr>
+                            {{end}} {{if .Cruise.Endportcall}}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"> Endportcall</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{.Cruise.Endportcall}}</td>
+                            </tr>
+                            {{end}} {{if .Cruise.Operator}}
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric"> Operator</td>
+                                <td class="mdl-data-table__cell--non-numeric"> {{.Cruise.Operator}}</td>
+                            </tr>
+                            {{end}}
+                        </table>
+
+
+                    </div>
+                    <!--In the section below I could also link to what?  link to core images, link to publications?  other?-->
+
+                    <!--<div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="/doc/expedition/">View</a>
+                    </div>-->
+                </div>
+
+
+
+                <!--<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">-->
+                <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <!--<div class="mdl-card__media">
+                        <img class="article-image" src="/common/images/jr_Small.jpg" border="0" alt="">
+                    </div>-->
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Expedition Site/Hole Links </h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
+                        <p>Links to Site/Hole information for this expedtion
                         </p>
 
                         {{ range $LSH := .LSHSlice}}
@@ -131,7 +187,7 @@
 
 
 
-                      <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                     <!--<div class="mdl-card__media">
                         <img class="article-image" src="/common/images/jr_Small.jpg" border="0" alt="">
                     </div>-->
@@ -141,13 +197,13 @@
                     <div class="mdl-card__supporting-text">
 
 
-                        <div style="margin:5px;height:400px;width:100%">
+                        <div style="margin:5px;height:300px;width:100%">
                             <div id="map"></div>
                             <div id="info">
                                 <h5>Building map...  please wait...</h5>
                             </div>
                         </div>
-                        
+
 
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
