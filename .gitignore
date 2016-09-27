@@ -1,0 +1,5 @@
+#ignore any vendor directory
+vendor/**/*
+
+# remove binary
+app

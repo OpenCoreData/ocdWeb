@@ -21,7 +21,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="description" content="Open Core Data Web site">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Open Core Data</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -84,29 +84,18 @@
         </div>
         <main class="mdl-layout__content">
             <div class="mdl-layout__tab-panel is-active" id="overview">
-                <!--<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">  
-                    <div class="mdl-card__media">
-                        
-                    </div>
-                  
-                </div>-->
                 <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-
                     <section class="section--center mdl-grid mdl-grid--no-spacing">
-                        <!--<header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                            <img src="/common/images/300px-JOIDES_Resolution,_2009.jpg" />
-                        </header>-->
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h5>Data Collection</h5>
-                                <p>The following collection is for measurement {{.URLdata.Measure}} on leg {{.URLdata.Leg}}. Access the individual landing pages for download links, citation information and further details. </p>
+                                <h5>Data Collection {{.URLdata.Measure}} on Leg {{.URLdata.Leg}}</h5>
+                                <p>The following collection is for measurement {{.URLdata.Measure}} on Leg {{.URLdata.Leg}}. Access the individual landing pages for download links, citation information and further details. </p>
                             </div>
-
                         </div>
                     </section>
                 </div>
+                
                 {{ range $data := .URLdata.Refdata }}
-
                 <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                     <section class="section--center mdl-grid mdl-grid--no-spacing">
                         <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
@@ -115,7 +104,7 @@
                         </header>
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h5>Dataset: <br/>
+                                <h5>dataset: <br/>
                             <a href="{{$data.Url}}">{{$data.Url}}</a>
                             </h5>
                                 <p>Use the link above to access landing page for this dataset and download options</p>

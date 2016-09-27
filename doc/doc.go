@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2"
@@ -113,6 +114,7 @@ type TemplateForDoc struct {
 	CSVW         CSVWMeta
 	Schemastring template.JS
 	Csvwstring   template.JS
+	MeasureType  string
 	UUID         string
 }
 
@@ -187,7 +189,6 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	// needs to be:     "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
 	result2.Context = "http://www.w3.org/ns/csvw"
 
-
 	csvwtext, _ := json.MarshalIndent(result2, "", " ") // results as embeddale JSON-LD
 
 	ht, err := template.New("some template").ParseFiles("templates/jrso_dataset_new.html") //open and parse a template text file
@@ -195,7 +196,10 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 		log.Printf("template parse failed: %s", err)
 	}
 
-	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: template.JS(string(jsonldtext)), Csvwstring: template.JS(string(csvwtext)), UUID: vars["UUID"]}
+	// need a simple function call to extract the "janus" keyword from the keyword string and toLower it and
+	// pass it in this struct to use in the data types web component
+	measureString := getJanusKeyword(result.Keywords)
+	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: template.JS(string(jsonldtext)), Csvwstring: template.JS(string(csvwtext)), MeasureType: measureString, UUID: vars["UUID"]}
 
 	err = ht.ExecuteTemplate(w, "T", dataForTemplate) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
 	if err != nil {
@@ -204,4 +208,15 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 
 	// go get the CSVW metadata and inject the whole package and the rendered table
 
+}
+
+func getJanusKeyword(s string) string {
+	ssplit := strings.Split(s, ",")
+	var targetString string
+	for _, element := range ssplit {
+		if strings.Contains(strings.ToLower(element), "janus") {
+			targetString = strings.ToLower(element)
+		}
+	}
+	return strings.TrimSpace(targetString)
 }

@@ -52,11 +52,13 @@ type SchemaAuthor struct {
 type TemplateForColls struct {
 	URLdata URLSet
 	Schema  string
+	Measure string
 }
 
 type TemplateForMeasurement struct {
 	URLdata []URLSet
 	Schema  string
+	Measure string
 }
 
 // The template render doesn't do anything at time..  the .js in the page does all that for now
@@ -73,6 +75,7 @@ func MLCounts(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// MLURLSets is for sets of measurements at a site
 // needs to take a Leg and Measurement and return all data sets associated with it.
 func MLURLSets(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -113,7 +116,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 
 	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
 
-	data := TemplateForColls{URLdata: results, Schema: string(schematext)}
+	data := TemplateForColls{URLdata: results, Schema: string(schematext), Measure: vars["measurements"]}
 
 	ht, err := template.New("some template").ParseFiles("templates/jrso_MS_new.html") //open and parse a template text file
 	if err != nil {
@@ -128,6 +131,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// MesSets is for sets of measurements
 func MesSets(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
@@ -169,9 +173,9 @@ func MesSets(w http.ResponseWriter, r *http.Request) {
 
 	schematext, _ := json.Marshal(dataCatalog) // .MarshalIndent(dataCatalog, "", " ")
 
-	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
+	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext), Measure: vars["measurements"]}
 
-	ht, err := template.New("some template").ParseFiles("templates/jrso_ML.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/jrso_M_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -184,7 +188,7 @@ func MesSets(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// The following function is deprectated.  I am leaving it in for a while in case I discovery some reference I need to deal with. 
+// The following function is deprectated.  I am leaving it in for a while in case I discovery some reference I need to deal with.
 //
 // func LegSets(w http.ResponseWriter, r *http.Request) {
 // 	vars := mux.Vars(r)
@@ -229,7 +233,7 @@ func MesSets(w http.ResponseWriter, r *http.Request) {
 
 // 	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
 
-// 	ht, err := template.New("some template").ParseFiles("templates/jrso_ML.html") //open and parse a template text file
+// 	ht, err := template.New("some template").ParseFiles("templates/jrso_M.html") //open and parse a template text file
 // 	if err != nil {
 // 		log.Printf("template parse failed: %s", err)
 // 	}

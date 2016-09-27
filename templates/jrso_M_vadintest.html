@@ -1,0 +1,178 @@
+ {{define "T"}}
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Open Core Data</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="/common/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- For the web components -->
+    <script src="/common/components/ocdparams-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/common/bower_components/vaadin-grid/vaadin-grid.html">
+    <!-- End -->
+    <style is="custom-style">
+    vaadin-grid {
+        --vaadin-grid-row-height: 100px;
+        --vaadin-grid-header-row-height: 44px;
+    }
+    </style>
+    <style>
+    #view-source {
+        position: fixed;
+        display: block;
+        right: 0;
+        bottom: 0;
+        margin-right: 40px;
+        margin-bottom: 40px;
+        z-index: 900;
+    }
+    
+    img {
+        width: 75%;
+        /* or any custom size */
+        height: 75%;
+        object-fit: contain;
+    }
+    </style>
+    <script type="application/ld+json">
+    {
+        {.Schema
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Open Core Data</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
+                    <a class="mdl-navigation__link" href="/community.html">Community</a>
+                    <a class="mdl-navigation__link" href="/about.html">About</a>
+                    <a class="mdl-navigation__link" href="/contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
+                <a class="mdl-navigation__link" href="/community.html">Community</a>
+                <a class="mdl-navigation__link" href="/about.html">About</a>
+                <a class="mdl-navigation__link" href="/contact.html">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-layout__tab-panel is-active" id="overview">
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <section class="section--center mdl-grid mdl-grid--no-spacing">
+                        <!--<header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                            <img src="/common/images/300px-JOIDES_Resolution,_2009.jpg" />
+                        </header>-->
+                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>Data Collection {{.Measure}}</h5>
+                                <p>The following collection is for measurement {{.Measure}}. Access the individual landing pages for download links, citation information and further details. </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+               
+                <div class="mdl-cell mdl-card mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <vaadin-grid>
+                        <table>
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Leg</th>
+                                    <th>Map</th>
+                                    <th>URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ range $datap := .URLdata }} {{ range $data := $datap.Refdata }}
+                                <tr>
+                                    <td>{{$datap.Leg}}</td>
+                                    <td><img src="http://maps.googleapis.com/maps/api/staticmap?center={{$data.Lat}},+{{$data.Long}}&zoom=2&scale=false&size=200x200&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{$data.Lat}},+{{$data.Long}}" alt="Google Map of {{$data.Lat}}, {{$data.Long}}">
+                                    </td>
+                                    <td><a href="{{$data.Url}}">{{$data.Url}}</a></td>
+                                </tr>
+                                {{end}} {{end}}
+                            </tbody>
+                        </table>
+                    </vaadin-grid>
+                </div>
+
+                
+                {{ range $datap := .URLdata }} {{ range $data := $datap.Refdata }}
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <section class="section--center mdl-grid mdl-grid--no-spacing">
+                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{$data.Lat}},+{{$data.Long}}&zoom=2&scale=false&size=400x400&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{$data.Lat}},+{{$data.Long}}" alt="Google Map of {{$data.Lat}}, {{$data.Long}}">
+                        </header>
+                        <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                            <div class="mdl-card__supporting-text">
+                                <h5>dataset: <br/>
+                            <a href="{{$data.Url}}">{{$data.Url}}</a>
+                            </h5>
+                                <p>Use the link above to access landing page for this dataset and download options</p>
+                                <p>Leg: {{$datap.Leg}} Measurement: {{$datap.Measure}}</p>
+                            </div>
+                            <!--     <div class="mdl-card__actions">
+                                <a href="#" class="mdl-button">Details on this dataset</a>
+                            </div> -->
+                        </div>
+                    </section>
+                </div>
+                {{ end }} {{end}}
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Open Core Data</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Funded by the National Science Foundation</a></li>
+                        <!--<li><a href="#">Privacy & Terms</a></li>-->
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+</body>
+
+</html>
+{{end}}
