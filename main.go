@@ -99,7 +99,7 @@ func main() {
 	http.Handle("/collections/", collections)
 
 	// Start the server...
-	log.Printf("About to listen on 9990. Go to http://127.0.0.1:9990/")
+	log.Printf("About to listen on 9900. Go to http://127.0.0.1:9900/")
 
 	err := http.ListenAndServe(":9900", nil)
 	if err != nil {
