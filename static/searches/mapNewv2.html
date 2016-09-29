@@ -91,7 +91,7 @@
                     <div class="portfolio-small-logo"></div>
                 </div>
 
-                  <!-- search box, needs activation -->
+                <!-- search box, needs activation -->
                 <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
                     <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
                         <i class="material-icons">search</i>
@@ -133,7 +133,7 @@
         <div style="margin:0px;height:100%" class="android-content mdl-layout__content">
             <div id="map"></div>
             <div id="info">
-                <h5>Building map...  please wait...</h5>
+                <h5>Building map... please wait...</h5>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@
     });
 
     // Get the ocean data
-    var geoJsonData = $.getValues("http://opencoredata.org/api/v1/spatial/expeditions");
+    var geoJsonData = $.getValues("/api/v1/spatial/expeditions");
     var geojsonMarkerOptions = {
         radius: 10,
         fillColor: "rgb(255,0,195)",
@@ -197,7 +197,7 @@
     });
 
     // Get the continental data
-    var csdcoData = $.getValues("http://opencoredata.org/api/v1/spatial/continental");
+    var csdcoData = $.getValues("/api/v1/spatial/continental");
     var csdcoMarkerOptions = {
         radius: 10,
         fillColor: "rgb(0,255,195)",
