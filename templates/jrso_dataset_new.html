@@ -30,20 +30,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- For the web components -->
     <script src="/common/components/ocdparams-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-   
-   <link rel="import" href="/common/elements.html">
+
+    <link rel="import" href="/common/elements.html">
     <!-- End -->
     <script type="application/ld+json">
-    {
-        {.Schemastring
-        }
-    }
+        {{.Schemastring}}
     </script>
     <script type="application/ld+json">
-    {
-        {.Csvwstring
-        }
-    }
+        {{.Csvwstring}}
     </script>
 </head>
 
@@ -77,7 +71,8 @@
             <div class="mdl-grid portfolio-max-width">
                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <img border="0" alt="" class="article-image" src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=350x350&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}" alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
+                        <img border="0" alt="" class="article-image" src="http://maps.googleapis.com/maps/api/staticmap?center={{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}&zoom=1&scale=false&maptype=satellite&format=png&size=350x350&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Schema.Spatial.Geo.Latitude}},+{{.Schema.Spatial.Geo.Longitude}}"
+                            alt="Google Map of {{.Schema.Spatial.Geo.Latitude}}, {{.Schema.Spatial.Geo.Longitude}}">
                     </div>
                 </div>
                 <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
@@ -112,30 +107,31 @@
                     </div>
                     <div class="mdl-card__supporting-text">
                         <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <p><a href="http://opencoredata.org/api/v1/documents/download/{{.UUID}}/CSVW">CSV for web metadata</a></p> 
+                            <p><a href="http://opencoredata.org/api/v1/documents/download/{{.UUID}}/CSVW">CSV for web metadata</a></p>
                             <p>Direct link to the W3C CSV for the web metadata packge (ref: <a target="_blank" href="http://www.w3.org/TR/2015/WD-tabular-data-model-20150416/">Model for Tabular Data and Metadata on the Web</a>).</p>
                         </div>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text"> Schema.org Metadata  </h2>
+                        <h2 class="mdl-card__title-text"> Schema.org Metadata </h2>
                     </div>
                     <div class="mdl-card__supporting-text">
                         <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                             <p><a href="http://opencoredata.org/api/v1/documents/download/{{.UUID}}/JSON">schema.org metadata</a></p>
-                            <p> Direct link to the schema.org metadata associated with this file. This metadata is also embedded into  this page with resource type is <a target="_blank" href="http://schema.org/DataSet">schema.org/Dataset</a>.</p>
+                            <p> Direct link to the schema.org metadata associated with this file. This metadata is also embedded into this page with resource type is <a target="_blank" href="http://schema.org/DataSet">schema.org/Dataset</a>.</p>
                         </div>
                     </div>
                 </div>
-                 <div style="position: relative; z-index: 9999;" class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">  <!-- z index this? -->
+                <div style="position: relative; z-index: 9999;" class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <!-- z index this? -->
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text"> GeoDeepDive </h2>
                     </div>
                     <div class="mdl-card__supporting-text">
                         <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                             <p>
-                               <deepdive-element  params='{"keywords": "Leg {{.Schema.OpenCoreLeg}}"}'> </deepdive-element>
+                                <deepdive-element params='{"keywords": "Leg {{.Schema.OpenCoreLeg}}"}'> </deepdive-element>
                             </p>
                         </div>
                     </div>
@@ -145,10 +141,10 @@
                         <h2 class="mdl-card__title-text"> Citation Example </h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <p>Citation information is in development</p> 
+                        <p>Citation information is in development</p>
                         <p>Ocean Drilling Program; (1976-1983): Janus Measurement for Leg {{.Schema.OpenCoreLeg}}, Site {{.Schema.OpenCoreSite}} {{if .Schema.OpenCoreHole}}, Hole {{.Schema.OpenCoreHole}}{{end}};
-                        <br/>Joides Resolution Science Office, Interdisciplinary Earth Data Alliance: Open Core Data.
-                        <!--MONTH YEAR http://dx.doi.org/xx.xxxx/XXX/XXX/XXX-->
+                            <br/>Joides Resolution Science Office, Interdisciplinary Earth Data Alliance: Open Core Data.
+                            <!--MONTH YEAR http://dx.doi.org/xx.xxxx/XXX/XXX/XXX-->
                         </p>
                     </div>
                 </div>
@@ -157,12 +153,12 @@
                         <h2 class="mdl-card__title-text"> Parameters and Descriptions</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                    <p>
-                        The following table give an example of the parameters in the hosted dataset and links out to the vocabulary terms. These are the terms, units and description for the the associated dataset.
+                        <p>
+                            The following table give an example of the parameters in the hosted dataset and links out to the vocabulary terms. These are the terms, units and description for the the associated dataset.
                         </p>
                         <p>
-                        <ocdparams-element params='{"measurement": "{{.MeasureType}}"}'>
-                        </ocdparams-element>
+                            <ocdparams-element params='{"measurement": "{{.MeasureType}}"}'>
+                            </ocdparams-element>
                         </p>
                         <!-- 
                         <table style="width:100%" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">

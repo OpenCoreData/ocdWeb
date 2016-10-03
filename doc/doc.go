@@ -173,6 +173,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 		log.Printf("URL lookup error: %v", err)
 	}
 
+	// context setting hack
 	// result.Context = ` "opencore": "http://opencoredata.org/voc/1/", "glview": "http://geolink.org/view/1/", "schema": "http://schema.org/"`
 	result.Context = "http://schema.org"
 
