@@ -82,8 +82,8 @@
 					<div class="mdl-card__supporting-text">
 						<h6> {{.Schema.URL}}</h6>
 						<p>
-							This is a scientific drilling dataset from the DSDP/ODP/IODP/IODP expedition {{.Schema.OpenCoreLeg}}_{{.Schema.OpenCoreSite}}{{if
-							.Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}} with coordinates: (Lat: {{.Schema.Spatial.Geo.Latitude}} Long:
+							This is a scientific drilling dataset from the DSDP/ODP/IODP/IODP expedition {{.Schema.OpenCoreLeg}}_{{.Schema.OpenCoreSite}}
+							{{if .Schema.OpenCoreHole}}{{.Schema.OpenCoreHole}}{{end}} with coordinates: (Lat: {{.Schema.Spatial.Geo.Latitude}} Long:
 							{{.Schema.Spatial.Geo.Longitude}}).
 							<br/> Keywords: {{.Schema.Keywords}}
 							<br/> Measure: {{.MeasureType}}

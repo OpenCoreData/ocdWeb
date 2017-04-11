@@ -3,13 +3,35 @@ package services
 import (
 	"bytes"
 	// "fmt"
-	sparql "github.com/knakk/sparql"
 	"log"
 	"time"
+
+	sparql "github.com/knakk/sparql"
 )
 
 const queries = `
 # Comments are ignored, except those tagging a query.
+
+# The following gets the project data
+# tag: CSDCO 
+SELECT DISTINCT ?uri ?date ?lat ?long ?holeid
+WHERE 
+{ 
+  ?uri rdf:type <http://opencoredata.org/id/voc/csdco/v1/CSDCOProject> . 
+  ?uri <http://opencoredata.org/id/voc/csdco/v1/project> "{{.PROJID}}" . 
+  ?uri <http://opencoredata.org/id/voc/csdco/v1/holeid> ?holeid .
+  ?uri 	<http://opencoredata.org/id/voc/csdco/v1/date> ?date . 
+  ?uri 	<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat .
+  ?uri 	<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long .
+}
+
+# Get all the info on a HoleID from the CSDCO graph
+# tag: CSDCOHoleID
+SELECT *
+WHERE 
+{ 
+  <{{.HOLEID}}>  ?p ?o .
+}
 
 # tag: my-query
 SELECT *
@@ -45,10 +67,67 @@ WHERE {
 
 `
 
- // GetGeoLinkResource for GeoLink All Hands Demo, remove afterwards, dont' want person specific version
- func GetGeoLinkResource(uri string) *sparql.Results {
-	log.Printf("GetGeoLinkResource: %s\n", uri)
-	
+// CSDCOHoleIDInfo takes a project ID and returns the holeid URI's and lat long info in SPARQL results
+// returns:  uri	date	lat	long	holeid
+func CSDCOHoleIDInfo(holeid string) *sparql.Results {
+
+	repo, err := sparql.NewRepo("http://localhost:9999/blazegraph/namespace/csdcov3/sparql",
+		sparql.Timeout(time.Millisecond*15000),
+	)
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	f := bytes.NewBufferString(queries)
+	bank := sparql.LoadBank(f)
+
+	q, err := bank.Prepare("CSDCOHoleID", struct{ HOLEID string }{holeid})
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	res, err := repo.Query(q)
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	return res
+
+}
+
+// CSDCOProjectInfo takes a project ID and returns the holeid URI's and lat long info in SPARQL results
+// returns:  uri	date	lat	long	holeid
+func CSDCOProjectInfo(projid string) *sparql.Results {
+
+	repo, err := sparql.NewRepo("http://localhost:9999/blazegraph/namespace/csdcov3/sparql",
+		sparql.Timeout(time.Millisecond*15000),
+	)
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	f := bytes.NewBufferString(queries)
+	bank := sparql.LoadBank(f)
+
+	q, err := bank.Prepare("CSDCO", struct{ PROJID string }{projid})
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	log.Println(q)
+
+	res, err := repo.Query(q)
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	log.Println(res)
+	return res
+
+}
+
+// GetGeoLinkResource for GeoLink All Hands Demo, remove afterwards, dont' want person specific version
+func GetGeoLinkResource(uri string) *sparql.Results {
 	repo, err := sparql.NewRepo("http://data.geolink.org/sparql",
 		sparql.Timeout(time.Millisecond*15000),
 	)
@@ -59,8 +138,7 @@ WHERE {
 	f := bytes.NewBufferString(queries)
 	bank := sparql.LoadBank(f)
 
-	// q, err := bank.Prepare("my-query", struct{ Limit, Offset int }{10, 100})
-	q, err := bank.Prepare("geolinkperson", struct{ URI string}{uri})
+	q, err := bank.Prepare("geolinkperson", struct{ URI string }{uri})
 	if err != nil {
 		log.Printf("%s\n", err)
 	}
@@ -75,8 +153,6 @@ WHERE {
 
 // GetRDFResource takes a URI as an arugment and returns information about the RDF resource
 func GetRDFResource(uri string) *sparql.Results {
-	log.Printf("GetRDFResource: %s\n", uri)
-	
 	repo, err := sparql.NewRepo("http://data.oceandrilling.org/sparql",
 		sparql.Timeout(time.Millisecond*15000),
 	)
@@ -87,8 +163,7 @@ func GetRDFResource(uri string) *sparql.Results {
 	f := bytes.NewBufferString(queries)
 	bank := sparql.LoadBank(f)
 
-	// q, err := bank.Prepare("my-query", struct{ Limit, Offset int }{10, 100})
-	q, err := bank.Prepare("generic", struct{ URI string}{uri})
+	q, err := bank.Prepare("generic", struct{ URI string }{uri})
 	if err != nil {
 		log.Printf("%s\n", err)
 	}

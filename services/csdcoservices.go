@@ -2,6 +2,7 @@ package services
 
 import (
 	"fmt"
+
 	"gopkg.in/mgo.v2"
 	//"gopkg.in/mgo.v2/bson"
 	"bytes"
@@ -70,7 +71,8 @@ func CSDCOGrid(w http.ResponseWriter, r *http.Request) {
 			subelem.HoleID, subelem.HoleID))
 		buffer.WriteString(fmt.Sprintf("\"LocationName\" : \"%s\",", subelem.LocationName))
 		buffer.WriteString(fmt.Sprintf("\"LocationType\" : \"%s\",", subelem.LocationType))
-		buffer.WriteString(fmt.Sprintf("\"Project\" : \"%s\",", subelem.Project))
+		buffer.WriteString(fmt.Sprintf("\"Project\" : \"<a target='_blank' href='/collections/%s/project/%s'>%s</a>\",", "csdco",
+			subelem.Project, subelem.Project))
 		buffer.WriteString(fmt.Sprintf("\"LocationID\" : \"%s\",", subelem.LocationID))
 		buffer.WriteString(fmt.Sprintf("\"Site\" : \"%s\",", subelem.Site))
 		buffer.WriteString(fmt.Sprintf("\"Hole\" : \"%s\",", subelem.Hole))

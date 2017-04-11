@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="/common/styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
- <!-- GeoLink Web component -->
-    <script src="http://glcomponents.tech/components/glpersonol-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="http://glcomponents.tech/components/glpersonol-element/glpersonol-element.html">
+    <!-- GeoLink Web component -->
+    <script src="http://geocomponents.org/components/glpersonol-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="http://geocomponents.org/components/glpersonol-element/glpersonol-element.html">
 
 </head>
 
@@ -76,24 +76,20 @@
                 <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
 
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">{{.URI}}  </h2>
+                        <h2 class="mdl-card__title-text">{{.URI}} </h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-{{end}}
- {{define "T"}}
+                        {{end}} {{define "T"}}
 
                         <h4>Information available on this resource:
                         </h4>
 
 
-                            {{range $i, $v := .}}
-                             
-                                 <p> {{$v}}  Deployment:  <a href="{{$i}}">{{$i}}</a> </p>
-                             
-                            {{end}}
+                        {{range $i, $v := .}}
 
-{{end}}
-{{define "Z"}}
+                        <p> {{$v}} Deployment: <a href="{{$i}}">{{$i}}</a> </p>
+
+                        {{end}} {{end}} {{define "Z"}}
 
                         <!--<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
                             <thead>
@@ -103,7 +99,7 @@
                                 </tr>
                             </thead>-->
 
-                            <!--{{range $i, $v := .}}
+                        <!--{{range $i, $v := .}}
                             <tr>
                                 <td> {{$i}}</td>
                                 <td> {{$v}}</td>
@@ -113,9 +109,9 @@
                         <!--</table>-->
 
 
-                         <glpersonol-element params='{"host": "GeoLink",
+                        <glpersonol-element params='{"host": "GeoLink",
         "hosturl":"http://geolink.org",  "url": "{{.URI}}"}'>
-                    </glpersonol-element>
+                        </glpersonol-element>
 
                     </div>
                     <!--In the section below I could also link to what?  link to core images, link to publications?  other?-->
