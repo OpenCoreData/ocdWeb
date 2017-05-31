@@ -41,7 +41,7 @@
                     <span class="mdl-layout__title">Open Core Data</span>
                 </span>
             </div>
-           <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
                     <a class="mdl-navigation__link" href="/community.html">Community</a>
@@ -60,34 +60,32 @@
         </div>
         <main class="mdl-layout__content">
             <div class="mdl-grid portfolio-max-width">
-                
-              
-                
-                    {{ range $Schema := . }}   
-                
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <!--<div class="mdl-card__media">
-                        <img class="article-image" src="/common/images/jr_Small.jpg" border="0" alt="">
-                    </div>-->
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Expedition {{$Schema.Expedition}} </h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
 
-                           <p>Information, data file links and maps can be found on this expedition at 
-                                    <a href="/doc/expedition/{{$Schema.Expedition}}">
-                                    opencoredata.org/doc/expedition/{{$Schema.Expedition}}</a>
-                                </p>
 
-                    </div>
-                    <!--In the section below I could also link to what?  link to core images, link to publications?  other?-->
-                    
-                    <!--<div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="/doc/expedition/{{$Schema.Expedition}}">View</a>
-                    </div>-->
-                </div>
-               
-                 {{end}}
+                <ul class="demo-list-control mdl-list" style="width:100%">
+
+                    {{ range $Schema := . }}
+
+                    <li class="mdl-list__item mdl-list__item--three-line">
+                        <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-avatar">directions_boat</i>
+      <span>Expedition {{$Schema.Expedition}} </span>
+                        <span class="mdl-list__item-text-body">
+                           You can explore <a href="/doc/expedition/{{$Schema.Expedition}}">
+                                    expedition {{$Schema.Expedition}} further</a>.  Additionally, you can also review the <a href="{{$Schema.Rvol}}">initial report volume:</a>  
+
+ 
+                        </span>
+                        </span>
+                        <!--<span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>-->
+                    </li>
+
+
+                    {{end}}
+
+                </ul>
 
 
             </div>

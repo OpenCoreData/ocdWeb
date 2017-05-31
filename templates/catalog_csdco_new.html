@@ -62,8 +62,8 @@
 
                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <img border="0" alt="" class="article-image"src="http://maps.googleapis.com/maps/api/staticmap?center={{.Lat}},+{{.Long}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Lat}},+{{.Long}}" 
-                           alt="Google Map of {{.Lat}}, {{.Long}}">
+                        <img border="0" alt="" class="article-image" src="http://maps.googleapis.com/maps/api/staticmap?center={{.Lat}},+{{.Long}}&zoom=1&scale=false&maptype=satellite&format=png&size=200x200&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{.Lat}},+{{.Long}}"
+                            alt="Google Map of {{.Lat}}, {{.Long}}">
                     </div>
 
                 </div>
@@ -71,168 +71,146 @@
                 <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
 
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">CSDCO Project Page</h2>
+                        <h2 class="mdl-card__title-text">{{.HoleID}}</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
 
-                        <h6>  {{.HoleID}}</h6>
-                        <p>
-                            This page contains some simple details on this topic. 
-                             A data card will be added to this page 
-                                    to link to associated data files.
+                        <p> On-line access to project data is coming. Until then, to obtain data or further information please contact CSDCO.
                         </p>
 
-                    </div>
-
-                </div>
-
-
-              
-               
-
-                <!--<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">-->
-
-                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text"> Citation Example </h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-
-                        <h5>Citation format (place holder..  format under development)</h5> Ocean Drilling Program; (1976-1983):  Measurement for PROGRAM;
-                        <br/>CSDCO, Interdisciplinary Earth Data Alliance: Open Core Data. MONTH YEAR http://dx.doi.org/xx.xxxx/XXX/XXX/XXX
+                        <p>
+                            <a href="/collections/csdco">Return to CSDCO projects index</a> </p>
 
                     </div>
 
                 </div>
 
 
-
-
                 <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text"> Program details</h2>
+                        <h2 class="mdl-card__title-text"> Hole ID Metadata</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
 
                         <h5>Details</h5>
-                            <div>
-                                <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
-                                    <thead>
-                                        <tr>
-                                            <th class="mdl-data-table__cell--non-numeric">Name</th>
-                                            <th class="mdl-data-table__cell--non-numeric">Datatype</th>
-                                        </tr>
-                                    </thead>
+                        <div>
+                            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                                <thead>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">LocationName </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .LocationName}}{{.LocationName}}{{end}}</td>
+                                        <th class="mdl-data-table__cell--non-numeric">Name</th>
+                                        <th class="mdl-data-table__cell--non-numeric">Datatype</th>
                                     </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">LocationType </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .LocationType}}{{.LocationType}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Project </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Project}}{{.Project}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">LocationID </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .LocationID}}{{.LocationID}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Site </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Site}}{{.Site}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Hole </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Hole}}{{.Hole}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">SiteHole </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .SiteHole}}{{.SiteHole}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">OriginalID </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .OriginalID}}{{.OriginalID}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">HoleID </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .HoleID}}{{.HoleID}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Platform </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Platform}}{{.Platform}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Date </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Date}}{{.Date}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">WaterDepthM </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .WaterDepthM}}{{.WaterDepthM}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Country </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Country}}{{.Country}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">State_Province </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .State_Province}}{{.State_Province}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">County_Region </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .County_Region}}{{.County_Region}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">PI </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .PI}}{{.PI}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Lat </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Lat}}{{.Lat}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Long </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Long}}{{.Long}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Elevation </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Elevation}}{{.Elevation}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Position </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Position}}{{.Position}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">StorageLocationWorking </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .StorageLocationWorking}}{{.StorageLocationWorking}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">StorageLocationArchive </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .StorageLocationArchive}}{{.StorageLocationArchive}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">SampleType </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .SampleType}}{{.SampleType}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">Comment </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .Comment}}{{.Comment}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">mblfT </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .MblfT}}{{.MblfT}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">mblfB </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .MblfB}}{{.MblfB}}{{end}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="mdl-data-table__cell--non-numeric">MetadataSource </td>
-                                        <td class="mdl-data-table__cell--non-numeric"> {{if .MetadataSource}}{{.MetadataSource}}{{end}}</td>
-                                    </tr>
-                                </table>
-                            </div>
+                                </thead>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">LocationName </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .LocationName}}{{.LocationName}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">LocationType </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .LocationType}}{{.LocationType}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Project </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Project}}{{.Project}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">LocationID </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .LocationID}}{{.LocationID}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Site </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Site}}{{.Site}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Hole </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Hole}}{{.Hole}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">SiteHole </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .SiteHole}}{{.SiteHole}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">OriginalID </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .OriginalID}}{{.OriginalID}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">HoleID </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .HoleID}}{{.HoleID}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Platform </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Platform}}{{.Platform}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Date </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Date}}{{.Date}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">WaterDepthM </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .WaterDepthM}}{{.WaterDepthM}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Country </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Country}}{{.Country}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">State_Province </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .State_Province}}{{.State_Province}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">County_Region </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .County_Region}}{{.County_Region}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">PI </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .PI}}{{.PI}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Lat </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Lat}}{{.Lat}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Long </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Long}}{{.Long}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Elevation </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Elevation}}{{.Elevation}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Position </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Position}}{{.Position}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">StorageLocationWorking </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .StorageLocationWorking}}{{.StorageLocationWorking}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">StorageLocationArchive </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .StorageLocationArchive}}{{.StorageLocationArchive}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">SampleType </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .SampleType}}{{.SampleType}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Comment </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .Comment}}{{.Comment}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">mblfT </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .MblfT}}{{.MblfT}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">mblfB </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .MblfB}}{{.MblfB}}{{end}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">MetadataSource </td>
+                                    <td class="mdl-data-table__cell--non-numeric"> {{if .MetadataSource}}{{.MetadataSource}}{{end}}</td>
+                                </tr>
+                            </table>
+                        </div>
 
 
 

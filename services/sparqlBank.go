@@ -65,13 +65,68 @@ WHERE {
   <{{.URI}}> ?p ?o .
 }
 
+
+#tag: alljrsoexpeditions
+prefix ocdjanus: <http://opencoredata.org/voc/janus/1/> 
+prefix ocd: <http://opencoredata.org/voc/1/> 
+SELECT DISTINCT  ?leg ?rvol ?label
+WHERE {
+  ?s  rdf:type  ocd:Drillsite .
+  ?s  ocdjanus:leg ?leg .
+  ?s  ocd:initialreportvolume ?rvol .
+  
+}
+ORDER BY DESC(xsd:integer(?leg))
+
+#tag: DEPRECATEDalljrsoexpeditions
+prefix ocdjanus: <http://opencoredata.org/voc/janus/1/> 
+prefix ocd: <http://opencoredata.org/voc/1/> 
+SELECT DISTINCT ?s ?leg ?rvol ?cdata ?label
+WHERE {
+  ?s  rdf:type  ocd:Drillsite .
+  ?s  ocdjanus:leg ?leg .
+  ?s  ocd:initialreportvolume ?rvol .
+  ?s  ocd:coredata ?cdata .
+  ?s  rdfs:label ?label .
+  
+}
+ORDER BY DESC(xsd:integer(?leg))
+
 `
+
+// AllJRSOExpeditions returns all expeditons fro JRSO
+// returns:  uri	date	lat	long	holeid
+func AllJRSOExpeditions() *sparql.Results {
+
+	repo, err := sparql.NewRepo("http://opencoredata.org/blazegraph/namespace/opencore/sparql",
+		sparql.Timeout(time.Millisecond*15000),
+	)
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	f := bytes.NewBufferString(queries)
+	bank := sparql.LoadBank(f)
+
+	q, err := bank.Prepare("alljrsoexpeditions")
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	res, err := repo.Query(q)
+	if err != nil {
+		log.Printf("%s\n", err)
+	}
+
+	return res
+
+}
 
 // CSDCOHoleIDInfo takes a project ID and returns the holeid URI's and lat long info in SPARQL results
 // returns:  uri	date	lat	long	holeid
 func CSDCOHoleIDInfo(holeid string) *sparql.Results {
 
-	repo, err := sparql.NewRepo("http://localhost:9999/blazegraph/namespace/csdcov3/sparql",
+	repo, err := sparql.NewRepo("http://localhost:19999/blazegraph/namespace/csdcov3/sparql",
 		sparql.Timeout(time.Millisecond*15000),
 	)
 	if err != nil {
@@ -99,7 +154,7 @@ func CSDCOHoleIDInfo(holeid string) *sparql.Results {
 // returns:  uri	date	lat	long	holeid
 func CSDCOProjectInfo(projid string) *sparql.Results {
 
-	repo, err := sparql.NewRepo("http://localhost:9999/blazegraph/namespace/csdcov3/sparql",
+	repo, err := sparql.NewRepo("http://localhost:19999/blazegraph/namespace/csdcov3/sparql",
 		sparql.Timeout(time.Millisecond*15000),
 	)
 	if err != nil {

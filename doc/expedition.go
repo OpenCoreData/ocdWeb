@@ -27,8 +27,10 @@ type CruiseGL struct {
 	Legsitehole   string `json:"legsitehole"`
 	Track         string `json:"track"`
 	Vessel        string `json:"vessel"`
-	Note          string `json:"note"`
+	Note          string `json:"note"` // use for rdfs:label
 	Uri           string `json:"uri"`
+	Rvol          string `json:"rvol"`
+	Cdata         string `json:"cdata"`
 }
 
 type Feature struct {
@@ -195,6 +197,36 @@ func GetDatasets(Leg string, Site string) []SchemaOrgMetadata {
 
 //todo this NOT what I want..   this is not Expeditions, this is features.....
 func AllExpeditions(w http.ResponseWriter, r *http.Request) {
+
+	sparqlresults := services.AllJRSOExpeditions()
+
+	var results []CruiseGL
+
+	// log.Println(sparqlresults.Results.Bindings)
+	bindings := sparqlresults.Results.Bindings // map[string][]rdf.Term
+	for _, i := range bindings {
+		var expedition CruiseGL // ?s ?leg ?rvol ?cdata ?label
+		// log.Print(fmt.Sprintf("%v", i["s"].Value))
+		expedition.Expedition = i["leg"].Value
+		expedition.Rvol = i["rvol"].Value
+		expedition.Note = i["label"].Value
+		results = append(results, expedition)
+	}
+
+	ht, err := template.New("some template").ParseFiles("templates/expeditionsAll_new.html")
+	if err != nil {
+		log.Printf("template parse failed: %s", err)
+	}
+
+	err = ht.ExecuteTemplate(w, "T", results)
+	if err != nil {
+		log.Printf("htemplate execution failed: %s", err)
+	}
+
+}
+
+//todo this NOT what I want..   this is not Expeditions, this is features.....
+func AllExpeditionsOLD(w http.ResponseWriter, r *http.Request) {
 	// call mongo and lookup the redirection to use...
 	session, err := services.GetMongoCon()
 	if err != nil {
@@ -207,7 +239,8 @@ func AllExpeditions(w http.ResponseWriter, r *http.Request) {
 	c := session.DB("expedire").C("expeditions")
 
 	var results []CruiseGL
-	err = c.Find(bson.M{}).Sort("-expedition").All(&results) ///.Sort("expedition")
+	// err = c.Find(bson.M{}).Sort("-expedition").All(&results)
+	err = c.Find(bson.M{}).Sort("{ $natural: 1 }").All(&results)
 	if err != nil {
 		log.Printf("Error calling for AllExpeditions: %v", err)
 	}

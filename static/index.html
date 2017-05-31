@@ -14,12 +14,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script type="application/ld+json">
-        {
-            "@context": "http://schema.org/",
+        [{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "@id": "http://opencoredata.org",
+            "url": "https://www.opencoredata.org/",
+            "keywords": "geochemistry, paleontology, geophysics, geoscience, scientific drilling, ocean drilling, continental drilling, paleomagnetism",
+            "description": "opencoredata is a data infrastructure focused on making data from JRSO and CSDCO scientific drilling data facilities available in a semantic and Linked Open Data manner.",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "@id": "http://opencoredata.org#searchAction",
+                "target": "https://www.opencoredata.org/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }, {
+            "@context": {
+                "@vocab": "http://schema.org/",
+                "re3data": "http://example.org/re3data/0.1/"
+            },
             "@type": "Organization",
+            "@id": "http://opencoredata.org/id/facilityinfo",
             "name": "Open Core Data",
+            "re3data:datalicense": "http://opencoredata.org/datapolicy.html",
+            "re3data:keyword": "geochemistry, paleontology, geophysics, geoscience, scientific drilling, ocean drilling, continental drilling, paleomagnetism",
             "contactPoint": {
                 "@type": "ContactPoint",
+                "@id": "http://opencoredata.org/id/facilityinfo#contactPoint",
                 "name": "Douglas Fils",
                 "email": "dfilsAToceanleadershipDOTorg",
                 "url": "http://orcid.org/0000-0002-2257-9127",
@@ -29,38 +49,47 @@
             "sameAs": "http://www.re3data.org/repository/r3d100012071",
             "funder": {
                 "@type": "Organization",
+                "@id": "http://opencoredata.org/id/facilityinfo#funder",
                 "name": "NSF",
                 "url": "http://www.nsf.gov"
             },
             "memberOf": {
                 "@type": "ProgramMembership",
+                "@id": "http://opencoredata.org/id/facilityinfo#programMembership",
                 "programName": "EarthCube CDF Registry",
                 "hostingOrganization": {
                     "@type": "Organization",
+                    "@id": "http://opencoredata.org/id/facilityinfo#programMembershipHost",
                     "name": "RE3Data",
                     "url": "http://www.re3data.org"
                 }
             },
             "potentialAction": [{
                 "@type": "SearchAction",
+                "@id": "http://opencoredata.org/id/facilityinfo#potentialActionSwagger",
                 "target": {
                     "@type": "EntryPoint",
+                    "@id": "http://opencoredata.org/id/facilityinfo#potentialActionSwaggerEntryPoint",
                     "urlTemplate": "http://opencoredata.org/apidocs.json",
                     "description": "Swagger 1.2 description document",
                     "httpMethod": "GET"
                 }
             }, {
                 "@type": "SearchAction",
+                "@id": "http://opencoredata.org/id/facilityinfo#potentialActionSPARQL",
                 "target": {
                     "@type": "EntryPoint",
+                    "@id": "http://opencoredata.org/id/facilityinfo#potentialActionSPARQLEntryPpint",
                     "urlTemplate": "http://opencoredata.org/sparql",
                     "description": "SPARQL endpoint",
                     "httpMethod": "GET"
                 }
             }, {
                 "@type": "SearchAction",
+                "@id": "http://opencoredata.org/id/facilityinfo#potentialActionVOID",
                 "target": {
                     "@type": "EntryPoint",
+                    "@id": "http://opencoredata.org/id/facilityinfo#potentialActionVOIDEntryPoint",
                     "urlTemplate": "http://opencoredata.org/rdf/void.ttl",
                     "description": "VoID document",
                     "httpMethod": "GET"
@@ -68,12 +97,13 @@
             }],
             "mainEntityOfPage": [{
                 "@type": "DigitalDocument",
+                "@id": "http://opencoredata.org/id/facilityinfo#mainEntityOfPageSwaggerUI",
                 "fileformat": "HTML",
                 "keywords": "Swagger",
                 "description": "User interface for the swagger document",
                 "url": "http://opencoredata.org/common/swagger-ui/"
             }]
-        }
+        }]
     </script>
 
 </head>
@@ -115,6 +145,10 @@
                         <h2 class="mdl-card__title-text">Ocean Drilling Matrix Interface</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
+                        Explore <a href="/collections/expeditions">DSDP and ODP expediton list</a>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
                         Interface in developmnet, for production work please visit <a target="_blank" href="http://www-odp.tamu.edu/database/">IODP Janus data</a> at TAMU. A spreadsheet overview of Janus data holdings. Links to datasets in both human
                         and machine readable methods with citation and dataset ID information.
                     </div>

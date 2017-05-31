@@ -8,9 +8,9 @@ import (
 	"opencoredata.org/ocdWeb/colls"
 	"opencoredata.org/ocdWeb/doc"
 	"opencoredata.org/ocdWeb/dx"
+	"opencoredata.org/ocdWeb/rx"
 	"opencoredata.org/ocdWeb/services"
 	"opencoredata.org/ocdWeb/voc"
-
 	// _ "net/http/pprof"
 )
 
@@ -45,11 +45,14 @@ func main() {
 	// Recall /id is going to be our dx..   all items that come in with that will be looked up and 303'd
 	// Example URL:  http://opencoredata.org/id/dataset/c2d80e2a-cc30-430c-b0bd-cee9092688e3
 	dxroute := mux.NewRouter()
+	dxroute.HandleFunc("/id/graph/{id}", dx.RDFRedirection)
+	dxroute.HandleFunc("/id/graph/{id}/provenance", dx.ProvRedirection)   // prov record for this resource
+	dxroute.HandleFunc("/id/graph/{id}/pingback", dx.PingbackRedirection) // pingback for this resource
 	dxroute.HandleFunc("/id/dataset/{UUID}", dx.Redirection)
-	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}/{HOLE}", dx.Expedition)
-	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}", dx.Expedition)
-	dxroute.HandleFunc("/id/expedition/{LEG}", dx.Expedition)
-	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.RDFRedirection)
+	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}/{HOLE}", dx.Redirection)
+	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}", dx.Redirection)
+	dxroute.HandleFunc("/id/expedition/{LEG}", dx.Redirection)
+	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.Redirection)
 	http.Handle("/id/", dxroute)
 
 	// MD5 concept from indie web thoughts...
@@ -57,7 +60,9 @@ func main() {
 
 	// Deal with void...  (show void..  allow .rdf file downloads)
 	rdfdocs := mux.NewRouter()
-	rdfdocs.PathPrefix("/rdf/").Handler(http.StripPrefix("/rdf/", http.FileServer(http.Dir("./static/rdf"))))
+	rdfdocs.HandleFunc("/rdf/graph/{id}", rx.RenderWithProvHeader)
+	rdfdocs.HandleFunc("/rdf/graph/{id}/provenance", rx.RenderWithProv)
+	rdfdocs.HandleFunc("/rdf/graph/{id}/pingback", rx.ProvPingback)
 	http.Handle("/rdf/", rdfdocs)
 
 	// Display Vocabulary entries.  A simple human view..
@@ -93,6 +98,7 @@ func main() {
 	// collections.HandleFunc("/collections/janusmeasurements", colls.JanusMeasurements)
 	collections.HandleFunc("/collections/csdco", colls.CSDCOOverview)                        // CSDCO Matrix
 	collections.HandleFunc("/collections/csdco/{HoleID}", colls.CSDCOcollection)             //  landing page for collection of files with a HoleID
+	collections.HandleFunc("/collections/csdco/project/{ProjectID}", colls.CSDCOProjectInfo) //  landing page for CSDCO Project information
 	collections.HandleFunc("/collections/measurement/{measurements}/{leg}", colls.MLURLSets) //  called from the jrso matrix page
 	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)
 	// collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)  DEPRECTATED for /doc/expedition/{leg}
