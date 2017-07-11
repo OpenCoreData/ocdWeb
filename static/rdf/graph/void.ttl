@@ -11,7 +11,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-<http://opencoredata.org/id/rdf/geolinkvoid>      a     void:DatasetDescription ;
+<http://opencoredata.org/catalog/geolink/dataset/geolinkvoid>      a     void:DatasetDescription ;
         dcterms:description  "Desctiption for a set of graphs created for the GeoLink EarthCube BB"@en ;
         dcterms:issued       "2015-11-07T12:41:38.69Z"^^xsd:dateTime ;
         dcterms:title        "VoID Description"@en ;
@@ -28,7 +28,7 @@
         foaf:mbox         <mailto:dfils@oceanleadership.org> .
 
 
-<http://opencoredata.org/id/rdf/JRSO_cruises_gl>
+<http://opencoredata.org/catalog/geolink/dataset/JRSO_cruises_gl>
         a                           void:Dataset , dctypes:Dataset ;
         dcterms:accrualPeriodicity  "Irregular" ;
         dcterms:description         "Collection of cruise data (leg level) for IODP collected for GeoLink"@en ;
@@ -50,7 +50,7 @@
         dcat:downloadURL            <http://opencoredata.org/id/graph/JRSO_cruises_gl.ttl.gz> ;
         dcat:mediaType              "rdf" .
 
-<http://opencoredata.org/id/rdf/JRSO_deployments_gl>
+<http://opencoredata.org/catalog/geolink/dataset/JRSO_deployments_gl>
         a                           void:Dataset , dctypes:Dataset ;
         dcterms:accrualPeriodicity  "Irregular" ;
         dcterms:description         "Collection of Science Party Deployment Information collected for GeoLink"@en ;
@@ -73,7 +73,7 @@
         dcat:mediaType              "rdf" .
 
 
-<http://opencoredata.org/id/rdf/JRSO_holes_gl>
+<http://opencoredata.org/catalog/geolink/dataset/JRSO_holes_gl>
         a                           void:Dataset , dctypes:Dataset ;
         dcterms:accrualPeriodicity  "Irregular" ;
         dcterms:description         "Collection of cruise data (hole level) for IODP collected for GeoLink"@en ;

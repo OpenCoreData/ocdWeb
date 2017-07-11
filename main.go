@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"opencoredata.org/ocdWeb/catalogs"
 	"opencoredata.org/ocdWeb/colls"
 	"opencoredata.org/ocdWeb/doc"
 	"opencoredata.org/ocdWeb/dx"
@@ -46,8 +47,8 @@ func main() {
 	// Example URL:  http://opencoredata.org/id/dataset/c2d80e2a-cc30-430c-b0bd-cee9092688e3
 	dxroute := mux.NewRouter()
 	dxroute.HandleFunc("/id/graph/{id}", dx.RDFRedirection)
-	dxroute.HandleFunc("/id/graph/{id}/provenance", dx.ProvRedirection)   // prov record for this resource
-	dxroute.HandleFunc("/id/graph/{id}/pingback", dx.PingbackRedirection) // pingback for this resource
+	dxroute.HandleFunc("/id/graph/{id}/provenance", dx.ProvRedirection)   // PROV: prov redirection
+	dxroute.HandleFunc("/id/graph/{id}/pingback", dx.PingbackRedirection) // PROV: pingback for this resource  (would prefer a master /prov or server)
 	dxroute.HandleFunc("/id/dataset/{UUID}", dx.Redirection)
 	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}/{HOLE}", dx.Redirection)
 	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}", dx.Redirection)
@@ -59,10 +60,11 @@ func main() {
 	// psuedo code == dxroute.HandleFunc("/id/md5/{md5hash}, dx.MD5Redirection")
 
 	// Deal with void...  (show void..  allow .rdf file downloads)
+	// Some early Prov Pingback work here...
 	rdfdocs := mux.NewRouter()
-	rdfdocs.HandleFunc("/rdf/graph/{id}", rx.RenderWithProvHeader)
-	rdfdocs.HandleFunc("/rdf/graph/{id}/provenance", rx.RenderWithProv)
-	rdfdocs.HandleFunc("/rdf/graph/{id}/pingback", rx.ProvPingback)
+	rdfdocs.HandleFunc("/rdf/graph/{id}", rx.RenderWithProvHeader)      // PROV: test cast with Void..  would need to generalize
+	rdfdocs.HandleFunc("/rdf/graph/{id}/provenance", rx.RenderWithProv) // PROV: test cast with Void..  would need to generalize
+	rdfdocs.HandleFunc("/rdf/graph/{id}/pingback", rx.ProvPingback)     // PROV: pingback for this resource  (would prefer a master /prov or server)
 	http.Handle("/rdf/", rdfdocs)
 
 	// Display Vocabulary entries.  A simple human view..
@@ -86,6 +88,7 @@ func main() {
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 	http.Handle("/doc/", docroute)
 
+	//  Should this catalog?
 	// Browse by collection   measurement leg site hole
 	// Later Browse options might include:  units, observations. geologic time
 	// TODO  worry about namespace collision here...  (need operator ID ?)
@@ -103,6 +106,13 @@ func main() {
 	collections.HandleFunc("/collections/measurement/{measurements}", colls.MesSets)
 	// collections.HandleFunc("/collections/leg/{leg}", colls.LegSets)  DEPRECTATED for /doc/expedition/{leg}
 	http.Handle("/collections/", collections)
+
+	// Catalog handler..   perhaps a bit redundant with the collections handler above..  need to review this
+	catalog := mux.NewRouter()
+	catalog.HandleFunc("/catalog/geolink", catalogs.GeoLinkCatalog)
+	catalog.HandleFunc("/catalog/geolink/dataset/{resourcepath}", catalogs.GeoLinkDataset)
+	// catalog.HandleFunc(`/dataset/geolink/{resourcepath:[a-zA-Z0-9=\-\/]+}`, catalogs.GeoLinkDataset)
+	http.Handle("/catalog/", catalog)
 
 	// Start the server...
 	log.Printf("About to listen on 9900. Go to http://127.0.0.1:9900/")
