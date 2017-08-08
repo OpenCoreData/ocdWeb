@@ -5,7 +5,7 @@ FROM alpine
 
 # Add in the static elements (could also mount these from local filesystem)
 ADD ocdWeb /
-ADD ./static  /static
+# ADD ./static  /static   # Replace with -v mounting the static directory
 ADD ./templates  /templates
 
 # Add our binary

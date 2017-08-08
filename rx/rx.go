@@ -9,8 +9,9 @@ import (
 
 // RenderWithProvHeader displays the RDF resource and adds a prov pingback entry
 func RenderWithProvHeader(w http.ResponseWriter, r *http.Request) {
-	linkProv := fmt.Sprintf("<http://opencoredata.org/id/%s/provenance>; rel=\"http://www.w3.org/ns/prov#has_provenance\"", r.URL.Path[1:])
-	linkPB := fmt.Sprintf("<http://opencoredata.org/rdf/%s/pingback>; rel=\"http://www.w3.org/ns/prov#pingbck\"", r.URL.Path[1:])
+	fmt.Println(r.URL.Path[5:])                                                                                                       // Note the HACK in the next line..  this is just an ALPHA..  (even this this sucks)
+	linkProv := fmt.Sprintf("<http://%s/id/%s/provenance>; rel=\"http://www.w3.org/ns/prov#has_provenance\"", r.Host, r.URL.Path[5:]) // use r.Host so we don't hardcode in
+	linkPB := fmt.Sprintf("<http://%s/rdf/%s/pingback>; rel=\"http://www.w3.org/ns/prov#pingbck\"", r.Host, r.URL.Path[5:])
 	w.Header().Add("Link", linkProv)
 	w.Header().Add("Link", linkPB)
 	w.Header().Set("Content-type", "text/plain")
