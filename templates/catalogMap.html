@@ -1,21 +1,6 @@
  {{define "T"}}
 <!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
 <html lang="en">
 
 <head>
@@ -28,9 +13,21 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
     <link rel="stylesheet" href="/common/styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
+    <!-- For the web components -->
+    <script src="/common/components/ocdparams-element/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/common/bower_components/vaadin-grid/vaadin-grid.html">
+    <!-- End -->
+    <style is="custom-style">
+        vaadin-grid {
+            --vaadin-grid-row-height: 100px;
+            --vaadin-grid-header-row-height: 44px;
+        }
+    </style>
     <style>
+        .demo-list-two {
+            width: 600px;
+        }
+
         #view-source {
             position: fixed;
             display: block;
@@ -40,7 +37,7 @@
             margin-bottom: 40px;
             z-index: 900;
         }
-        
+
         img {
             width: 75%;
             /* or any custom size */
@@ -85,34 +82,46 @@
                     <section class="section--center mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                             <div class="mdl-card__supporting-text">
-                                <h5>Data Collection {{.URLdata.Measure}} on Leg {{.URLdata.Leg}}</h5>
-                                <p>The following collection is for measurement {{.URLdata.Measure}} on Leg {{.URLdata.Leg}}. Access the individual landing pages for download links, citation information and further details. </p>
+                                <h5>Janus Catalog Collection </h5>
                             </div>
                         </div>
                     </section>
                 </div>
-                
-                {{ range $data := .URLdata.Refdata }}
+
+
                 <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
                     <section class="section--center mdl-grid mdl-grid--no-spacing">
-                        <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white-100 mdl-color-text--white">
-                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{$data.Lat}},+{{$data.Long}}&zoom=2&scale=false&size=400x400&maptype=satellite&format=png&visual_refresh=true&key=AIzaSyDTNeufsryZhZfiAiUeNe_Tsqc_TDk76mw&markers=size:mid%7Ccolor:0xff0000%7Clabel:0%7C{{$data.Lat}},+{{$data.Long}}"
-                                alt="Google Map of {{$data.Lat}}, {{$data.Long}}">
-                        </header>
+
                         <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                            <div class="mdl-card__supporting-text">
-                                <h5>dataset: <br/>
-                            <a href="{{$data.Url}}">{{$data.Url}}</a>
-                            </h5>
-                                <p>Use the link above to access landing page for this dataset and download options</p>
-                            </div>
-                            <!--<div class="mdl-card__actions">
-                                <a href="#" class="mdl-button">Details on this dataset</a>
-                            </div>-->
+
+
+                            <ul class="demo-list-two mdl-list">
+
+                                {{ range $datap := .URLdata }}
+
+                                <li class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+        <i class="material-icons mdl-list__item-avatar">file_download</i>
+        <span>Leg: {{$datap.Leg}} Measurement: {{$datap.Measure}}</span>
+                                    <span class="mdl-list__item-sub-title">
+                 <a href="/collections/measurement/{{$datap.Measure}}/{{$datap.Leg}}"> Data catalog link </a>
+                
+        </span>
+                                    </span>
+                                    <!-- <span class="mdl-list__item-secondary-content">
+        <span class="mdl-list__item-secondary-info">Actor</span>
+        <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+      </span> -->
+                                </li>
+
+                                {{ end }}
+                            </ul>
+
                         </div>
                     </section>
                 </div>
-                {{ end }}
+
+
 
 
             </div>
@@ -132,7 +141,5 @@
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 </body>
 
-
 </html>
-
 {{end}}

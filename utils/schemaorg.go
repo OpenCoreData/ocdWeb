@@ -10,17 +10,6 @@ import (
 	"github.com/kazarena/json-gold/ld"
 )
 
-// DEPRECATED by VoidDataset
-// DataSetMD a struct to hold metadata about a data set
-// type DataSetMD struct {
-// 	ID          string
-// 	URL         string
-// 	Description string
-// 	Keywords    string
-// 	Name        string
-// 	ContentURL  string
-// }
-
 // DataCatalog is a struct to hold metadata about data catalogs
 type DataCatalog struct {
 	ID          string
@@ -28,24 +17,33 @@ type DataCatalog struct {
 	Description string
 }
 
-// VoidDataset is a struct to hold items from a VOiD file
+// VoidDataset is a struct to hold items from a VOiD file that
+// describe a dataset  https://developers.google.com/search/docs/data-types/datasets
 type VoidDataset struct {
 	ID                 string
-	URL                string
-	Description        string
-	Keywords           string
-	Name               string
+	URL                string // type URL: Location of a page describing the dataset.
+	Description        string // A short summary describing a dataset.
+	Keywords           string // Keywords summarizing the dataset.
+	Name               string // A descriptive name of a dataset (e.g., “Snow depth in Northern Hemisphere”)
 	ContentURL         string
 	AccrualPeriodicity string
 	Issued             string
 	License            string
-	Publisher          string
+	Publisher          string // Person, Org The name of the dataset creator (person or organization).
 	Title              string
 	DataDump           string
 	Source             string
 	LandingPage        string
 	DownloadURL        string
 	MediaType          string
+	SameAs             string // type URL: Other URLs that can be used to access the dataset page.
+	Version            string // The version number for this dataset.
+	VariableMeasured   string // What does the dataset measure? (e.g., temperature, pressure)
+	PublisherDesc      string
+	PublisherName      string
+	PublisherURL       string
+	Latitude           string
+	Longitude          string
 }
 
 // VoidReaderAll is the empty func 2 step for the case where I am not looking
@@ -126,13 +124,28 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 	doc := map[string]interface{}{
 		"@type": "Dataset",
 		"@id":   dm.ID,
-		"http://schema.org/url":         dm.URL,
-		"http://schema.org/description": dm.Description,
-		"http://schema.org/keywords":    dm.Keywords,
-		"http://schema.org/name":        dm.Name,
+		"http://schema.org/url":              dm.URL,
+		"http://schema.org/description":      dm.Description,
+		"http://schema.org/keywords":         dm.Keywords,
+		"http://schema.org/name":             dm.Name,
+		"http://schema.org/variableMeasured": dm.VariableMeasured,
 		"http://schema.org/distribution": map[string]interface{}{
 			"@type": "DataDownload",
 			"http://schema.org/contentUrl": dm.ContentURL,
+		},
+		"http://schema.org/publisher": map[string]interface{}{
+			"@type": "Organization",
+			"http://schema.org/description": dm.PublisherDesc,
+			"http://schema.org/name":        dm.PublisherName,
+			"http://schema.org/url":         dm.PublisherURL,
+		},
+		"http://schema.org/spatial": map[string]interface{}{
+			"@type": "Place",
+			"http://schema.org/geo": map[string]interface{}{
+				"@type": "GeoCoordinates",
+				"http://schema.org/latitude":  dm.Latitude,
+				"http://schema.org/longitude": dm.Longitude,
+			},
 		},
 	}
 

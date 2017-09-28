@@ -20,22 +20,15 @@ type MyServer struct {
 }
 
 func main() {
-	// Common files, css, js, images, etc...
+	// Common files like; css, js, images, etc...
 	rcommon := mux.NewRouter()
 	rcommon.PathPrefix("/common/").Handler(http.StripPrefix("/common/", http.FileServer(http.Dir("./static"))))
-	// http.Handle("/common/", rcommon)
 	http.Handle("/common/", &MyServer{rcommon})
 
-	// ParkingPage
+	// root
 	parking := mux.NewRouter()
 	parking.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static"))))
-	// http.Handle("/", parking)
 	http.Handle("/", &MyServer{parking})
-
-	// New Root to replace the old Root
-	root := mux.NewRouter()
-	root.PathPrefix("/root/").Handler(http.StripPrefix("/root/", http.FileServer(http.Dir("./static/Material"))))
-	http.Handle("/root/", root)
 
 	// Simpler services to support the web UI  (other services in ocdService)
 	servroute := mux.NewRouter()
@@ -59,17 +52,14 @@ func main() {
 	// MD5 concept from indie web thoughts...
 	// psuedo code == dxroute.HandleFunc("/id/md5/{md5hash}, dx.MD5Redirection")
 
-	// Deal with void...  (show void..  allow .rdf file downloads)
-	// Some early Prov Pingback work here...
+	// Some early Prov Pingback work here...   Deal with void...  (show void..  allow .rdf file downloads)
 	rdfdocs := mux.NewRouter()
 	rdfdocs.HandleFunc("/rdf/graph/{id}", rx.RenderWithProvHeader)      // PROV: test cast with Void..  would need to generalize
 	rdfdocs.HandleFunc("/rdf/graph/{id}/provenance", rx.RenderWithProv) // PROV: test cast with Void..  would need to generalize
 	rdfdocs.HandleFunc("/rdf/graph/{id}/pingback", rx.ProvPingback)     // PROV: pingback for this resource  (would prefer a master /prov or server)
 	http.Handle("/rdf/", rdfdocs)
 
-	// Display Vocabulary entries.  A simple human view..
-	// For machines, check for accepts headers?
-	// no 303 for these?
+	// Display Vocabulary entries.  A simple human view.. For machines, check for accepts headers?  no 303 for these?
 	vocroute := mux.NewRouter()
 	vocroute.PathPrefix("/voc/1/ocdSKOS.ttl").Handler(http.StripPrefix("/voc/", http.FileServer(http.Dir("./static/voc"))))
 	vocroute.PathPrefix("/voc/janus/1/ocdJanusSKOS.ttl").Handler(http.StripPrefix("/voc/janus", http.FileServer(http.Dir("./static/voc/janus"))))
@@ -94,6 +84,8 @@ func main() {
 	// TODO  worry about namespace collision here...  (need operator ID ?)
 	collections := mux.NewRouter()
 	// collections.HandleFunc("/collections", colls.Landing)
+	// Looking to add in a master catalog collection....   perhaps here or down in the catalog router..  (need to clean both these up)
+	collections.HandleFunc("/collections/catalogs", colls.Catalogs)
 	collections.HandleFunc("/collections/matrix", colls.MLCounts)          //  IODP matrix
 	collections.HandleFunc("/collections/expeditions", doc.AllExpeditions) // Big list view
 	// collections.HandleFunc("/collections/expeditions/{LEG}", doc.ShowExpedition)
@@ -116,7 +108,6 @@ func main() {
 
 	// Start the server...
 	log.Printf("About to listen on 9900. Go to http://127.0.0.1:9900/")
-
 	err := http.ListenAndServe(":9900", nil)
 	if err != nil {
 		log.Fatal(err)
@@ -130,13 +121,6 @@ func (s *MyServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	rw.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	rw.Header().Set("Access-Control-Allow-Headers",
 		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-
-	// if origin := req.Header.Get("Origin"); origin != "" {
-	// 	rw.Header().Set("Access-Control-Allow-Origin", origin)
-	// 	rw.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-	// 	rw.Header().Set("Access-Control-Allow-Headers",
-	// 		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-	// }
 
 	// Stop here if its Preflighted OPTIONS request
 	// if req.Method == "OPTIONS" {

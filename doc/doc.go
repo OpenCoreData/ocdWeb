@@ -6,13 +6,14 @@ import (
 	// "net/url"
 	"encoding/json"
 	"fmt"
-	"html/template"
 	"strings"
+	"text/template"
 
 	"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"opencoredata.org/ocdWeb/services"
+	"opencoredata.org/ocdWeb/utils"
 )
 
 type Uriurl struct {
@@ -112,15 +113,14 @@ type Geo struct {
 type TemplateForDoc struct {
 	Schema       SchemaOrgMetadata
 	CSVW         CSVWMeta
-	Schemastring template.JS
-	Csvwstring   template.JS
+	Schemastring string // template.JS
+	Csvwstring   string // template.JS
 	MeasureType  string
 	UUID         string
 }
 
-// Render A document view function
-// Note NOT being used ...
-// called from main for measurement view  (need to FIX THIS)
+// Render A document view function   Note NOT being used ...
+// Called from main for measurement view  (need to FIX THIS)
 // not sure if I want a M/L/S/H URL open or not at this time...
 func Render(w http.ResponseWriter, r *http.Request) {
 	session, err := services.GetMongoCon()
@@ -176,7 +176,6 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	// context setting hack
 	// result.Context = ` "opencore": "http://opencoredata.org/voc/1/", "glview": "http://geolink.org/view/1/", "schema": "http://schema.org/"`
 	result.Context = "http://schema.org"
-
 	jsonldtext, _ := json.MarshalIndent(result, "", " ") // results as embeddale JSON-LD
 
 	// Get the CSVW  data
@@ -189,8 +188,33 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	// result.Context = ` "opencore": "http://opencoredata.org/voc/1/", "glview": "http://geolink.org/view/1/", "schema": "http://schema.org/"`
 	// needs to be:     "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
 	result2.Context = "http://www.w3.org/ns/csvw"
-
 	csvwtext, _ := json.MarshalIndent(result2, "", " ") // results as embeddale JSON-LD
+
+	////////// new jsonld
+
+	dataSet := utils.VoidDataset{}
+	dataSet.ID = result.URL
+	dataSet.URL = result.URL
+	dataSet.Description = result.Description
+	dataSet.ContentURL = result.Distribution.ContentURL
+	dataSet.Name = result.Name
+	dataSet.Keywords = result.Keywords
+	dataSet.PublisherName = result.Author.Name
+	dataSet.PublisherURL = result.Author.URL
+	dataSet.PublisherDesc = result.Author.Description
+	dataSet.SameAs = result.URL
+	dataSet.Latitude = result.Spatial.Geo.Latitude
+	dataSet.Longitude = result.Spatial.Geo.Longitude
+	dataSet.VariableMeasured = result.OpenCoreMeasurement
+
+	newJsonLD, _ := utils.DsetBuilder(dataSet)
+
+	fmt.Print(string(newJsonLD))
+
+	////////// end new jsonld
+
+	// old schema.org print
+	fmt.Println(string(jsonldtext))
 
 	ht, err := template.New("some template").ParseFiles("templates/jrso_dataset_new.html") //open and parse a template text file
 	if err != nil {
@@ -200,15 +224,13 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	// need a simple function call to extract the "janus" keyword from the keyword string and toLower it and
 	// pass it in this struct to use in the data types web component
 	measureString := getJanusKeyword(result.Keywords)
-	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: template.JS(string(jsonldtext)), Csvwstring: template.JS(string(csvwtext)), MeasureType: measureString, UUID: vars["UUID"]}
+	// dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: template.JS(string(jsonldtext)), Csvwstring: template.JS(string(csvwtext)), MeasureType: measureString, UUID: vars["UUID"]}
+	dataForTemplate := TemplateForDoc{Schema: result, CSVW: result2, Schemastring: string(newJsonLD), Csvwstring: string(csvwtext), MeasureType: measureString, UUID: vars["UUID"]}
 
 	err = ht.ExecuteTemplate(w, "T", dataForTemplate) //substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
 	if err != nil {
 		log.Printf("htemplate execution failed: %s", err)
 	}
-
-	// go get the CSVW metadata and inject the whole package and the rendered table
-
 }
 
 func getJanusKeyword(s string) string {
