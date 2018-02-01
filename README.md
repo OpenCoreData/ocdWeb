@@ -28,3 +28,12 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
 /doc/dataset  	Dataset landing page 
 /doc/rdf     	RDF resource landing page
 ```
+
+```
+Fils:ocdWeb dfils$ docker run  -d -p 27017:27017 -v /Users/dfils/Data/OCDDataVolumes/mongo/datadir/:/data/db mongo:latest
+Fils:ocdWeb dfils$ export MONGO_HOST=localhost
+Fils:ocdWeb dfils$ go run main.go
+
+ docker run  -d -p 27017:27017 -v /Users/dfils/Data/OCDDataVolumes/mongo/datadir/:/data/db mongo:latest
+
+```

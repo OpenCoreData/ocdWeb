@@ -120,29 +120,30 @@ func CSDCOProjectInfo(w http.ResponseWriter, r *http.Request) {
 
 	// Connect to triplestore to get data via SPARQL bank call
 	vars := mux.Vars(r)
-	sparqlresults := services.CSDCOProjectInfo(vars["ProjectID"])
+	sparqlresults, _ := services.CSDCOProjectInfo(vars["ProjectID"])
 
 	// this is for the PROJ level, not the HOLE level.. move to another function
 	//uris := []string{}
 	var results []CSDCO
-
-	// log.Println(sparqlresults.Results.Bindings)
-	bindings := sparqlresults.Results.Bindings // map[string][]rdf.Term
-	for _, i := range bindings {
-		var result CSDCO
-		// log.Print(fmt.Sprintf("%v", i["uri"].Value))
-		result.HoleID = i["holeid"].Value
-		result.Lat = i["lat"].Value
-		result.Long = i["long"].Value
-		result.Date = i["date"].Value
-		result.URI = i["uri"].Value
-		results = append(results, result) // fmt.Sprintf("%v", i["uri"].Value))
-	}
-
-	//log.Println(results)
 	resultset := CSDCOResultSet{}
-	resultset.Project = vars["ProjectID"]
-	resultset.CSDCO = results
+
+	if sparqlresults != nil {
+		bindings := sparqlresults.Results.Bindings // map[string][]rdf.Term
+		for _, i := range bindings {
+			var result CSDCO
+			// log.Print(fmt.Sprintf("%v", i["uri"].Value))
+			result.HoleID = i["holeid"].Value
+			result.Lat = i["lat"].Value
+			result.Long = i["long"].Value
+			result.Date = i["date"].Value
+			result.URI = i["uri"].Value
+			results = append(results, result) // fmt.Sprintf("%v", i["uri"].Value))
+		}
+
+		//log.Println(results)
+		resultset.Project = vars["ProjectID"]
+		resultset.CSDCO = results
+	}
 
 	ht, err := template.New("some template").ParseFiles("templates/csdco_projects.html") // open and parse a template text file
 	if err != nil {

@@ -34,6 +34,7 @@ func main() {
 	servroute := mux.NewRouter()
 	servroute.HandleFunc("/services/grid", services.GetGrid)
 	servroute.HandleFunc("/services/csdco", services.CSDCOGrid)
+	servroute.HandleFunc("/services/csdcov2", services.CSDCOGridv2) // TEST..  remove...
 	http.Handle("/services/", servroute)
 
 	// Recall /id is going to be our dx..   all items that come in with that will be looked up and 303'd

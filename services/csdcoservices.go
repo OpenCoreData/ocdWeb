@@ -42,6 +42,13 @@ type CSDCO struct {
 	MetadataSource         string
 }
 
+// CSDCOGridv2 sparql version
+func CSDCOGridv2(w http.ResponseWriter, r *http.Request) {
+	sparqlresults := AllCSDCOProjects()
+	w.Header().Set("Content-type", "text/plain")
+	fmt.Fprintf(w, "%v", sparqlresults)
+}
+
 func CSDCOGrid(w http.ResponseWriter, r *http.Request) {
 
 	// call mongo and lookup the redirection to use...
@@ -61,6 +68,7 @@ func CSDCOGrid(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error calling csdco : %v", err)
 	}
 
+	// build needed JSON format...   (should directly serialize this)
 	var buffer bytes.Buffer
 	buffer.WriteString("{\"rows\": [")
 	for index, subelem := range results {

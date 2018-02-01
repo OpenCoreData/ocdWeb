@@ -9,7 +9,8 @@ import (
 	"github.com/knakk/rdf"
 )
 
-// getProvRecord an un-exported function to generate mock prov data for testing
+// getProvRecord an un-exported function to generate MOCK prov data for testing
+// This is a test function only
 func getProvRecord() string {
 
 	tr := []rdf.Triple{}

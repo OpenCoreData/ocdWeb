@@ -36,14 +36,24 @@ type VoidDataset struct {
 	LandingPage        string
 	DownloadURL        string
 	MediaType          string
-	SameAs             string // type URL: Other URLs that can be used to access the dataset page.
-	Version            string // The version number for this dataset.
-	VariableMeasured   string // What does the dataset measure? (e.g., temperature, pressure)
+	SameAs             string             // type URL: Other URLs that can be used to access the dataset page.
+	Version            string             // The version number for this dataset.
+	VariableMeasured   []VariableMeasured // What does the dataset measure? (e.g., temperature, pressure)
 	PublisherDesc      string
 	PublisherName      string
 	PublisherURL       string
 	Latitude           string
 	Longitude          string
+	OpenCoreLeg        string
+	OpenCoreSite       string
+	OpenCoreHole       string
+}
+
+type VariableMeasured struct {
+	Value       string
+	UnitText    string
+	Description string
+	URL         string
 }
 
 // VoidReaderAll is the empty func 2 step for the case where I am not looking
@@ -121,14 +131,29 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 	proc := ld.NewJsonLdProcessor()
 	options := ld.NewJsonLdOptions("")
 
+	// Deal with the arrays first:  here..  variable measured
+	// array of maps
+	var vma []map[string]interface{}
+
+	// we are basically going from struct to map so we can pass the expected
+	// type to the json-ld tools
+	for _, v := range dm.VariableMeasured {
+		vm := make(map[string]interface{})
+		vm["@type"] = "PropertyValue"
+		vm["unitText"] = v.UnitText
+		vm["url"] = v.URL
+		vm["value"] = v.Value
+		vm["description"] = v.Description
+		vma = append(vma, vm)
+	}
+
 	doc := map[string]interface{}{
 		"@type": "Dataset",
 		"@id":   dm.ID,
-		"http://schema.org/url":              dm.URL,
-		"http://schema.org/description":      dm.Description,
-		"http://schema.org/keywords":         dm.Keywords,
-		"http://schema.org/name":             dm.Name,
-		"http://schema.org/variableMeasured": dm.VariableMeasured,
+		"http://schema.org/url":         dm.URL,
+		"http://schema.org/description": dm.Description,
+		"http://schema.org/keywords":    dm.Keywords,
+		"http://schema.org/name":        dm.Name,
 		"http://schema.org/distribution": map[string]interface{}{
 			"@type": "DataDownload",
 			"http://schema.org/contentUrl": dm.ContentURL,
@@ -139,7 +164,7 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 			"http://schema.org/name":        dm.PublisherName,
 			"http://schema.org/url":         dm.PublisherURL,
 		},
-		"http://schema.org/spatial": map[string]interface{}{
+		"http://schema.org/spatialCoverage": map[string]interface{}{
 			"@type": "Place",
 			"http://schema.org/geo": map[string]interface{}{
 				"@type": "GeoCoordinates",
@@ -147,6 +172,7 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 				"http://schema.org/longitude": dm.Longitude,
 			},
 		},
+		"http://schema.org/variableMeasured": vma,
 	}
 
 	context := map[string]interface{}{
@@ -172,7 +198,7 @@ func CatalogBuilder(dc DataCatalog, dsa []VoidDataset) ([]byte, error) {
 	// array of maps
 	var dsArray []map[string]interface{}
 
-	// we are basically going from stuct to map so we can pass the expected
+	// we are basically going from struct to map so we can pass the expected
 	// type to the json-ld tools
 	for _, v := range dsa {
 		datasets := make(map[string]interface{})
