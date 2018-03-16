@@ -50,7 +50,7 @@ type VoidDataset struct {
 }
 
 type VariableMeasured struct {
-	Value       string
+	Name        string
 	UnitText    string
 	Description string
 	URL         string
@@ -142,7 +142,7 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 		vm["@type"] = "PropertyValue"
 		vm["unitText"] = v.UnitText
 		vm["url"] = v.URL
-		vm["value"] = v.Value
+		vm["name"] = v.Name
 		vm["description"] = v.Description
 		vma = append(vma, vm)
 	}
@@ -153,6 +153,7 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 		"http://schema.org/url":         dm.URL,
 		"http://schema.org/description": dm.Description,
 		"http://schema.org/keywords":    dm.Keywords,
+		"http://schema.org/license":     "https://creativecommons.org/publicdomain/zero/1.0/",
 		"http://schema.org/name":        dm.Name,
 		"http://schema.org/distribution": map[string]interface{}{
 			"@type": "DataDownload",

@@ -1,0 +1,250 @@
+ {{define "T"}}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Open Core Data</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="/common/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- leaflet stuff -->
+    <link rel="stylesheet" href="/common/js/leaflet/leaflet.css" />
+    <script src="/common/js/leaflet/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.Default.css" />
+    <script src="/common/js/markercluster/dist/leaflet.markercluster-src.js"></script>
+
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+        
+        #map {
+            height: 500px;
+        }
+        
+        img {
+            width: 100%;
+            /* or any custom size */
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        leaflet-map {
+            height: 100%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Open Core Data</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
+                    <a class="mdl-navigation__link" href="/community.html">Community</a>
+                    <a class="mdl-navigation__link" href="/about.html">About</a>
+                    <a class="mdl-navigation__link" href="/contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="/index.html">Home</a>
+                <a class="mdl-navigation__link" href="/community.html">Community</a>
+                <a class="mdl-navigation__link" href="/about.html">About</a>
+                <a class="mdl-navigation__link" href="/contact.html">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+
+
+                <!--<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">-->
+                <!-- <div class="mdl-cell mdl-card mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-card__supporting-text">
+                        <div style="margin:5px;height:300px;width:100%">
+                            <div id="map"></div>
+                            <div id="info">
+                                <h5>Building map... please wait...</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="/common/searches/mapNewv2.html">Visit Map Interface for All Expeditions</a>
+                    </div>
+                </div> -->
+
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">CSDCO Abstract ID: {{.ID}}</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
+                        <p> On-line access to project data is coming. Until then, to
+                             obtain data or further information please contact CSDCO.
+                        </p>
+
+                        <p>
+                            <a href="/collections/csdco">Visit CSDCO projects index</a> </p>
+
+                            {{if hasField . "Tags"}}<p>
+                                {{range .Tags}}
+                                <p>
+                                   Potential connection from this abstract to the CSDCO project: <a href="/collections/csdco/project/{{.}}">{{.}}</a>
+                                </p>
+                                    {{end}}
+                              
+                            
+                            </p>{{end}}
+
+                    </div>
+
+                </div>
+
+
+                <div class="mdl-cell mdl-card mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"> Associated Publication Abstract</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+
+                                        
+                                        {{if hasField .Identifiers "Issn"}}<p>{{.Identifiers.Issn}}</p>{{end}}
+                                        {{if hasField .Identifiers "Doi"}}<a target="_blank" href="http://dx.doi.org/{{.Identifiers.Doi}}">{{.Identifiers.Doi}}</a>{{end}}
+                                        {{if hasField .Identifiers "Isbn"}}<p>{{.Identifiers.Isbn}}</p>{{end}}
+                                       
+
+                                         <p> {{.Title}}</p>
+                                         <p>{{.Abstract}}</p>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Open Core Data</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Funded by the National Science Foundation</a></li>
+                            <!--<li><a href="#">Privacy & Terms</a></li>-->
+                        </ul>
+                    </div>
+                    </footer>
+        </main>
+        </div>
+        <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+</body>
+
+
+
+<script type="text/javascript">
+    // Create the map
+    //refs:  https://gist.github.com/alexgleith/7112515
+
+    // Old school ajax caller..  needs updating so not on main thread sync event
+    jQuery.extend({
+        getValues: function(url) {
+            var result = null;
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                async: false,
+                success: function(data) {
+                    result = data;
+                }
+            });
+            return result;
+        }
+    });
+
+    // Set up the ESRI tiles and the initial map object        
+    var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 6,
+            attribution: '&copy; ESRI'
+        }),
+
+        latlng = L.latLng(0.78, 102.37);
+
+    var map = L.map('map', {
+        center: latlng,
+        zoom: 1,
+        layers: [tiles]
+    });
+
+    // Get the ocean data
+    // var geoJsonData = $.getValues("http://opencore.dev/api/v1/spatial/continental/BW2");
+    var geoJsonData = $.getValues("http://localhost:6789/api/v1/spatial/continental/.Project");
+    var geojsonMarkerOptions = {
+        radius: 10,
+        fillColor: "rgb(255,0,195)",
+        color: "#fff",
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 1
+    };
+
+    var geojson = L.geoJson(geoJsonData, {
+        pointToLayer: function(feature, latlng) {
+            var popupOptions = {
+                maxWidth: 300
+            };
+            var popupContent = feature.properties.URL;
+            return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupContent, popupOptions);
+        }
+    });
+
+    // Marker cluster settings
+    var markers = L.markerClusterGroup({
+        spiderfyOnMaxZoom: false,
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true,
+        disableClusteringAtZoom: 6
+    });
+
+    // Finish adding things to the map and present
+    // markers.addLayer(geojson);
+    map.addLayer(geojson);
+
+    map.fitBounds(geojson.getBounds());
+    // markers.addTo(map)
+    $("#info").fadeOut(500);
+</script>
+
+
+</html>
+
+{{end}}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"reflect"
 	// "net/url"
 	"text/template" // text not html since we don't want to escape our JSON-LD and we don't worry about the HTML autoescape here
 
@@ -47,6 +48,21 @@ type CSDCO struct {
 type CSDCOResultSet struct {
 	Project string
 	CSDCO   []CSDCO
+}
+
+type Abstract struct {
+	ID          string               `bson:"id,omitempty"` // this is the ID, not the mongo _id
+	Title       string               `bson:"title,omitempty"`
+	Abstract    string               `bson:"abstract,omitempty"`
+	Tags        []string             `bson:"tags,omitempty"`
+	Identifiers AbstractsIdentifiers `bson:"identifiers,omitempty"`
+}
+
+type AbstractsIdentifiers struct {
+	Issn string `bson:"issn,omitempty"`
+	Doi  string `bson:"doi,omitempty"`
+	Isbn string `bson:"isbn,omitempty"`
+	Pmid string `bson:"pmid,omitempty"`
 }
 
 // CSDCOOverview displays the overview matrix interface for the CSDCO holeids
@@ -113,6 +129,52 @@ func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 		log.Printf("htemplate execution failed: %s", err)
 	}
 
+}
+
+// CSDCOAbstract get the abstract info for a project
+func CSDCOAbstract(w http.ResponseWriter, r *http.Request) {
+
+	log.Println("CSDCO Abstract handler")
+	vars := mux.Vars(r)
+
+	// call mongo and lookup the redirection to use...
+	session, err := services.GetMongoCon()
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+	c := session.DB("abstracts").C("csdco")
+
+	var results Abstract
+	err = c.Find(bson.M{"id": vars["ID"]}).One(&results)
+	if err != nil {
+		log.Printf("Error calling CSDCO abstract mongo : %v", err)
+	}
+
+	ht, err := template.New("abstract template").Funcs(template.FuncMap{"hasField": hasField}).ParseFiles("templates/csdco_abstract.html") // open and parse a template text file
+	if err != nil {
+		log.Printf("template parse failed: %s", err)
+	}
+
+	err = ht.ExecuteTemplate(w, "T", results) // substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+	if err != nil {
+		log.Printf("htemplate execution failed: %s", err)
+	}
+
+}
+
+func hasField(v interface{}, name string) bool {
+	rv := reflect.ValueOf(v)
+	if rv.Kind() == reflect.Ptr {
+		rv = rv.Elem()
+	}
+	if rv.Kind() != reflect.Struct {
+		return false
+	}
+	return rv.FieldByName(name).IsValid()
 }
 
 // CSDCOProjectInfo provides information via SPARQL on CSDCO Projects

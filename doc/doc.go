@@ -250,7 +250,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 		vm := utils.VariableMeasured{}
 		vm.Description = sr.Results.Bindings[i]["desc"].Value
 		vm.UnitText = sr.Results.Bindings[i]["type"].Value
-		vm.Value = sr.Results.Bindings[i]["name"].Value
+		vm.Name = sr.Results.Bindings[i]["name"].Value
 		vm.URL = sr.Results.Bindings[i]["uri"].Value
 		vma = append(vma, vm)
 	}
