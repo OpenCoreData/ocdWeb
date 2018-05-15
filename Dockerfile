@@ -1,5 +1,5 @@
 # Start from scratch image and add in a precompiled binary
-# CGO_ENABLED=0 env GOOS=linux go build .
+# CGO_ENABLED=0 env  go build .
 # docker build  --tag="opencoredata/ocdweb:0.9.4"  .
 # docker run -d -p 9900:9900  opencoredata/ocdweb:0.9.4
 FROM alpine

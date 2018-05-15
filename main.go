@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	"opencoredata.org/ocdWeb/catalogs"
 	"opencoredata.org/ocdWeb/colls"
+	"opencoredata.org/ocdWeb/datapkg"
 	"opencoredata.org/ocdWeb/doc"
 	"opencoredata.org/ocdWeb/dx"
 	"opencoredata.org/ocdWeb/rx"
@@ -70,6 +71,12 @@ func main() {
 	vocroute.HandleFunc("/voc/{version}/{term}", voc.VocCore)
 	vocroute.NotFoundHandler = http.HandlerFunc(notFound)
 	http.Handle("/voc/", vocroute)
+
+	// Server Frictionless Data Packages to a Landing Page formed by the schema.org file in the metadata directory
+	packages := mux.NewRouter()
+	packages.HandleFunc("/pkg/id/{id}.zip", datapkg.DownloadPkg)
+	packages.HandleFunc("/pkg/id/{id}", datapkg.ServePkg)
+	http.Handle("/pkg/", packages)
 
 	//Browser by id redirection to doc  (gets a specific dataset)  http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B
 	docroute := mux.NewRouter()
