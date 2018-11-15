@@ -15,7 +15,7 @@ const queries = `
 
 # The following gets the project data
 # tag: CSDCO 
-SELECT DISTINCT ?uri ?date ?lat ?long ?holeid
+SELECT DISTINCT ?uri ?date ?lat ?long ?holeid ?purl
 WHERE 
 { 
   ?uri rdf:type <http://opencoredata.org/id/voc/csdco/v1/CSDCOProject> . 
@@ -24,6 +24,15 @@ WHERE
   ?uri 	<http://opencoredata.org/id/voc/csdco/v1/date> ?date . 
   ?uri 	<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat .
   ?uri 	<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long .
+
+}
+
+# The following gets the project data
+# tag: CSDCOPackages 
+SELECT DISTINCT  ?purl
+WHERE 
+{ 
+  ?purl <http://schema.org/keywords> "{{.PROJID}}" .
 }
 
 # Get all the info on a HoleID from the CSDCO graph
@@ -31,7 +40,7 @@ WHERE
 SELECT *
 WHERE 
 { 
-  <{{.HOLEID}}>  ?p ?o .
+  <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}>  ?p ?o .
 }
 
 # tag: my-query
@@ -228,6 +237,8 @@ func CSDCOHoleIDInfo(holeid string) *sparql.Results {
 		log.Printf("%s\n", err)
 	}
 
+	log.Println(q)
+
 	res, err := repo.Query(q)
 	if err != nil {
 		log.Printf("%s\n", err)
@@ -250,6 +261,35 @@ func CSDCOProjectInfo(projid string) (*sparql.Results, error) {
 	bank := sparql.LoadBank(f)
 
 	q, err := bank.Prepare("CSDCO", struct{ PROJID string }{projid})
+	if err != nil {
+		log.Printf("%s\n", err)
+		return nil, err
+	}
+
+	log.Println(q)
+
+	res, err := repo.Query(q)
+	if err != nil {
+		log.Printf("%s\n", err)
+		return nil, err
+	}
+
+	log.Println(res)
+	return res, err
+
+}
+
+func CSDCOPackages(projid string) (*sparql.Results, error) {
+	repo, err := getCSDCOSPARQL()
+	if err != nil {
+		log.Printf("%s\n", err)
+		return nil, err
+	}
+
+	f := bytes.NewBufferString(queries)
+	bank := sparql.LoadBank(f)
+
+	q, err := bank.Prepare("CSDCOPackages", struct{ PROJID string }{projid})
 	if err != nil {
 		log.Printf("%s\n", err)
 		return nil, err

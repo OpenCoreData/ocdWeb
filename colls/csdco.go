@@ -43,11 +43,13 @@ type CSDCO struct {
 	MblfB                  string
 	MetadataSource         string
 	URI                    string
+	PURL                   string
 }
 
 type CSDCOResultSet struct {
-	Project string
-	CSDCO   []CSDCO
+	Project  string
+	CSDCO    []CSDCO
+	Packages []CSDCO
 }
 
 type Abstract struct {
@@ -98,11 +100,12 @@ func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Println(uris)
+	log.Println("after URI sparql call")
 
 	// Connect to mongo and get the results
 	session, err := services.GetMongoCon()
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 	defer session.Close()
 
@@ -116,10 +119,10 @@ func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error calling csdco : %v", err)
 	}
 
-	// log.Print(vars["HoleID"])
-	// log.Print(results)
+	log.Print(vars["HoleID"])
+	log.Print(results)
 
-	ht, err := template.New("some template").ParseFiles("templates/catalog_csdco_new.html") // open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/grid_csdcoFeature.html") // open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -183,11 +186,24 @@ func CSDCOProjectInfo(w http.ResponseWriter, r *http.Request) {
 	// Connect to triplestore to get data via SPARQL bank call
 	vars := mux.Vars(r)
 	sparqlresults, _ := services.CSDCOProjectInfo(vars["ProjectID"])
+	spr, _ := services.CSDCOPackages(vars["ProjectID"])
 
 	// this is for the PROJ level, not the HOLE level.. move to another function
 	//uris := []string{}
 	var results []CSDCO
+	var packages []CSDCO
 	resultset := CSDCOResultSet{}
+
+	if spr != nil {
+		bindings := spr.Results.Bindings // map[string][]rdf.Term
+		for _, i := range bindings {
+			var result CSDCO
+			result.PURL = i["purl"].Value
+			packages = append(packages, result) // fmt.Sprintf("%v", i["uri"].Value))
+		}
+	}
+
+	fmt.Printf("\n\n %v \n\n", packages)
 
 	if sparqlresults != nil {
 		bindings := sparqlresults.Results.Bindings // map[string][]rdf.Term
@@ -205,9 +221,11 @@ func CSDCOProjectInfo(w http.ResponseWriter, r *http.Request) {
 		//log.Println(results)
 		resultset.Project = vars["ProjectID"]
 		resultset.CSDCO = results
+		resultset.Packages = packages
+
 	}
 
-	ht, err := template.New("some template").ParseFiles("templates/csdco_projects.html") // open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("templates/grid_csdcoProj.html") // open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

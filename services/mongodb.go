@@ -1,8 +1,9 @@
 package services
 
 import (
-	"gopkg.in/mgo.v2"
 	"os"
+
+	"gopkg.in/mgo.v2"
 )
 
 func GetMongoCon() (*mgo.Session, error) {

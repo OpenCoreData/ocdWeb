@@ -176,10 +176,10 @@ func DsetBuilder(dm VoidDataset) ([]byte, error) {
 		"http://schema.org/variableMeasured": vma,
 	}
 
+	// "re3data": "http://example.org/re3data/0.1/",
 	context := map[string]interface{}{
 		"@context": map[string]interface{}{
-			"@vocab":  "http://schema.org/",
-			"re3data": "http://example.org/re3data/0.1/",
+			"@vocab": "http://schema.org/",
 		},
 	}
 
@@ -217,10 +217,10 @@ func CatalogBuilder(dc DataCatalog, dsa []VoidDataset) ([]byte, error) {
 		"http://schema.org/dataset":     dsArray,
 	}
 
+	// 	"re3data": "http://example.org/re3data/0.1/",
 	context := map[string]interface{}{
 		"@context": map[string]interface{}{
-			"@vocab":  "http://schema.org/",
-			"re3data": "http://example.org/re3data/0.1/",
+			"@vocab": "http://schema.org/",
 		},
 	}
 

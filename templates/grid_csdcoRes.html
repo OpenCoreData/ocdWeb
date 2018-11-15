@@ -1,0 +1,94 @@
+{{define "T"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CSDCO</title>
+	<link rel="stylesheet" type="text/css" href="/common/csdcorestmpl.css">
+	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+	<script type="application/ld+json">
+		{{.FullJSON}}
+	</script>
+</head>
+
+<body>
+	<div class="ctnr">
+		<div id="navbar">
+			<nav class="container">
+				<div class="m1">
+					<a href="/" class="navLinks">Home</a>
+				</div>
+				<div class="m2">
+					<a href="/about.html" class="navLinks">CSDCO</a>
+				</div>
+
+				<div class="logo">
+				</div>
+
+				<div class="m3">
+					<a href="/about.html" class="navLinks">JRSO</a>
+				</div>
+				<div class="m4">
+					<a target="_blank" href="/voc/" class="navLinks">Dictionary</a>
+				</div>
+			</nav>
+		</div>
+		<header>CSDCO Project Data Package
+		</header>
+		<div id="subheader">
+			 
+		</div>
+
+		<div id="lkg">
+			 
+		</div>
+
+		<main>
+			 
+			<p>
+
+				<div class="mdl-card" style="width:100%;margin-bottom:40px">
+					<div class="mdl-card__title">
+						<h3 class="mdl-card__title-text"><a target="_blank" href="{{.ContentURL}}">Download this
+								package</a> </h3>
+						<div class="mdl-card__supporting-text">
+							<span>ID: {{.SHA}}</span>
+						</div>
+
+					</div>
+					<div class="mdl-card__media" style="background-color:white">
+
+						<h3 class="mdl-card__title-text"> Package Files </h3>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Description: {{.Description}} <br>
+						Keywords: {{.Keywords}} <br>
+						License: {{.License}} <br>
+						Name: {{.Name}} <br>
+						PubName: {{.PubName}} <br>
+
+
+					</div>
+					{{end}}
+					{{define "M"}}
+					{{$DS:=.SHA}}
+					<div class="mdl-card__actions">
+						{{range .Resources}}
+						<a href="{{$DS}}/{{.Path}}">{{.Name}}</a><br />
+						{{end}}
+					</div>
+				</div>
+
+
+			</p>
+
+		</main>
+		<div id="kg">
+			 
+		</div>
+		<footer>Funded by the National Science Foundation</footer>
+	</div>
+</body>
+
+</html>
+{{end}}
