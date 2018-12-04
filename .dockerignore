@@ -1,0 +1,9 @@
+build
+deployments
+internal
+Makefile
+pkg
+README.md
+scripts
+vendor
+web/static

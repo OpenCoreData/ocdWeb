@@ -1,0 +1,218 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <ocdparams-element></ocdparams-element>
+
+@demo
+-->
+<dom-module id="ocdparams-element">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" crossorigin="anonymous"></script>
+    <!--  <link rel="import" href="./bower_components/polymer/polymer.html">
+    <link rel="import" href="./bower_components/iron-ajax/iron-ajax.html">
+    <link rel="import" href="./bower_components/paper-dialog/paper-dialog.html">
+    <link rel="import" href="./bower_components/paper-button/paper-button.html">
+    <link rel="import" href="./bower_components/csv-preview/csv-preview.html">
+    <link rel="import" href="./bower_components/iron-icons/iron-icons.html">
+   -->
+    <!-- Material Design Light -->
+    <!--<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css"> -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <!--     <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "[[item.given.value]]  [[item.family.value]]"
+    }
+    </script> -->
+    <script>
+        function clickHandler(e) {
+            var button = e.target;
+            while (!button.hasAttribute('data-dialog') && button !== document.body) {
+                button = button.parentElement;
+            }
+            if (!button.hasAttribute('data-dialog')) {
+                return;
+            }
+            var id = button.getAttribute('data-dialog');
+            var dialog = document.getElementById(id);
+            if (dialog) {
+                dialog.open();
+            }
+        }
+    </script>
+    <style>
+        .controls {
+            margin: 10px 0 50px 0;
+            display: block;
+        }
+        
+        .controls textarea,
+        .controls button {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .controls textarea {
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 767px) {
+            .hidden-xs {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 991px) {
+            .hidden-sm {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .hidden-md {
+                display: none !important;
+            }
+        }
+    </style>
+    <template>
+        <iron-ajax auto url="/blazegraph/namespace/opencore/sparql?query=SELECT%20%20%3Furi%20%3Fname%20%3Ftype%20%3Fcolumn%20%3Fdesc%20WHERE%20%7B%20%20%0A%20%3Furi%20%3Chttp%3A%2F%2Fexample.org%2Frdf%2Ftype%3E%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2FJanusQuerySet%3E%20.%20%20%20%0A%3Furi%20%20%20%20%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2Fstruct_name%3E%20%22{{params.measurement}}%22%20.%20%20%0A%3Furi%20%20%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2Fgo_struct_name%3E%20%3Fname%20.%0A%3Furi%20%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2Fgo_struct_type%3E%20%3Ftype%20.%20%20%0A%3Furi%20%20%20%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2Fcolumn_id%3E%20%3Fcolumn%20%20.%0A%3Furi%20%20%20%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2FJanusMeasurement%3E%20%3Fjmes%20.%20%20%0A%3Fjmes%20%20%3Chttp%3A%2F%2Fopencoredata.org%2Fid%2Fvoc%2Fjanus%2Fv1%2Fjson_descript%3E%20%20%3Fdesc%20%20%0A%7D%0AORDER%20By%20%28xsd%3Ainteger%28%3Fcolumn%29%29" handle-as="json" headers='{"Accept": "application/sparql-results+json"}' debounce-duration="300" last-response="{{ajaxResponsev2}}">
+        </iron-ajax>
+        <!-- set display false for a surrounding div is the ajax response is empty -->
+        <div class="container-fluid" style="margin:10px;">
+            <div class="row">
+                <div class="row" style="margin:10px;">
+                  Table: {{params.measurement}}
+                    <table style="margin:10px;width:100%" class="table table-condensed table-hover">
+                       <tr>
+                                <th> ID </th>
+                                <th> Name </th>
+                                <th> Data Type </th>
+                                <th> Description</th>
+                            </tr>
+                        <template is="dom-repeat" items="[[ajaxResponsev2.results.bindings]]">
+                            <tr>
+                                <td> [[item.column.value]]</td>
+                                <td> [[item.name.value]]</td>
+                                <td> [[item.type.value]]</td>
+                                <td> [[item.desc.value]]</td>
+                            </tr>
+                        </template>
+    </table>
+    </div>
+    </div>
+    </div>
+    </template>
+</dom-module>
+<script>
+    Polymer({
+
+        is: 'ocdparams-element',
+
+        properties: {
+
+            /**
+             * `fancy` indicates that the element should don a monocle and tophat,
+             * while checking its pocket watch.
+             */
+            fancy: Boolean,
+
+            /**
+             * Describes the author of the element, but is really just an excuse to
+             * show off JSDoc annotations.
+             *
+             * @type {{name: string, image: string}}
+             */
+            params: {
+                type: Object,
+                // Use `value` to provides a default value for a property, by setting it
+                // on your element's prototype.
+                //
+                // If you provide a function, as we do here, Polymer will call that
+                // _per element instance_.
+                //
+                // We do that to ensure that each element gets its own copy of the
+                // value, rather than having it shared across all instances (via the
+                // prototype).
+                value: function() {
+                    return {
+                        measurement: 'lookForX'
+                    };
+                }
+            },
+
+        },
+
+        // Element Lifecycle
+
+        ready: function() {
+            // `ready` is called after all elements have been configured, but
+            // propagates bottom-up. This element's children are ready, but parents
+            // are not.
+            //
+            // This is the point where you should make modifications to the DOM (when
+            // necessary), or kick off any processes the element wants to perform.
+        },
+
+        attached: function() {
+            // `attached` fires once the element and its parents have been inserted
+            // into a document.
+            //
+            // This is a good place to perform any work related to your element's
+            // visual state or active behavior (measuring sizes, beginning animations,
+            // loading resources, etc).
+        },
+
+        detached: function() {
+            // The analog to `attached`, `detached` fires when the element has been
+            // removed from a document.
+            //
+            // Use this to clean up anything you did in `attached`.
+        },
+
+        // Element Behavior
+
+        /**
+         * The `ocdparams-element-lasers` event is fired whenever `fireLasers` is called.
+         *
+         * @event ocdparams-element-lasers
+         * @detail {{sound: String}}
+         */
+
+        /**
+         * Sometimes it's just nice to say hi.
+         *
+         * @param {string} greeting A positive greeting.
+         * @return {string} The full greeting.
+         */
+        sayHello: function(greeting) {
+            var response = greeting || 'Hello World!';
+            return 'ocdparams-element says, ' + response;
+        },
+
+
+        callUnique: function(value) {
+            var response = value + "test" || 'No Value Provided';
+            return 'GL Resource: ' + response;
+        },
+
+
+
+
+    });
+</script>

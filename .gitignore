@@ -2,4 +2,6 @@
 vendor/**/*
 
 # remove binary
-./ocdWeb
+./cmd/web/web
+
+./web/static/**/*

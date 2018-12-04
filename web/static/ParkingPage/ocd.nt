@@ -1,0 +1,25 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ocd:<http://opencoredata.org/voc/1/> .
+
+ocd:leg rdf:type skos:Concept;
+    skos:prefLabel "Leg";
+    skos:altLabel "leg";
+    skos:sameAs <http://chronos.org/voc/1/leg> ;
+    skos:definition "The leg or expedition.  Usually a numeric but most expeditions also have nemonic titles".
+
+ocd:site rdf:type skos:Concept;
+    skos:prefLabel "Site";
+    skos:altLabel "site";
+    skos:sameAs <http://chronos.org/voc/1/site> ;
+    skos:definition "The site, usually a numeric.  Sometimes has alpha characters for special types of sites".
+
+ocd:hole rdf:type skos:Concept;
+    skos:prefLabel "Hole";
+    skos:altLabel "hole";
+    skos:sameAs <http://chronos.org/voc/1/hole> ;
+    skos:definition "The hole, usually a letter starting at A and progressing".
