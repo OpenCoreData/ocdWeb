@@ -15,7 +15,7 @@ func GeoLinkCatalog(w http.ResponseWriter, r *http.Request) {
 	log.Printf("For resource: %s\n", r.URL.String())
 
 	// Go ahead and set up the template first..  if this fails we really just should get out nicely
-	ht, err := template.New("geolink template").ParseFiles("templates/catalogGeoLink.html") //open and parse a template text file
+	ht, err := template.New("geolink template").ParseFiles("web/templates/catalogGeoLink.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("geolink template parse failed: %s", err)
 	}
@@ -54,7 +54,7 @@ func GeoLinkDataset(w http.ResponseWriter, r *http.Request) {
 
 	URI := fmt.Sprintf("http://opencoredata.org/catalog/geolink/dataset/%s", vars["resourcepath"])
 
-	ht, err := template.New("geolink template").ParseFiles("templates/datasetGeoLink.html") //open and parse a template text file
+	ht, err := template.New("geolink template").ParseFiles("web/templates/datasetGeoLink.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("geolink template parse failed: %s", err)
 	}

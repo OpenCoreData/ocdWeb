@@ -266,7 +266,7 @@ func UUIDRender(w http.ResponseWriter, r *http.Request) {
 	// old schema.org print
 	// fmt.Printf("OLD\n %s\n\n", string(jsonldtext))
 
-	ht, err := template.New("some template").ParseFiles("templates/jrso_dataset_new.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/jrso_dataset_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

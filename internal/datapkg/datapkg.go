@@ -77,7 +77,7 @@ func ServePkg(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Go ahead and set up the template first..  if this fails we really just should get out nicely
-	ht, err := template.New("data package template").ParseFiles("templates/grid_csdcoRes.html") //open and parse a template text file
+	ht, err := template.New("data package template").ParseFiles("web/templates/grid_csdcoRes.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("geolink template parse failed: %s", err)
 	}

@@ -115,7 +115,6 @@ const nusearch = (barval, q) => {
 		var lat = `${barval.Results.Bindings[i].lat.Value}`;
 		var long = `${barval.Results.Bindings[i].long.Value}`;
 		var score = `${barval.Results.Bindings[i].score.Value}`;
-		var rank = `${barval.Results.Bindings[i].rank.Value}`;
 	
 		// Main Item div template
 		itemTemplates.push(html `<div class="resultitem" style="margin-top:15px">
@@ -130,7 +129,7 @@ const nusearch = (barval, q) => {
 	     <span>Spatial coodinates: ${lat}  ${long}... </span>
 		 <br/>
 	
-		<span style="font-size: smaller;" >(${score} /  ${rank} ) <span> </div>`);
+		<span style="font-size: smaller;" >(${score}  ) <span> </div>`);
 	}
 
 	return html `
@@ -251,8 +250,8 @@ function blastsearchsimple(q, n, s) {
 	const el = document.querySelector('#container2');
 	render(activesearch(), el)
 
-	// fetch(`http://geodex.org/api/v1/textindex/getnusearch?q=${data}`)
-	fetch(`http://192.168.2.89:6789/api/beta/graph/csdco/search?q=${q}`)
+	//fetch(`http://geodex.org/api/v1/textindex/getnusearch?q=${data}`)
+	fetch(`https://opencoredata.org/api/beta/graph/csdco/search?q=${q}`)
 		.then(function (response) {
 			return response.json();
 		})
@@ -261,7 +260,7 @@ function blastsearchsimple(q, n, s) {
 			const el = document.querySelector('#container2');
 			const navel = document.querySelector('#container1');
 			render(nusearch(myJson, q), el);
-			render(navui(myJson.search_result.total_hits), navel);
+			// render(navui(myJson.search_result.total_hits), navel);
 		});
 }
 

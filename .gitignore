@@ -2,6 +2,7 @@
 vendor/**/*
 
 # remove binary
-./cmd/web/web
+./cmd/server/server
 
 ./web/static/**/*
+./scripts/**/*

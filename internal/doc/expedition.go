@@ -98,7 +98,7 @@ func ShowFeature(w http.ResponseWriter, r *http.Request) {
 	}
 	jsonldtext, _ := json.MarshalIndent(result, "", " ") // results as embeddale JSON-LD
 
-	ht, err := template.New("some template").ParseFiles("templates/feature_new.html")
+	ht, err := template.New("some template").ParseFiles("web/templates/feature_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -154,7 +154,7 @@ func ShowExpedition(w http.ResponseWriter, r *http.Request) {
 
 	SendToTemplate := TemplateStruct{Cruise: results, LSHSlice: lshSlice, Datasets: GetDatasets(EXPEDITION, "")}
 
-	ht, err := template.New("some template").ParseFiles("templates/expedition_new.html")
+	ht, err := template.New("some template").ParseFiles("web/templates/expedition_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -214,7 +214,7 @@ func AllExpeditions(w http.ResponseWriter, r *http.Request) {
 		results = append(results, expedition)
 	}
 
-	ht, err := template.New("some template").ParseFiles("templates/expeditionsAll_new.html")
+	ht, err := template.New("some template").ParseFiles("web/templates/expeditionsAll_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -246,7 +246,7 @@ func AllExpeditionsOLD(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error calling for AllExpeditions: %v", err)
 	}
 
-	ht, err := template.New("some template").ParseFiles("templates/expeditionsAll_new.html")
+	ht, err := template.New("some template").ParseFiles("web/templates/expeditionsAll_new.html")
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

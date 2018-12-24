@@ -22,7 +22,7 @@ func ResourceRender(w http.ResponseWriter, r *http.Request) {
 	res := services.GetRDFResource(URI)
 	// fmt.Printf("%s", res)
 
-	ht, err := template.New("some template").ParseFiles("templates/rdfResource_new.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/rdfResource_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -61,7 +61,7 @@ func PersonResourceRender(w http.ResponseWriter, r *http.Request) {
 	res := services.GetGeoLinkResource(URI)
 	// fmt.Printf("%s", res)
 
-	ht, err := template.New("some template").ParseFiles("templates/rdfPersonResource_new.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/rdfPersonResource_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}

@@ -6,13 +6,16 @@
 FROM scratch
 
 # Add in the static elements (could also mount these from local filesystem)
-ADD cmd/web/web  /
+ADD ./cmd/ocd_server/ocd_server  / 
 
 # ADD ../web/static  /static   # Replace with -v mounting the /web/static directory
-ADD web/templates  /templates
+# static is in the .dockerignore..  so an emptry dir is made unless static is removed
+# from the ignore file... we mount the volume via compose from the local FS
+ADD web/templates/  web/templates
+ADD web/empty_static web/static  
 
 # Add our binary
-CMD ["/web"]
+CMD ["/ocd_server"]
 
 # Document that the service listens on this port
 EXPOSE 9900

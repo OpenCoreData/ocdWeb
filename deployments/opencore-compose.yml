@@ -1,5 +1,8 @@
 version: '2'
 
+ARG HOSTNAME=localhost
+ARG DVPATH=/home/fils
+
 services:
   traefik:
     image: traefik
@@ -26,7 +29,7 @@ services:
       - "./opencore-compose.env"
     labels:
       - "traefik.backend=web"
-      - "traefik.frontend.rule=Host:${HOST_NAME}"
+      - "traefik.frontend.rule=Host:$HOSTNAME"
       #- "traefik.frontend.rule=Host:149.165.168.129"
       #- "traefik.frontend.rule=Host:opencore.dev"
     restart: on-failure
@@ -41,7 +44,7 @@ services:
     image: opencoredata/ocdservices:latest
     labels:
       - "traefik.backend=services"
-      - "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/api"
+      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/api"
       #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/api"
     restart: on-failure
     environment:
@@ -74,7 +77,7 @@ services:
     labels:
       - "traefik.backend=sparql"
       - "traefik.port=9999" # force to pick 9999 ignore the 8080 admin port
-      - "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/blazegraph"
+      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/blazegraph"
       #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/blazegraph"
     restart: on-failure
     volumes:
@@ -96,7 +99,7 @@ services:
     image: opencoredata/ocdsearch:0.9.6
     labels:
       - "traefik.backend=search"
-      - "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/search"
+      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/search"
       #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/search,/ocdsearchcommon"
       - "traefik.port=9900" # force to pick 9800
     restart: on-failure

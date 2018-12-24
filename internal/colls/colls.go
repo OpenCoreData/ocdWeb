@@ -88,7 +88,7 @@ type ListItemDataCatalog struct {
 // The template render doesn't do anything at time..  the .js in the page does all that for now
 // Likely will do something wih the template later
 func MLCounts(w http.ResponseWriter, r *http.Request) {
-	ht, err := template.New("some template").ParseFiles("templates/matrix_jrso_test.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/matrix_jrso_test.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -142,7 +142,7 @@ func MLURLSets(w http.ResponseWriter, r *http.Request) {
 
 	data := TemplateForColls{URLdata: results, Schema: string(schematext), Measure: vars["measurements"]}
 
-	ht, err := template.New("some template").ParseFiles("templates/jrso_MS_new.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/jrso_MS_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -200,7 +200,7 @@ func MesSets(w http.ResponseWriter, r *http.Request) {
 
 	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext), Measure: vars["measurements"]}
 
-	ht, err := template.New("some template").ParseFiles("templates/jrso_M_new.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/jrso_M_new.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -237,7 +237,7 @@ func Catalogs(w http.ResponseWriter, r *http.Request) {
 	// data := TemplateForColls{URLdata: results, Schema: string(schematext), Measure: vars["measurements"]}
 	data := TemplateForMeasurement{URLdata: results, Schema: schemaList(results, r.Host)}
 
-	ht, err := template.New("some template").ParseFiles("templates/catalogMap.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/catalogMap.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -321,7 +321,7 @@ func schemaList(results []URLSet, host string) string {
 
 // 	data := TemplateForMeasurement{URLdata: results, Schema: string(schematext)}
 
-// 	ht, err := template.New("some template").ParseFiles("templates/jrso_M.html") //open and parse a template text file
+// 	ht, err := template.New("some template").ParseFiles("web/templates/jrso_M.html") //open and parse a template text file
 // 	if err != nil {
 // 		log.Printf("template parse failed: %s", err)
 // 	}

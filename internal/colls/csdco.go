@@ -71,7 +71,7 @@ type AbstractsIdentifiers struct {
 
 // CSDCOOverview displays the overview matrix interface for the CSDCO holeids
 func CSDCOOverview(w http.ResponseWriter, r *http.Request) {
-	ht, err := template.New("some template").ParseFiles("templates/matrix_csdco_test.html") //open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/matrix_csdco_test.html") //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -84,7 +84,7 @@ func CSDCOOverview(w http.ResponseWriter, r *http.Request) {
 
 // CSDCOcollection shows the information page for a given project defined by the
 // variable HoleID set in the request parameters.  It uses the
-// template templates/catalog_csdco_new.html
+// template web/templates/catalog_csdco_new.html
 func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
@@ -147,7 +147,7 @@ func CSDCOcollection(w http.ResponseWriter, r *http.Request) {
 	//		log.Printf("Error calling csdco : %v", err)
 	//	}
 
-	ht, err := template.New("some template").ParseFiles("templates/grid_csdcoFeature.html") // open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/grid_csdcoFeature.html") // open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -182,7 +182,7 @@ func CSDCOAbstract(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error calling CSDCO abstract mongo : %v", err)
 	}
 
-	ht, err := template.New("abstract template").Funcs(template.FuncMap{"hasField": hasField}).ParseFiles("templates/csdco_abstract.html") // open and parse a template text file
+	ht, err := template.New("abstract template").Funcs(template.FuncMap{"hasField": hasField}).ParseFiles("web/templates/csdco_abstract.html") // open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
@@ -251,7 +251,7 @@ func CSDCOProjectInfo(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	ht, err := template.New("some template").ParseFiles("templates/grid_csdcoProj.html") // open and parse a template text file
+	ht, err := template.New("some template").ParseFiles("web/templates/grid_csdcoProj.html") // open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
