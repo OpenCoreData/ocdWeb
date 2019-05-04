@@ -1,0 +1,1072 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#range -->
+
+
+    <AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#range"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- dcat:contactPoint -->
+
+
+    <ObjectProperty rdf:about="dcat:contactPoint">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>Link a dataset to relevant contact information which is provided using VCard [vcard-rdf].</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range>vcard:Kind</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:distribution -->
+
+
+    <ObjectProperty rdf:about="dcat:distribution">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>Connects a dataset to its available distributions.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range>dcat:Distribution</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:frequency -->
+
+
+    <ObjectProperty rdf:about="dcat:frequency">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>The frequency at which dataset is published.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:identifier -->
+
+
+    <ObjectProperty rdf:about="dcat:identifier">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>A unique identifier of the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:keyword -->
+
+
+    <ObjectProperty rdf:about="dcat:keyword">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>A keyword or tag describing the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range>rdfs:Literal</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:landingPage -->
+
+
+    <ObjectProperty rdf:about="dcat:landingPage">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>A Web page that can be navigated to in a Web browser to gain access to the dataset, its distributions and/or additional information.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:language -->
+
+
+    <ObjectProperty rdf:about="dcat:language">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>The language of the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dcat:theme -->
+
+
+    <ObjectProperty rdf:about="dcat:theme">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>The main category of the dataset. A dataset can have multiple themes.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:description -->
+
+
+    <ObjectProperty rdf:about="dct:description">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>free-text account of the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range>rdfs:Literal</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:publisher -->
+
+
+    <ObjectProperty rdf:about="dct:publisher">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>An entity responsible for making the dataset available.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:releaseDate -->
+
+
+    <ObjectProperty rdf:about="dct:releaseDate">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>Date of formal issuance (e.g., publication) of the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:spatialCoverage -->
+
+
+    <ObjectProperty rdf:about="dct:spatialCoverage">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>Spatial coverage of the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:temporalCoverage -->
+
+
+    <ObjectProperty rdf:about="dct:temporalCoverage">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>The temporal period that the dataset covers.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:title -->
+
+
+    <ObjectProperty rdf:about="dct:title">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>A name given to the dataset.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- dct:updateDate -->
+
+
+    <ObjectProperty rdf:about="dct:updateDate">
+        <rdfs:domain rdf:resource="dcat:Dataset"/>
+        <rdfs:comment>Most recent date on which the dataset was changed, updated or modified.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#award -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#award">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Project"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>award number</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#azimuth -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#azimuth">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>compass orientation of the borehole at start of drilling/coring, if not vertical</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>azimuth</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#comment -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#comment">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>comment/note</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>comment</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#country -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#country">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>country</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>country</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#county_region -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#county_region">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>county or other defined region</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>county_region</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#dataset -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#dataset">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>dataset</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#date -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#date">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>date of the start of drilling the borehole (date of spud)</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>date</rdfs:label>
+        <rdfs:range>date</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#dip -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#dip">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>angle of the borehole at start of drilling/coring, relative to vertical</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>dip</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#elevation -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#elevation">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>elevation above sea level at the ground surface, or water surface if standing water is present at the site</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>elevation</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#expedition -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#expedition">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>facility unique identifier for the project</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>expedition</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#funding -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#funding">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Project"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>funding</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#hole -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#hole">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>borehole drilled or cored; first hole at a site is A; next hole is B; etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>hole</rdfs:label>
+        <rdfs:range>char</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#holeid -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#holeid">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>facility unique indentifier for the borehole; a concatenation of /expedition, /locationid, YY, /site, and /hole</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>holeID</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#igsn -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#igsn">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>International Geo Sample Number; globally unique identifier for borehole</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>IGSN</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#location -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#location">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>geographic feature name where drilling occurs</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>location</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#locationid -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#locationid">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>facility unique identifier for the location of drilling</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>locationID</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#locationtype -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#locationtype">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>type of geographic feature drilled</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>location type</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#mblfb -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#mblfb">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>geologic depth at bottom of borehole (total depth)</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>total depth</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#mblft -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#mblft">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>geologic depth at top of sample collection interval within borehole</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label></rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#metadatasource -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#metadatasource">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>source of metadata about the borehole</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>Metadata source</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#ngdc_comment -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#ngdc_comment">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>concatenation of other columns</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>NGDC Comment</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#ngdc_cruise -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#ngdc_cruise">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>NGDC Cruise</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#ngdc_sample -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#ngdc_sample">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>NGDC Sample</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#ngdc_serial -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#ngdc_serial">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>unique identifier used for borehole record at NOAA-NCEI Index to Marine and Lacustrine Geological Samples; will soon migrate to IGSN</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>NGDC Serial</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#ngdc_ship -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#ngdc_ship">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>NGDC Ship</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#originalid -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#originalid">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>identifier assigned to the borehole in the field, during drilling, if different from facility unique identifier</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>originalID</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#pi -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#pi">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Project"/>
+        <rdfs:comment>investigators</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>investigators</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#platform -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#platform">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>vessel name or vessel type used to bring drilling equipment to the drilling site, or ground or ice surface if no vessel was used</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>platform</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#platformname -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#platformname">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>platform/vessel name, if any, from which drilling occurs</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>platform name</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#platformtype -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#platformtype">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>type of platform from which drilling occurs</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>platform type</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#position -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#position">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>description of the accuracy of the latitude and longitude values</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>position</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#publications -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#publications">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Project"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>publication</rdfs:label>
+        <rdfs:range></rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#sampletype -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#sampletype">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>type of sample collected</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>sample type</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#site -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#site">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>site within a location where drilling occurs, with lithology drilled expected to be the same for all holes drilled; first site is 1; next site is 2; etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>site</rdfs:label>
+        <rdfs:range>int</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#sitehole -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#sitehole">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>concatenation of /site and /hole</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>site and hole</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#state_province -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#state_province">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>state or province</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>state_province</rdfs:label>
+        <rdfs:range>string</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#waterdepthm -->
+
+
+    <ObjectProperty rdf:about="http://opencoredata.org/voc/v1/csdco#waterdepthm">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>water depth at hole, if standing water exists at the site</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://opencoredata.org/voc/v1/csdco"/>
+        <rdfs:label>waterDepth</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat -->
+
+
+    <ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>latitude of the borehole top</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+        <rdfs:label>latitude</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#long -->
+
+
+    <ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#long">
+        <rdfs:domain rdf:resource="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+        <rdfs:comment>longitude of the borehole top</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+        <rdfs:label>longitude</rdfs:label>
+        <rdfs:range>float</rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- dcat:Dataset -->
+
+
+    <Class rdf:about="dcat:Dataset"/>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Borehole -->
+
+
+    <Class rdf:about="http://opencoredata.org/voc/v1/csdco#Borehole"/>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Project -->
+
+
+    <Class rdf:about="http://opencoredata.org/voc/v1/csdco#Project"/>
+    
+
+
+    <!-- http://schema.org/Dataset -->
+
+
+    <Class rdf:about="http://schema.org/Dataset"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#namedIndividual -->
+
+
+    <Class rdf:about="http://www.w3.org/2002/07/owl#namedIndividual"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Borehole -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Borehole">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#CML -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#CML">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Session file in XML format from Corelyzer software defining layout and position of cores and datasets; simplifies setup of project datasets in Corelyzer. The session file references the location of project core image files and numerical datafiles but does not include them in the session file, so file locations must be updated in the session file using a text editor for use on a new user&apos;s computer. Data files (.xml format) typically include Geotek MSCL-S and Geotek MSCL-XYZ data. Additional data such as XRF, loss-on ignition or other data sets may be included.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Corelyzer session file</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Car -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Car">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Packaged file generated by Corelyzer software that contains all core images and data for the project, allowing simplest setup of project datasets in Corelyzer. Data typically include Geotek MSCL-S and Geotek MSCL-XYZ data. Occasionally data from the scanning XRF, sample locations or other sources are included.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Corelyzer archive file</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Charcoal -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Charcoal">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Sediment samples are treated with hydrogen peroxide to destroy most organic matter, 
+leaving charcoal intact. Samples are passed through a 125 µm sieve and the &gt;125 µm 
+fraction is kept, dried onto a petri dish, and counted.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>charcoal</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Coulometry -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Coulometry">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Carbon coulometry measures the amount of carbon contained in lake sediments, either of organic or inorganic orgin, and thus allows one to examine changes in the chemical makeup of lake sediments through time. The carbon content of sediments can be related to a number of factors such as rates of decomposition, productivity, and/or precipitation of carbonate minerals. The LRC CO2 Coulometer can be used to rapidly determine carbon content from water, gas, or sediment samples.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Coulometry</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#DtubeMetadata -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#DtubeMetadata">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label></rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Grainsize -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Grainsize">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Measures the particle size distribution of sediment samples using laser diffraction analysis</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Grain Size</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#ICDFiles -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#ICDFiles">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>PSICAT is a software application for lithologic descriptions of cores using a set of controlled vocabularies and patterns for lithologies. The PSICAT folders contain reduced core images, .xml files with core description notes.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Lithologic core description</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Image -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Image">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>The Geotek MSCL-CIS (Core Imaging System) collects ultra high resolution images of core samples with a digital linescan camera. The light and camera lens have polarizing filters to reduce glare on the core surface in the image. Images resolution is specified by the user (25 to 100 micron pixel size, typically 50 micron).</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Geotek CIS (jpg)</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#LOI -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#LOI">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Water, organic matter, carbonate mineral, and siliciclastic+diatom content are estimated by sequentially measuring weight loss in sediment core subsamples after heating at selected temperatures.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Loss-on Ignition</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Metadata -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Metadata">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label></rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Project -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Project">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#RGBData -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#RGBData">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>RGB color profiles from a strip through the middle of each core image generated by the MSCL-CIS.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Geotek CIS (csv)</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#Radiographs -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#Radiographs">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Digital X-radiographic images at 16-bit grayscale density and 0.2mm resolution.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>X-radiographs</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#SRF -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#SRF">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Locations and information about samples that have been pulled from the cores.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label></rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#SplitCoreData -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#SplitCoreData">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>The Geotek MSCL-XYZ takes measurements along the split core surface by lowering sensors to the core. The XYZ measures high resolution magnetic susceptibility using a Bartington MS2E point sensor. Color reflectance data are collected using a Minolta CM-2600d color spectrophotometer. These measurements are collected at a specified interval (typically 0.5 cm). Up to 9 cores can be loaded at once, allowing for cores to be run unattended sequentially.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Geotek MSCL-XYZ</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#WholeCoreData -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#WholeCoreData">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Geotek’s MSCL-S (standard multi sensor core logger) collects geophysical data along the length of the core using a suite of sensors. The parameters measured include P-wave velocity, gamma density, magnetic susceptibility, electrical resitivity, natural gamma. The core sections are pushed through the suite of sensors at a specified interval (typically 0.5 cm) and the core is scanned as it passes. The instrument can be configured to log whole or split cores. Core diameter can range from 5 to 15 cm with lengths up to 155 cm.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Geotek MSCL-S</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#XRD -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#XRD">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Routine XRD-mineralogy profiles can provide qualitative and semiquantitative records of shifts in the source of sedimentary components to a lake sequence. XRD mainly displays information on autocthonous and authigenic minerals, but can give some indication of the abundance of amorphous silica phases. Set up with routine data collection, XRD is a rapid, accurate technique which can process 40 samples per day using an automated sample changer.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>X-ray diffraction</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- http://opencoredata.org/voc/v1/csdco#XRF -->
+
+
+    <NamedIndividual rdf:about="http://opencoredata.org/voc/v1/csdco#XRF">
+        <rdf:type rdf:resource="http://schema.org/Dataset"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#namedIndividual"/>
+        <rdfs:comment>Nondestructive analysis for concentrations of most elements from aluminum (atomic number 13) to uranium (92). Stratigraphic resolutions to 0.2mm are possible. Dwell time per sample point ranges from 1
+second for abundant elements to 2 minutes for trace elements. Typical scans are at 5 or 10mm stratigraphic resolution and 10 to 15 seconds per sample point.</rdfs:comment>
+        <rdfs:isDefinedBy>dcat:Dataset</rdfs:isDefinedBy>
+        <rdfs:label>Scanning XRF</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <rdf:Description rdf:about="http://opencoredata.org/voc/v1/csdco#Borehole">
+        <rdfs:comment></rdfs:comment>
+        <rdfs:isDefinedBy>csdco:Borehole</rdfs:isDefinedBy>
+        <rdfs:label>CSDCO Borehole</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://opencoredata.org/voc/v1/csdco#Project">
+        <rdfs:comment>a collection of activities for a defined scientific goal and funded by the same source; can include expeditions, sample collection, new analyses of existing samples, or others</rdfs:comment>
+        <rdfs:isDefinedBy>schema:ResearchProject</rdfs:isDefinedBy>
+        <rdfs:label>CSDCO Project</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.9) https://github.com/owlcs/owlapi/ -->
+
+

@@ -8,6 +8,7 @@ import (
 	"opencoredata.org/ocdWeb/internal/catalogs"
 	"opencoredata.org/ocdWeb/internal/colls"
 	"opencoredata.org/ocdWeb/internal/datapkg"
+	"opencoredata.org/ocdWeb/internal/do"
 	"opencoredata.org/ocdWeb/internal/doc"
 	"opencoredata.org/ocdWeb/internal/dx"
 	"opencoredata.org/ocdWeb/internal/rx"
@@ -30,11 +31,6 @@ func main() {
 	parking := mux.NewRouter()
 	parking.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./web/static"))))
 	http.Handle("/", &MyServer{parking})
-
-	//  New CSDCO pattern  (how would prov ping back live here?)  (and removed elsewhere)
-	//  /csdco  duh..
-	//  /csdco/project/ID
-	//  /csdco/pkg/ID   //  need content negotiated version that only returns JSON-LD
 
 	// coll := mux.NewRouter()
 	// coll.HandleFunc("/coll/csdco/proj/{id}", coll.CSDCOProj)
@@ -74,7 +70,8 @@ func main() {
 	dxroute.HandleFunc("/id/expedition/{LEG}/{SITE}", dx.Redirection)
 	dxroute.HandleFunc("/id/expedition/{LEG}", dx.Redirection)
 	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.Redirection)
-	dxroute.HandleFunc(`/id/resource/csdco/feature/{{HoleID}}`, colls.CSDCOcollection)
+	dxroute.HandleFunc(`/id/resource/csdco/feature/{HoleID}`, colls.CSDCOcollection)
+	dxroute.HandleFunc("/id/do/{ID}", do.ObjectView)
 	http.Handle("/id/", dxroute)
 
 	//Browser by id redirection to doc  (gets a specific dataset)  http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B

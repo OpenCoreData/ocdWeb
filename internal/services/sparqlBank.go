@@ -16,22 +16,22 @@ const queries = `
 # The following gets the project data
 #  ?uri 	<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat .
 #  ?uri 	<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long .
-# tag: CSDCO 
+# tag: CSDCO
 SELECT DISTINCT ?uri ?date ?holeid ?purl ?igsn
-WHERE 
-{ 
-  ?uri rdf:type <http://opencoredata.org/id/voc/csdco/v1/CSDCOProject> . 
-  ?uri <http://opencoredata.org/id/voc/csdco/v1/project> "{{.PROJID}}" . 
+WHERE
+{
+  ?uri rdf:type <http://opencoredata.org/id/voc/csdco/v1/CSDCOProject> .
+  ?uri <http://opencoredata.org/id/voc/csdco/v1/project> "{{.PROJID}}" .
   ?uri <http://opencoredata.org/id/voc/csdco/v1/holeid> ?holeid .
-  ?uri 	<http://opencoredata.org/id/voc/csdco/v1/date> ?date . 
+  ?uri 	<http://opencoredata.org/id/voc/csdco/v1/date> ?date .
   ?uri  <http://pid.geoscience.gov.au/def/ont/ga/igsn#Sample> ?igsn .
 }
 
 # The following gets the project data
-# tag: CSDCOPackages 
+# tag: CSDCOPackages
 SELECT DISTINCT  ?purl
-WHERE 
-{ 
+WHERE
+{
   ?purl <http://schema.org/keywords> "{{.PROJID}}" .
 }
 
@@ -39,8 +39,8 @@ WHERE
 # tag: CSDCOHoleID
 PREFIX csdco: <http://opencoredata.org/id/voc/csdco/v1/>
 SELECT ?country ?country_region ?date ?elevation ?hole ?holeid ?locationid ?locationame ?locationtype ?mblfb ?mblft ?pi ?platform ?position ?project ?sampletype ?site ?sitehole ?state_province ?waterdepthm ?lat ?long
-WHERE  
-{  
+WHERE
+{
  OPTIONAL { <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}> csdco:country	 ?country } .
  OPTIONAL { <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}> csdco:county_region	 ?country_region } .
  OPTIONAL { <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}> csdco:date	 ?date } .
@@ -63,9 +63,9 @@ WHERE
  OPTIONAL { <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}> csdco:waterdepthm	 ?waterdepthm } .
  OPTIONAL { <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}> <http://www.w3.org/2003/01/geo/wgs84_pos#lat>	 ?lat } .
  OPTIONAL { <http://opencoredata.org/id/resource/csdco/feature/{{.HOLEID}}> <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long }  .
-} 
+}
 LIMIT 1
- 
+
 # tag: my-query
 SELECT *
 WHERE {
@@ -80,14 +80,14 @@ WHERE {
 }
 
 #tag: paramcall
-SELECT  ?uri ?name ?type ?column ?desc WHERE {  
-	?uri <http://example.org/rdf/type> <http://opencoredata.org/id/voc/janus/v1/JanusQuerySet> .   
-   ?uri     <http://opencoredata.org/id/voc/janus/v1/struct_name> "{{.MEASUREMENT}}" .  
+SELECT  ?uri ?name ?type ?column ?desc WHERE {
+	?uri <http://example.org/rdf/type> <http://opencoredata.org/id/voc/janus/v1/JanusQuerySet> .
+   ?uri     <http://opencoredata.org/id/voc/janus/v1/struct_name> "{{.MEASUREMENT}}" .
    ?uri   <http://opencoredata.org/id/voc/janus/v1/go_struct_name> ?name .
-   ?uri  <http://opencoredata.org/id/voc/janus/v1/go_struct_type> ?type .  
+   ?uri  <http://opencoredata.org/id/voc/janus/v1/go_struct_type> ?type .
    ?uri    <http://opencoredata.org/id/voc/janus/v1/column_id> ?column  .
-   ?uri    <http://opencoredata.org/id/voc/janus/v1/JanusMeasurement> ?jmes .  
-   ?jmes  <http://opencoredata.org/id/voc/janus/v1/json_descript>  ?desc  
+   ?uri    <http://opencoredata.org/id/voc/janus/v1/JanusMeasurement> ?jmes .
+   ?jmes  <http://opencoredata.org/id/voc/janus/v1/json_descript>  ?desc
    }
    ORDER By (xsd:integer(?column))
 
@@ -95,7 +95,7 @@ SELECT  ?uri ?name ?type ?column ?desc WHERE {
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix glview: <http://schema.geolink.org/1.0/base/main#> 
+prefix glview: <http://schema.geolink.org/1.0/base/main#>
 SELECT DISTINCT  ?name  ?dep
 WHERE {
   VALUES ?target {<{{.URI}}>}
@@ -111,28 +111,28 @@ WHERE {
 }
 
 #tag: allCSDCOProj
-prefix csdco:  <http://opencoredata.org/id/voc/csdco/v1/> 
-SELECT DISTINCT * 
-WHERE { 
+prefix csdco:  <http://opencoredata.org/id/voc/csdco/v1/>
+SELECT DISTINCT *
+WHERE {
   ?s rdf:type csdco:CSDCOProject .
-  ?s ?p ?o 
+  ?s ?p ?o
 }
 
 #tag: alljrsoexpeditions
-prefix ocdjanus: <http://opencoredata.org/voc/janus/1/> 
-prefix ocd: <http://opencoredata.org/voc/1/> 
+prefix ocdjanus: <http://opencoredata.org/voc/janus/1/>
+prefix ocd: <http://opencoredata.org/voc/1/>
 SELECT DISTINCT  ?leg ?rvol ?label
 WHERE {
   ?s  rdf:type  ocd:Drillsite .
   ?s  ocdjanus:leg ?leg .
   ?s  ocd:initialreportvolume ?rvol .
-  
+
 }
 ORDER BY DESC(xsd:integer(?leg))
 
 #tag: DEPRECATEDalljrsoexpeditions
-prefix ocdjanus: <http://opencoredata.org/voc/janus/1/> 
-prefix ocd: <http://opencoredata.org/voc/1/> 
+prefix ocdjanus: <http://opencoredata.org/voc/janus/1/>
+prefix ocd: <http://opencoredata.org/voc/1/>
 SELECT DISTINCT ?s ?leg ?rvol ?cdata ?label
 WHERE {
   ?s  rdf:type  ocd:Drillsite .
@@ -140,11 +140,22 @@ WHERE {
   ?s  ocd:initialreportvolume ?rvol .
   ?s  ocd:coredata ?cdata .
   ?s  rdfs:label ?label .
-  
+
 }
 ORDER BY DESC(xsd:integer(?leg))
 
 `
+
+func BasementTS() (*sparql.Repo, error) {
+	repo, err := sparql.NewRepo("http://clear.local:3030/csdco2/sparql",
+		sparql.Timeout(time.Millisecond*15000),
+	)
+	if err != nil {
+		log.Printf("%s\n", err)
+
+	}
+	return repo, err
+}
 
 // connector function for the local sparql instance
 func getLocalSPARQL() (*sparql.Repo, error) {

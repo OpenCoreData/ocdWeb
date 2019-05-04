@@ -1,0 +1,1216 @@
+[ {
+  "@id" : "_:genid1",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+}, {
+  "@id" : "dcat:Dataset",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "dcat:contactPoint",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Link a dataset to relevant contact information which is provided using VCard [vcard-rdf]."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "vcard:Kind"
+  } ]
+}, {
+  "@id" : "dcat:distribution",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Connects a dataset to its available distributions."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "dcat:Distribution"
+  } ]
+}, {
+  "@id" : "dcat:frequency",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "The frequency at which dataset is published."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dcat:identifier",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "A unique identifier of the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dcat:keyword",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "A keyword or tag describing the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "rdfs:Literal"
+  } ]
+}, {
+  "@id" : "dcat:landingPage",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "A Web page that can be navigated to in a Web browser to gain access to the dataset, its distributions and/or additional information."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dcat:language",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "The language of the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dcat:theme",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "The main category of the dataset. A dataset can have multiple themes."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dct:description",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "free-text account of the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "rdfs:Literal"
+  } ]
+}, {
+  "@id" : "dct:publisher",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "An entity responsible for making the dataset available."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dct:releaseDate",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Date of formal issuance (e.g., publication) of the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dct:spatialCoverage",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Spatial coverage of the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dct:temporalCoverage",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "The temporal period that the dataset covers."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dct:title",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "A name given to the dataset."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "dct:updateDate",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Most recent date on which the dataset was changed, updated or modified."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "csdco:Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "CSDCO Borehole"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#CML",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Session file in XML format from Corelyzer software defining layout and position of cores and datasets; simplifies setup of project datasets in Corelyzer. The session file references the location of project core image files and numerical datafiles but does not include them in the session file, so file locations must be updated in the session file using a text editor for use on a new user's computer. Data files (.xml format) typically include Geotek MSCL-S and Geotek MSCL-XYZ data. Additional data such as XRF, loss-on ignition or other data sets may be included."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Corelyzer session file"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Car",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Packaged file generated by Corelyzer software that contains all core images and data for the project, allowing simplest setup of project datasets in Corelyzer. Data typically include Geotek MSCL-S and Geotek MSCL-XYZ data. Occasionally data from the scanning XRF, sample locations or other sources are included."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Corelyzer archive file"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Charcoal",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Sediment samples are treated with hydrogen peroxide to destroy most organic matter, \nleaving charcoal intact. Samples are passed through a 125 µm sieve and the >125 µm \nfraction is kept, dried onto a petri dish, and counted."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "charcoal"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Coulometry",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Carbon coulometry measures the amount of carbon contained in lake sediments, either of organic or inorganic orgin, and thus allows one to examine changes in the chemical makeup of lake sediments through time. The carbon content of sediments can be related to a number of factors such as rates of decomposition, productivity, and/or precipitation of carbonate minerals. The LRC CO2 Coulometer can be used to rapidly determine carbon content from water, gas, or sediment samples."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Coulometry"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#DtubeMetadata",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Grainsize",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Measures the particle size distribution of sediment samples using laser diffraction analysis"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Grain Size"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#ICDFiles",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "PSICAT is a software application for lithologic descriptions of cores using a set of controlled vocabularies and patterns for lithologies. The PSICAT folders contain reduced core images, .xml files with core description notes."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Lithologic core description"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Image",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "The Geotek MSCL-CIS (Core Imaging System) collects ultra high resolution images of core samples with a digital linescan camera. The light and camera lens have polarizing filters to reduce glare on the core surface in the image. Images resolution is specified by the user (25 to 100 micron pixel size, typically 50 micron)."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Geotek CIS (jpg)"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#LOI",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Water, organic matter, carbonate mineral, and siliciclastic+diatom content are estimated by sequentially measuring weight loss in sediment core subsamples after heating at selected temperatures."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Loss-on Ignition"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Metadata",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Project",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2002/07/owl#NamedIndividual", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "a collection of activities for a defined scientific goal and funded by the same source; can include expeditions, sample collection, new analyses of existing samples, or others"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "schema:ResearchProject"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "CSDCO Project"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#RGBData",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "RGB color profiles from a strip through the middle of each core image generated by the MSCL-CIS."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Geotek CIS (csv)"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#Radiographs",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Digital X-radiographic images at 16-bit grayscale density and 0.2mm resolution."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "X-radiographs"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#SRF",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Locations and information about samples that have been pulled from the cores."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#SplitCoreData",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "The Geotek MSCL-XYZ takes measurements along the split core surface by lowering sensors to the core. The XYZ measures high resolution magnetic susceptibility using a Bartington MS2E point sensor. Color reflectance data are collected using a Minolta CM-2600d color spectrophotometer. These measurements are collected at a specified interval (typically 0.5 cm). Up to 9 cores can be loaded at once, allowing for cores to be run unattended sequentially."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Geotek MSCL-XYZ"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#WholeCoreData",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Geotek’s MSCL-S (standard multi sensor core logger) collects geophysical data along the length of the core using a suite of sensors. The parameters measured include P-wave velocity, gamma density, magnetic susceptibility, electrical resitivity, natural gamma. The core sections are pushed through the suite of sensors at a specified interval (typically 0.5 cm) and the core is scanned as it passes. The instrument can be configured to log whole or split cores. Core diameter can range from 5 to 15 cm with lengths up to 155 cm."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Geotek MSCL-S"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#XRD",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Routine XRD-mineralogy profiles can provide qualitative and semiquantitative records of shifts in the source of sedimentary components to a lake sequence. XRD mainly displays information on autocthonous and authigenic minerals, but can give some indication of the abundance of amorphous silica phases. Set up with routine data collection, XRD is a rapid, accurate technique which can process 40 samples per day using an automated sample changer."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "X-ray diffraction"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#XRF",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://schema.org/Dataset", "http://www.w3.org/2002/07/owl#namedIndividual" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "Nondestructive analysis for concentrations of most elements from aluminum (atomic number 13) to uranium (92). Stratigraphic resolutions to 0.2mm are possible. Dwell time per sample point ranges from 1\nsecond for abundant elements to 2 minutes for trace elements. Typical scans are at 5 or 10mm stratigraphic resolution and 10 to 15 seconds per sample point."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "dcat:Dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Scanning XRF"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#award",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Project"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "award number"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#azimuth",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "compass orientation of the borehole at start of drilling/coring, if not vertical"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "azimuth"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#comment",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "comment/note"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "comment"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#country",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "country"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "country"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#county_region",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "county or other defined region"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "county_region"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#dataset",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "dataset"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#date",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "date of the start of drilling the borehole (date of spud)"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "date"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "date"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#dip",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "angle of the borehole at start of drilling/coring, relative to vertical"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "dip"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#elevation",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "elevation above sea level at the ground surface, or water surface if standing water is present at the site"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "elevation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#expedition",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "facility unique identifier for the project"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "expedition"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#funding",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Project"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "funding"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#hole",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "borehole drilled or cored; first hole at a site is A; next hole is B; etc."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "hole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "char"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#holeid",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "facility unique indentifier for the borehole; a concatenation of /expedition, /locationid, YY, /site, and /hole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "holeID"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#igsn",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "International Geo Sample Number; globally unique identifier for borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "IGSN"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#location",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "geographic feature name where drilling occurs"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "location"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#locationid",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "facility unique identifier for the location of drilling"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "locationID"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#locationtype",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "type of geographic feature drilled"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "location type"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#mblfb",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "geologic depth at bottom of borehole (total depth)"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "total depth"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#mblft",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "geologic depth at top of sample collection interval within borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#metadatasource",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "source of metadata about the borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Metadata source"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#ngdc_comment",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "concatenation of other columns"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "NGDC Comment"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#ngdc_cruise",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "NGDC Cruise"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#ngdc_sample",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "NGDC Sample"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#ngdc_serial",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "unique identifier used for borehole record at NOAA-NCEI Index to Marine and Lacustrine Geological Samples; will soon migrate to IGSN"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "NGDC Serial"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#ngdc_ship",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "NGDC Ship"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#originalid",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "identifier assigned to the borehole in the field, during drilling, if different from facility unique identifier"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "originalID"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#pi",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "investigators"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Project"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "investigators"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#platform",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "vessel name or vessel type used to bring drilling equipment to the drilling site, or ground or ice surface if no vessel was used"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "platform"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#platformname",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "platform/vessel name, if any, from which drilling occurs"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "platform name"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#platformtype",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "type of platform from which drilling occurs"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "platform type"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#position",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "description of the accuracy of the latitude and longitude values"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "position"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#publications",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : ""
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Project"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "publication"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : ""
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#sampletype",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "type of sample collected"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "sample type"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#site",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "site within a location where drilling occurs, with lithology drilled expected to be the same for all holes drilled; first site is 1; next site is 2; etc."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "site"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "int"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#sitehole",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "concatenation of /site and /hole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "site and hole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#state_province",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "state or province"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "state_province"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "string"
+  } ]
+}, {
+  "@id" : "http://opencoredata.org/voc/v1/csdco#waterdepthm",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "water depth at hole, if standing water exists at the site"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "waterDepth"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://schema.org/Dataset",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://www.w3.org/2000/01/rdf-schema#range",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://www.w3.org/2002/07/owl#namedIndividual",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#lat",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "latitude of the borehole top"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "latitude"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+}, {
+  "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#long",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "longitude of the borehole top"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://opencoredata.org/voc/v1/csdco#Borehole"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "longitude"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@value" : "float"
+  } ]
+} ]

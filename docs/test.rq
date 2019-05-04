@@ -1,0 +1,4 @@
+SELECT   ?p ?o 
+WHERE {  
+  <http://opencoredata.org/id/do/bivmpsau6s752n39k1hg> ?p ?o .
+}

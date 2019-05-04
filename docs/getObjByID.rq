@@ -1,0 +1,29 @@
+SELECT  DISTINCT ?date ?mimetype ?type ?license ?filetype ?name ?desc ?related ?url ?text
+WHERE {  
+  ?s ?p "0da9a93dc63cfa85c5aa5496da683175f62109df6a5d2b9a0e660f30dcfb6363" .
+  ?s2 ?p2 ?s .
+  ?s2 <http://schema.org/dateCreated> ?date .
+  ?s2 <http://schema.org/encodingFormat> ?mimetype .
+  ?s2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type .
+  ?s2 <http://schema.org/license> ?license .
+  ?s2 <http://schema.org/additionType> ?filetype .
+  ?s2 <http://schema.org/name> ?name .
+  ?s2 <http://schema.org/text> ?text .
+  ?s2 <http://schema.org/description> ?desc .
+  ?s2 <http://schema.org/isRelatedTo> ?related .
+  ?s2 <http://schema.org/url> ?url
+}
+
+# <http://schema.org/dateCreated>	2009-06-04
+# <http://schema.org/encodingFormat>	application/pdf
+# <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>	http://www.schema.org/DigitalDocument
+# <http://schema.org/license>	http://example.com/cc0.html
+# <http://schema.org/additionType>	http://opencoredata.org/voc/csdco/v1/ICDFiles
+# <http://schema.org/name>	YNP2-HDR09-1B-3L-1.pdf
+# <http://schema.org/text>	lrc mblf mblf bot hedrick pond hedrick b imagems si lithologic description initial core description section length cm sed length cm lake core id st ru c u n d ep th c m describer date
+# <http://schema.org/url>	http://opencoredata.org/id/do/0da9a93dc63cfa85c5aa5496da683175f62109df6a5d2b9a0e660f30dcfb6363
+# <http://schema.org/identifier>	b0
+# <http://schema.org/description>	Digital object of type ICD named YNP2-HDR09-1B-3L-1.pdf for CSDCO project YNP2
+# <http://schema.org/isRelatedTo>	YNP2
+# <http://schema.org/url>	http://opencoredata.org/id/do/bivm8mqu6s74kvper1vg
+# <http://schema.org/identifier>	b1

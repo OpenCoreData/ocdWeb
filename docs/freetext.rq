@@ -1,0 +1,20 @@
+SELECT  DISTINCT ?p ?s
+WHERE {  
+  ?s2 ?p ?s .
+  ?s2 <http://schema.org/dateCreated> ?date .
+  ?s2 <http://schema.org/text> ?text .
+  FILTER regex(?text, "jacqueli*", "i")
+}
+
+
+
+# PREFIX   ex: <http://www.example.org/resources#>
+# PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+# PREFIX text: <http://jena.apache.org/text#>
+
+# SELECT ?s ?lbl
+# WHERE { 
+#     ?s a ex:Product ;
+#        text:query (rdfs:label 'printer') ;
+#        rdfs:label ?lbl
+# }
