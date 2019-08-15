@@ -3,6 +3,7 @@ package services
 import (
 	"bytes"
 	"fmt"
+
 	// "fmt"
 	"log"
 	"time"
@@ -146,8 +147,9 @@ ORDER BY DESC(xsd:integer(?leg))
 
 `
 
+// BasementTS is the dev triplestore
 func BasementTS() (*sparql.Repo, error) {
-	repo, err := sparql.NewRepo("http://clear.local:3030/csdco2/sparql",
+	repo, err := sparql.NewRepo("http://192.168.2.89:3030/doa/query",
 		sparql.Timeout(time.Millisecond*15000),
 	)
 	if err != nil {

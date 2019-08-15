@@ -1,0 +1,125 @@
+{{define "T"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CSDCO</title>
+	<link rel="stylesheet" type="text/css" href="/common/csdcorestmpl.css">
+	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+
+	<style type="text/css">
+		td {
+			padding: 10px
+		}
+
+		header {
+			margin-top: 20px;
+		}
+
+		#subheader {
+			margin-top: 20px;
+		}
+	</style>
+
+	<!-- Load the custom elements-->
+	<script type="module" src="/common/js/components/gd-getfeature.js"></script>
+	<script type="module" src="/common/js/components/gd-getpackage.js"></script>
+
+	<script src="/common/js/components/gd-header.js"></script>
+	<script src="/common/js/components/gd-citation.js"></script>
+	<script src="/common/js/components/gd-abstract.js"></script>
+	<script src="/common/js/components/gd-keywords.js"></script>
+
+	<script type="application/ld+json">
+	{{.DOResProj}}
+</script>
+
+</head>
+
+
+<body>
+	<div class="ctnr">
+		<div id="navbar">
+			<nav class="container">
+				<div class="m1">
+					<a href="/" class="navLinks">Home</a>
+				</div>
+				<div class="m2">
+					<a href="/csdco.html" class="navLinks">CSDCO</a>
+				</div>
+
+				<div class="logo">
+				</div>
+
+				<div class="m3">
+					<a href="/collections/matrix" class="navLinks">JRSO</a>
+				</div>
+				<div class="m4">
+					<a target="_blank" href="/voc/" class="navLinks">Dictionary</a>
+				</div>
+			</nav>
+		</div>
+		<header>
+			<geodex-header></geodex-header>
+		</header>
+
+		<div id="subheader">
+		</div>
+
+		<div id="lkg">
+		</div>
+
+		<main>
+			<p style="margin-top: 15px">
+
+			</p>
+			<p style="margin-top: 15px">
+				<geodex-citation></geodex-citation>
+			</p>
+			<p style="margin-top: 15px">
+				<geodex-abstract></geodex-abstract>
+			</p>
+			<p style="margin-top: 15px">
+				<geodex-keywords></geodex-keywords>
+			</p>
+
+			<hr>
+
+			<p>
+				{{ range .DOPkgMeta }}
+				<a target="_blank" href="{{.}}">{{.}}</a><br>
+				{{end}}
+			</p>
+
+			<hr>
+
+			<geodex-getpackage res-id="http://192.168.2.89:9900/bl4s1squ6s77r4hp9e90"></geodex-getpackage>
+
+
+			<hr>
+
+
+
+			<hr>
+			<p>
+				{{ range .DOFeature }}
+				<!-- <a target="_blank" href="{{.}}">{{.}}</a><br> -->
+				<p style="margin-top: 15px">
+					<geodex-getfeature res-id="{{.}}"></geodex-getfeature>
+				</p>
+				{{end}}
+			</p>
+			
+
+
+
+		</main>
+		<div id="kg">
+
+		</div>
+		<footer>Funded by the National Science Foundation</footer>
+	</div>
+</body>
+
+</html>
+{{end}}

@@ -1,0 +1,96 @@
+{{define "T"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CSDCO</title>
+	<link rel="stylesheet" type="text/css" href="/common/csdcorestmpl.css">
+	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+
+
+
+	<style type="text/css">
+		td {
+			padding: 10px
+		}
+
+		header {
+			margin-top: 20px;
+		}
+
+		#subheader {
+			margin-top: 20px;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="ctnr">
+		<div id="navbar">
+			<nav class="container">
+				<div class="m1">
+					<a href="/" class="navLinks">Home</a>
+				</div>
+				<div class="m2">
+					<a href="/csdco.html" class="navLinks">CSDCO</a>
+				</div>
+
+				<div class="logo">
+				</div>
+
+				<div class="m3">
+					<a href="/collections/matrix" class="navLinks">JRSO</a>
+				</div>
+				<div class="m4">
+					<a target="_blank" href="/voc/" class="navLinks">Dictionary</a>
+				</div>
+			</nav>
+		</div>
+		<header>Name
+		</header>
+		<div id="subheader">
+			Desc
+		</div>
+
+		<div id="lkg">
+		</div>
+
+		<main>
+			<p>
+
+				<table>
+					<thead>
+						<tr>
+							<th class="oidtd">Name</th>
+							<th class="oidtd">Datatype</th>
+						</tr>
+					</thead>
+					<tr>
+						<td class="oidtd">Type </td>
+						<td class="oidtd"> {{.Type}} </td>
+					</tr>
+					<tr>
+						<td class="oidtd"> Graph </td>
+						<td class="oidtd"> {{.Graph}} </td>
+					</tr>
+					<tr>
+						<td class="oidtd"> Research Project </td>
+						<td class="oidtd"> {{.DOResProj}} </td>
+					</tr>
+
+				</table>
+			</p>
+
+
+		</main>
+		<div id="kg">
+
+		</div>
+		<footer>Funded by the National Science Foundation</footer>
+	</div>
+</body>
+
+</html>
+{{end}}
