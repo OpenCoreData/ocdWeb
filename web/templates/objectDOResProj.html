@@ -24,6 +24,8 @@
 	<!-- Load the custom elements-->
 	<script type="module" src="/common/js/components/gd-getfeature.js"></script>
 	<script type="module" src="/common/js/components/gd-getpackage.js"></script>
+	<script type="module" src="/common/js/components/fcore-fdpviewer.js"></script>
+
 
 	<script src="/common/js/components/gd-header.js"></script>
 	<script src="/common/js/components/gd-citation.js"></script>
@@ -83,23 +85,20 @@
 				<geodex-keywords></geodex-keywords>
 			</p>
 
-			<hr>
+			
 
+			<hr>
+			<p>Get Package Metadata Component</p>
 			<p>
 				{{ range .DOPkgMeta }}
-				<a target="_blank" href="{{.}}">{{.}}</a><br>
+				<geodex-getpackage res-id="{{.}}"></geodex-getpackage>
 				{{end}}
 			</p>
-
 			<hr>
-
-			<geodex-getpackage res-id="http://192.168.2.89:9900/bl4s1squ6s77r4hp9e90"></geodex-getpackage>
-
-
-			<hr>
-
-
-
+            <p> Package Frictionless Data Package Viewer Component</p>
+			    {{ range .DOFDPs }}
+			          <fcore-fdpviewer res-id="{{.}}"></fcore-fdpviewer>
+			    {{end}}
 			<hr>
 			<p>
 				{{ range .DOFeature }}

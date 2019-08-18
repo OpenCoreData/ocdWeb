@@ -12,19 +12,19 @@ import {
 
             // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
             var newstr = resID.replace(/opencoredata.org/i, '192.168.2.89:9900');
-            var newstr = "http://192.168.2.89:9900/id/do/bl4s1squ6s77r4hp9e90"
+            // var newstr = "http://192.168.2.89:9900/id/do/blavhlau6s74ma5rn4ng"
             // console.log(newstr); 
 
             // GET test
             function tj_providers(id) {
                 return fetch(id, {
-                    headers: { 'Content-Type': 'application/ld+json', },
+                    headers: { 'Accept': 'application/ld+json', },
                     })
                     .then(function (response) {
                         return response.json();
                     })
                     .then(function (myJson) {
-                        //  console.log(id);
+                        //console.log(myJson);
                         // console.log(JSON.stringify(myJson));
                         // return JSON.stringify(myJson);
                         return myJson;
@@ -38,10 +38,8 @@ import {
 
                 this.shadowRoot.innerHTML = `
                 <div style="overflow-wrap: break-word;width=100%">
-                    Description: ${feature["http://schema.org/description"]} <br>
-                     
-                    
-                     
+                    Description: ${feature["description"]} <br>
+                    Distribution: ${feature["distribution"].contentUrl} <br>
                 </div>
                   `;
 

@@ -4,13 +4,19 @@
 
 * Need to break object up into Tika (Geo in the future), break out graphloader and package builder code
 
-## Build sequence
+## Build sequence for CSDCO Semantic Network
 
-* VaultWalker runs to load objects and object metadata kernel  x-do and x-do-meta respectively
-* Run the GraphBuilder to build out "proj" and "borehole" to x-do-resources
-* Optional, run ObjectEngine>Tika to build the tika index in x-do-tika
-* Run ObjectEngine to build out packages in x-do-packages and x-do-packages-meta respectively
-* Run ObjectEngine>GraphLoader to load the graphs into triple store
+Note:  We may perform a graph drop or other process if we want to cleanly initialize
+the graph.  Otherwise we will use specific drop and loads to perform updates along 
+the way.
+
+1. Load the CSDCOProject.nt and objectGraph.nq from OCD Semantic Network
+2. VaultWalker runs to load objects and object metadata kernel  x-do and x-do-meta respectively
+3. GraphBuilder is run to build out "proj" and "borehole" to x-do-resources
+4. ObjectEngine>GraphLoader loads x-do-meta and x-do-reosources to graph
+5. ObjectEngine>Tika to build the tika index in x-do-tika "Optional"
+6. ObjectEngine>PackageBuilder is run to build packages and their metadata in x-do-packages and x-do-packages-meta
+7. ObjectEngine>GraphLoader run again to load x-do-tika and x-do-packages-meta
 
 ## Dev set up
 
@@ -128,3 +134,60 @@ mc cat clear/csdco-do-packages-meta/bl4s1oqu6s77r4hp966g
  "url": "http://opencoredata.org/id/do/b5993b8ea246d19e03ae0580d9d5f38921c5b424f519d6e252eb25fac6309e06"
 }
 ```
+
+
+------------------------------------------------------
+
+Use:
+
+
+PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dc:     <http://purl.org/dc/elements/1.1/>
+PREFIX  :       <.>
+SELECT DISTINCT ?s ?description ?name ?license ?encodingFormat ?url ?type ?additionType ?dateCreated ?identifier
+{
+    GRAPH ?g { 
+        ?s <http://schema.org/isRelatedTo> "YUFL" .
+        ?s <http://schema.org/description> ?description .
+        ?s <http://schema.org/name> ?name .
+        OPTIONAL { ?s <http://schema.org/license> ?license . }
+        OPTIONAL { ?s <http://schema.org/encodingFormat> ?encodingFormat . }
+        OPTIONAL { ?s <http://schema.org/url> ?url . }
+        OPTIONAL { ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type . }
+        OPTIONAL { ?s <http://schema.org/additionalType> ?additionalType . }
+        OPTIONAL { ?s <http://schema.org/dateCreated> ?dateCreated . }
+        OPTIONAL { ?s <http://schema.org/identifier> ?identifier . }
+    }
+}
+
+
+The full FDP resource is
+{
+"name": "solar-system",
+"path": "http://example.com/solar-system.csv",
+"title": "The Solar System",
+"description": "My favourite data about the solar system.",
+"format": "csv",
+"mediatype": "text/csv",
+"encoding": "utf-8",
+"bytes": 1,
+"hash": "",
+"schema": "",
+"sources": "",
+"licenses": ""
+}
+
+
+These are the parameters we have....
+<http://schema.org/description>
+<http://schema.org/name>
+<http://schema.org/license>
+<http://schema.org/encodingFormat>
+<http://schema.org/url>
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+<http://schema.org/additioa;Type>
+<http://schema.org/dateCreated>
+<http://schema.org/identifier>
+<http://schema.org/isRelatedTo>
+
+

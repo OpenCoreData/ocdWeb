@@ -20,6 +20,8 @@ type MyServer struct {
 	r *mux.Router
 }
 
+// TODO add in the init for minio like in provisium!!!!!!!!!!!!!!
+
 func main() {
 	// Common assets like; css, js, images, etc...
 	rcommon := mux.NewRouter()
