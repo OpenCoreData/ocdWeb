@@ -1,0 +1,88 @@
+{{define "T"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CSDCO</title>
+	<link rel="stylesheet" type="text/css" href="/common/css/csdcorestmpl.css">
+	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/2cgrid.css">
+
+
+	<style type="text/css">
+		td {
+			padding: 10px
+		}
+
+		header {
+			margin-top: 20px;
+		}
+
+		#subheader {
+			margin-top: 20px;
+		}
+	</style>
+
+	<!-- Load the custom elements-->
+	<script type="module" src="/common/js/components/gd-displayfeature.js"></script>
+
+	<script type="application/ld+json">
+	{{.DOResProj}}
+    </script>
+
+</head>
+
+
+<body>
+	<div class="ctnr">
+		<div id="navbar">
+			<nav class="container">
+				<div class="m1">
+					<a href="/" class="navLinks">Home</a>
+				</div>
+				<div class="m2">
+					<a href="/csdco.html" class="navLinks">CSDCO</a>
+				</div>
+
+				<div class="logo">
+				</div>
+
+				<div class="m3">
+					<a href="/collections/matrix" class="navLinks">JRSO</a>
+				</div>
+				<div class="m4">
+					<a target="_blank" href="/voc/" class="navLinks">Dictionary</a>
+				</div>
+			</nav>
+		</div>
+		<header>
+
+		</header>
+
+		<div id="subheader">
+			CSDCO Feature
+		</div>
+
+		<div id="lkg">
+		</div>
+
+		<main>
+			<div style="margin-top: 15px">
+				<h3>Project Features</h3>
+				<p style="margin-top: 15px">
+					<geodex-displayfeature></geodex-displayfeature>
+				</p>
+			</div>
+
+		
+
+		</main>
+		<div id="kg">
+
+		</div>
+		<footer>Funded by the National Science Foundation</footer>
+	</div>
+</body>
+
+</html>
+{{end}}

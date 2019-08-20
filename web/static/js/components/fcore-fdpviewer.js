@@ -38,24 +38,24 @@ import {
 
             // GET test call...
             tj_providers(newstr).then((feature) => {
-
-                const detailsTemplate = [];
-                let orset = feature.resources;
-                let count = orset.length;
-        
-                var i;
-                for (i = 0; i < count; i++) {
-                    detailsTemplate.push(`<div><a target="_blank" href="${orset[i].path}">${orset[i].name}</a><br></div>`);
-                }
-
                 this.attachShadow({ mode: 'open' });
 
-                this.shadowRoot.innerHTML = `
-                <div style="overflow-wrap: break-word;width=100%">
-                    Description: ${feature.description} <br>
-                    ${detailsTemplate}
-                </div>
-                  `;
+                var  count = Object.keys(feature.resources).length;
+                const detailsTemplate = [];
+
+                var i;
+                for (i = 0; i < count; i++) {
+                    detailsTemplate.push( html`<div><a target="_blank"
+                    href="${feature.resources[i].path}">${feature.resources[i].name}</a></div>`);
+                }
+
+                var h = html`<div>${detailsTemplate}</div>`;
+                // this.shadowRoot.innerHTML = `${h}`;
+                render(detailsTemplate, this.shadowRoot);
+                // this.shadowRoot.innerHTML = html `<div style="overflow-wrap: break-word;width=100%">
+                //    Description: ${feature.description} <br>
+                //    ${detailsTemplate}
+                // </div> `;
 
                 // var inputs = feature["resources"];
                 // for (var i = 0; i < inputs.length; i++) {
@@ -63,7 +63,6 @@ import {
                 //     File: ${inputs[i].name} <br>
                 //     </div>`;
                 // }
-
 
             });
         }

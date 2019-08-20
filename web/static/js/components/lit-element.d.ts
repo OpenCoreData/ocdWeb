@@ -29,8 +29,11 @@ export declare class LitElement extends UpdatingElement {
     /**
      * Ensure this class is marked as `finalized` as an optimization ensuring
      * it will not needlessly try to `finalize`.
+     *
+     * Note this property name is a string to prevent breaking Closure JS Compiler
+     * optimizations. See updating-element.ts for more information.
      */
-    protected static finalized: boolean;
+    protected static ['finalized']: boolean;
     /**
      * Render method used to render the lit-html TemplateResult to the element's
      * DOM.
@@ -39,7 +42,7 @@ export declare class LitElement extends UpdatingElement {
      * @param {String} Element name.
      * @nocollapse
      */
-    static render: (result: TemplateResult, container: Element | DocumentFragment, options: import("lit-html/lib/shady-render").ShadyRenderOptions) => void;
+    static render: (result: TemplateResult, container: Element | DocumentFragment | ShadowRoot, options: import("lit-html/lib/shady-render").ShadyRenderOptions) => void;
     /**
      * Array of styles to apply to the element. The styles should be defined
      * using the `css` tag function.

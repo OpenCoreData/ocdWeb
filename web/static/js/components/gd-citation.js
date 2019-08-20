@@ -26,13 +26,10 @@
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.innerHTML = `
                     <div style="overflow-wrap: break-word;width=100%">
-                        Citation
-                         <br><br>
-                          ${obj.name},   
-                         Version is ${version}  
-                         Data set accessed ${today}  
-                         at <a href='${obj.url}'>${obj.url}</a>, 
-                         <hr>
+                          ${obj.name},
+                         Version is ${version}
+                         Data set accessed ${today}
+                         at <a href='${obj.url}'>${obj.url}</a>,      
                     </div>
                       `;
         }

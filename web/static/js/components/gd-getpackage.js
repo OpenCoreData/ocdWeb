@@ -39,7 +39,8 @@ import {
                 this.shadowRoot.innerHTML = `
                 <div style="overflow-wrap: break-word;width=100%">
                     Description: ${feature["description"]} <br>
-                    Distribution: ${feature["distribution"].contentUrl} <br>
+                    Distribution: <a target="_blank" href="${feature["distribution"].contentUrl}">
+                    Download Package Description</a> <br>
                 </div>
                   `;
 

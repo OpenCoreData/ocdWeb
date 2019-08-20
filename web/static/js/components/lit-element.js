@@ -23,7 +23,7 @@ export * from './lib/css-tag.js';
 // This line will be used in regexes to search for LitElement usage.
 // TODO(justinfagnani): inject version number at build time
 (window['litElementVersions'] || (window['litElementVersions'] = []))
-    .push('2.0.1');
+    .push('2.2.1');
 /**
  * Minimal implementation of Array.prototype.flat
  * @param arr the array to flatten
@@ -46,7 +46,9 @@ const flattenStyles = (styles) => styles.flat ? styles.flat(Infinity) : arrayFla
 export class LitElement extends UpdatingElement {
     /** @nocollapse */
     static finalize() {
-        super.finalize();
+        // The Closure JS Compiler does not always preserve the correct "this"
+        // when calling static super methods (b/137460243), so explicitly bind.
+        super.finalize.call(this);
         // Prepare styling that is stamped at first render time. Styling
         // is built from user provided `styles` or is inherited from the superclass.
         this._styles =
@@ -186,8 +188,11 @@ export class LitElement extends UpdatingElement {
 /**
  * Ensure this class is marked as `finalized` as an optimization ensuring
  * it will not needlessly try to `finalize`.
+ *
+ * Note this property name is a string to prevent breaking Closure JS Compiler
+ * optimizations. See updating-element.ts for more information.
  */
-LitElement.finalized = true;
+LitElement['finalized'] = true;
 /**
  * Render method used to render the lit-html TemplateResult to the element's
  * DOM.

@@ -10,7 +10,7 @@ Note:  We may perform a graph drop or other process if we want to cleanly initia
 the graph.  Otherwise we will use specific drop and loads to perform updates along 
 the way.
 
-1. Load the CSDCOProject.nt and objectGraph.nq from OCD Semantic Network
+1. (Why do this if step 4?) Load the CSDCOProject.nt and objectGraph.nq from OCD Semantic Network  (Load data dictionary without instances)
 2. VaultWalker runs to load objects and object metadata kernel  x-do and x-do-meta respectively
 3. GraphBuilder is run to build out "proj" and "borehole" to x-do-resources
 4. ObjectEngine>GraphLoader loads x-do-meta and x-do-reosources to graph

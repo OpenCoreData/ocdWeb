@@ -27,7 +27,6 @@ nav {
         grid-template-areas: 
         "logo m1";
     }
-
 }
 
 .m1 {
@@ -38,7 +37,6 @@ nav {
     grid-area: m2;
 }
 
-
 .logo {
     grid-area: logo;
     background-image: url("/images/logo22small.png");
@@ -47,7 +45,6 @@ nav {
     background-repeat: no-repeat;
     height: 50px;
 }
-
 
 .m3 {
     grid-area: m3;

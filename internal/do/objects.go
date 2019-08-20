@@ -14,88 +14,11 @@ import (
 	"text/template" // text not html since we don't want to escape our JSON-LD and we don't worry about the HTML autoescape here
 
 	"opencoredata.org/ocdWeb/internal/services"
-	"opencoredata.org/ocdWeb/internal/utils"
 
 	"github.com/gorilla/mux"
 	"github.com/knakk/sparql"
 	"github.com/minio/minio-go"
 )
-
-const queries = `
-# Comments are ignored, except those tagging a query.
-
-# tag: test
-SELECT ?s ?name ?desc
-WHERE {
-  ?s ?p <http://opencoredata.org/id/do/cc7481953cacce428eda4f3ed11c96a4ea3b1114084acf29496c15908cb6dee4> .
-  ?s <http://schema.org/name> ?name .
-  ?s <http://schema.org/description> ?desc
-}
-
-# tag: typecheck
-SELECT DISTINCT ?type ?graph
-WHERE
-{  GRAPH ?graph
-    {
-        <http://opencoredata.org/id/do/{{.OID}}> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type .
-    }
-}
-
-# tag: projfeatures
-SELECT DISTINCT ?res
-WHERE { GRAPH ?graph
-{
-    BIND ("http://opencoredata.org/id/do/{{.ID}}" AS ?ss)
-	 {
-	    ?res <http://schema.org/about> ?ss .
-	    ?res <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://opencoredata.org/voc/csdco/v1/Borehole> .
-	 }
-  }
-}
-
-# tag: projdatasets
-SELECT DISTINCT ?res
-WHERE { GRAPH ?graph
-{
-     BIND ("http://opencoredata.org/id/do/{{.ID}}" AS ?ss)
-	  {
-	     ?res <http://schema.org/about> ?ss .
-	     ?res <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/DataSet> .
-	  }
-  }
-}
-
-# tag: projFDPs
-SELECT DISTINCT ?res
-WHERE { GRAPH ?graph
-{
-     BIND ("http://opencoredata.org/id/do/{{.ID}}" AS ?ss)
-	  {
-		?s <http://schema.org/about> ?ss .
-		?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/DataSet> .
-		?s <http://schema.org/distribution> ?dist .
-		?dist <http://schema.org/contentUrl> ?res
-	}
-  }
-}
-
-# tag: getObject
-SELECT  DISTINCT ?date ?mimetype ?type ?license ?filetype ?name ?desc ?related ?url ?text
-WHERE {
-  ?s ?p "{{.OID}}" .
-  ?s2 ?p2 ?s .
-  ?s2 <http://schema.org/dateCreated> ?date .
-  ?s2 <http://schema.org/encodingFormat> ?mimetype .
-  ?s2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type .
-  ?s2 <http://schema.org/license> ?license .
-  ?s2 <http://schema.org/additionType> ?filetype .
-  ?s2 <http://schema.org/name> ?name .
-  ?s2 <http://schema.org/text> ?text .
-  ?s2 <http://schema.org/description> ?desc .
-  ?s2 <http://schema.org/isRelatedTo> ?related .
-  ?s2 <http://schema.org/url> ?url
-}
-`
 
 // TypeCheck is a list of parameters on a digital objects
 type TypeCheck struct {
@@ -128,17 +51,14 @@ type ObjectKernel struct {
 // ObjectView collects an object and also does a SPARQL query for the type
 // It uses the type to select a template and passes the package along to the
 // template for web component rendering
-func ObjectView(w http.ResponseWriter, r *http.Request) {
+func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 	ct := r.Header.Get("Accept")
 	vars := mux.Vars(r)
 	oid := vars["ID"]
 	var oi TypeCheck
 	log.Printf("http://opencoredata.org/id/do/%s : %s \n", oid, ct)
 
-	mc := utils.MinioConnectionDEV() // minio connection
-
-	// Get a type check object from either a graph inquiry or an
-	// object store inquiry.
+	// Get a type check object from either a graph or object store inquiry.
 	oi, err := getObjKern(oid) // returns TypeCheck{}
 	if err != nil {
 		log.Println(err)
@@ -148,6 +68,9 @@ func ObjectView(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// If the object isn't know, we should error now..  no point.
+	// Do a custom error and link to search?
+
 	// Get the object but only if we didn't error above (no bucket)
 	fo, err := mc.GetObject(oi.Bucket, oid, minio.GetObjectOptions{})
 	if err != nil {
@@ -156,11 +79,17 @@ func ObjectView(w http.ResponseWriter, r *http.Request) {
 
 	// strings.Contains is kinda hackish, but why parse the ct into an
 	// array and then check for a string when this should always work?
-	if !strings.Contains(ct, "text/html") {
+	// oi.Bucket == "csdco-do" is also hackish..  need to review this routing..
+	// maybe the mux has some options I can leverage?
+	if !strings.Contains(ct, "text/html") || oi.Bucket == "csdco-do" || oi.Bucket == "csdco-do-packages" {
 		fmt.Println("You don't seem to be a browse, good luck with this")
 
 		// set default to octet stream?  but use stored if I have it
-		w.Header().Set("Content-Type", "application/octet-stream")
+		if oi.Type != "" {
+			w.Header().Set("Content-Type", oi.Type)
+		} else {
+			w.Header().Set("Content-Type", "application/octet-stream")
+		}
 
 		n, err := io.Copy(w, fo)
 		if err != nil {
@@ -171,7 +100,7 @@ func ObjectView(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-		// If we are headed to an HTML template, then read it to a buffer
+		// If we are headed to an HTML template, then read be object to a buffer
 		var buf bytes.Buffer
 		nw := bufio.NewWriter(&buf)
 		_, err = io.Copy(nw, fo)
@@ -179,18 +108,31 @@ func ObjectView(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 
+		// set the template we want to use
+		log.Printf("-------------- %s , %s --------------\n", oi.Bucket, oi.Type)
+
+		var t string
+		if oi.Type == "http://opencoredata.org/voc/csdco/v1/Borehole" {
+			t = "web/templates/objectDOFeature.html"
+		}
+
+		if oi.Type == "http://schema.org/ResearchProject" {
+			t = "web/templates/objectDOResProj.html"
+		}
+
 		// if type == project or if type == do   (and so on)  should I do it this way?
 		oi.DOResProj = buf.String() //  ?? what is this?  project JSON-LD object
 		pf, _ := projResources(oid, "projfeatures")
 		pd, _ := projResources(oid, "projdatasets")
 		pp, _ := projResources(oid, "projFDPs")
+		// todo deal with these errors!
 		log.Printf("---- %v", pp)
 		oi.DOFeature = pf
 		oi.DOPkgMeta = pd
 		oi.DOFDPs = pp
 
 		// TODO ?  Should I make the template name associated with the bucketname?  Makes it easy to alter the templates
-		ht, err := template.New("object template").ParseFiles("web/templates/objectDOResProj.html") // open and parse a template text file
+		ht, err := template.New("object template").ParseFiles(t) // open and parse a template text file
 		if err != nil {
 			log.Printf("template parse failed: %s", err)
 		}

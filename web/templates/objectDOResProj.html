@@ -4,8 +4,10 @@
 
 <head>
 	<title>CSDCO</title>
-	<link rel="stylesheet" type="text/css" href="/common/csdcorestmpl.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/csdcorestmpl.css">
 	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/2cgrid.css">
+
 
 	<style type="text/css">
 		td {
@@ -26,7 +28,6 @@
 	<script type="module" src="/common/js/components/gd-getpackage.js"></script>
 	<script type="module" src="/common/js/components/fcore-fdpviewer.js"></script>
 
-
 	<script src="/common/js/components/gd-header.js"></script>
 	<script src="/common/js/components/gd-citation.js"></script>
 	<script src="/common/js/components/gd-abstract.js"></script>
@@ -34,7 +35,7 @@
 
 	<script type="application/ld+json">
 	{{.DOResProj}}
-</script>
+    </script>
 
 </head>
 
@@ -72,44 +73,53 @@
 		</div>
 
 		<main>
-			<p style="margin-top: 15px">
-
-			</p>
-			<p style="margin-top: 15px">
+			<div style="margin-top: 15px">
+				<h3>Citation</h3>
 				<geodex-citation></geodex-citation>
-			</p>
-			<p style="margin-top: 15px">
+			</div>
+
+			<div style="margin-top: 15px">
+				<h3>Abstract</h3>
 				<geodex-abstract></geodex-abstract>
-			</p>
-			<p style="margin-top: 15px">
+			</div>
+
+			<div style="margin-top: 15px">
+				<h3>Keywords(s)</h3>
 				<geodex-keywords></geodex-keywords>
-			</p>
-
-			
+			</div>
 
 			<hr>
-			<p>Get Package Metadata Component</p>
-			<p>
-				{{ range .DOPkgMeta }}
-				<geodex-getpackage res-id="{{.}}"></geodex-getpackage>
-				{{end}}
-			</p>
-			<hr>
-            <p> Package Frictionless Data Package Viewer Component</p>
-			    {{ range .DOFDPs }}
-			          <fcore-fdpviewer res-id="{{.}}"></fcore-fdpviewer>
-			    {{end}}
-			<hr>
-			<p>
-				{{ range .DOFeature }}
-				<!-- <a target="_blank" href="{{.}}">{{.}}</a><br> -->
-				<p style="margin-top: 15px">
-					<geodex-getfeature res-id="{{.}}"></geodex-getfeature>
-				</p>
-				{{end}}
-			</p>
-			
 
+			<div style="margin-top: 15px">
+				<h3>Data Package(s)</h3>
+				<p>
+					{{ range .DOPkgMeta }}
+					<geodex-getpackage res-id="{{.}}"></geodex-getpackage>
+					{{end}}
+			</div>
+
+			<hr>
+
+			<div class="twocgrid">
+				<div class="colone">
+					<h3> Package Files</h3>
+					<p>
+						{{ range .DOFDPs }}
+						<fcore-fdpviewer res-id="{{.}}"></fcore-fdpviewer>
+						{{end}}
+					</p>
+				</div>
+
+				<div class="coltwo">
+					<h3>Project Features</h3>
+					{{ range .DOFeature }}
+					<!-- <a target="_blank" href="{{.}}">{{.}}</a><br> -->
+					<p style="margin-top: 15px">
+						<geodex-getfeature res-id="{{.}}"></geodex-getfeature>
+					</p>
+					{{end}}
+				</div>
+			</div>
 
 
 		</main>

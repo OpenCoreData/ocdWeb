@@ -1,16 +1,20 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
+	minio "github.com/minio/minio-go"
 	"opencoredata.org/ocdWeb/internal/colls"
 	"opencoredata.org/ocdWeb/internal/datapkg"
 	"opencoredata.org/ocdWeb/internal/do"
 	"opencoredata.org/ocdWeb/internal/doc"
 	"opencoredata.org/ocdWeb/internal/dx"
 	"opencoredata.org/ocdWeb/internal/services"
+	"opencoredata.org/ocdWeb/internal/utils"
 	"opencoredata.org/ocdWeb/internal/voc"
 	// _ "net/http/pprof"
 )
@@ -20,9 +24,34 @@ type MyServer struct {
 	r *mux.Router
 }
 
-// TODO add in the init for minio like in provisium!!!!!!!!!!!!!!
+var minioVal, portVal, accessVal, secretVal, bucketVal string
+var sslVal bool
+
+func init() {
+	akey := os.Getenv("MINIO_ACCESS_KEY")
+	skey := os.Getenv("MINIO_SECRET_KEY")
+	mhost := os.Getenv("MINIO_HOST")
+	mport := os.Getenv("MINIO_PORT")
+
+	flag.StringVar(&minioVal, "address", mhost, "FQDN for server")
+	flag.StringVar(&portVal, "port", mport, "Port for minio server, default 9000")
+	flag.StringVar(&accessVal, "access", akey, "Access Key ID")
+	flag.StringVar(&secretVal, "secret", skey, "Secret access key")
+	flag.StringVar(&bucketVal, "bucket", "provisium", "The configuration bucket")
+	flag.BoolVar(&sslVal, "ssl", false, "Use SSL boolean")
+}
+
+func minioHandler(minioClient *minio.Client,
+	f func(minioClient *minio.Client, w http.ResponseWriter, r *http.Request)) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { f(minioClient, w, r) })
+}
 
 func main() {
+	// Load configurations
+	flag.Parse()
+	//minioClient := utils.MinioConnection(minioVal, portVal, accessVal, secretVal, bucketVal, sslVal)
+	mc := utils.MinioConnectionDEV() // minio connection
+
 	// Common assets like; css, js, images, etc...
 	rcommon := mux.NewRouter()
 	rcommon.PathPrefix("/common/").Handler(http.StripPrefix("/common/", http.FileServer(http.Dir("./web/static"))))
@@ -35,7 +64,9 @@ func main() {
 
 	csdco := mux.NewRouter()
 	csdco.PathPrefix("/org/csdco").Handler(http.StripPrefix("/org/csdco/", http.FileServer(http.Dir("./web/static/csdco"))))
-	csdco.HandleFunc("/org/csdco/{ID}", do.ObjectView)
+
+	// TODO..   review all this handler?   pointless now?
+	//csdco.HandleFunc("/org/csdco/{ID}", do.ObjectView)
 	http.Handle("/org/csdco/", csdco)
 
 	// TODO Make a CSDCO router.  Is there really just /csdco name space for pages and resources
@@ -54,7 +85,8 @@ func main() {
 	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.Redirection)
 	dxroute.HandleFunc(`/id/resource/csdco/feature/{HoleID}`, colls.CSDCOcollection) // DEPRECATE
 
-	dxroute.HandleFunc("/id/do/{ID}", do.ObjectView)
+	dxroute.Handle("/id/do/{ID}", minioHandler(mc, do.ObjectView)).Methods("GET")
+	//dxroute.HandleFunc("/id/do/{ID}", do.ObjectView)
 
 	http.Handle("/id/", dxroute)
 
@@ -69,7 +101,9 @@ func main() {
 	docroute.HandleFunc(`/doc/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, doc.ResourceRender)
 	docroute.HandleFunc("/doc/dataset/{measurement}/{leg}/{site}/{hole}", doc.Render)
 
-	docroute.HandleFunc("/doc/do/{ID}", do.ObjectView)
+	// TODO  review the fact I never get here !!!!!!!!1
+	docroute.Handle("/doc/do/{ID}", minioHandler(mc, do.ObjectView)).Methods("GET")
+	//docroute.HandleFunc("/doc/do/{ID}", do.ObjectView)
 
 	docroute.NotFoundHandler = http.HandlerFunc(notFound)
 	http.Handle("/doc/", docroute)

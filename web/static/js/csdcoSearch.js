@@ -8,87 +8,11 @@ import {
 const activesearch = () => {
 	console.log("There is an active search underway..  waiting for response")
 
-	return html `
+	return html`
 	<div class="loader">Loading...</div>
 		`;
 }
 
-// lit-html constant
-const providerTemplate = (barval) => {
-	console.log("-----------------------------------------------")
-	console.log(barval)
-	var count = Object.keys(barval).length;
-	const itemTemplates = [];
-	var i;
-	for (i = 0; i < count; i++) {
-		itemTemplates.push(html `<div style="margin-top:30px"> 
-		<img style="height:50px" src="${barval[i].logo}"><br>  ${barval[i].description}   (${barval[i].name} )  </div>`);
-	}
-
-	return html `
-	  <div style="margin-top:30px">
-		    ${itemTemplates}
-      </div>
-		`;
-};
-
-const navui = (total_hits) => {
-
-	let params = (new URL(location)).searchParams;
-	let q = params.get('q');
-	let n = params.get('n');
-	let s = params.get('s');
-	let i = params.get('i');
-
-	if (s == "") {
-		s = 0
-	}
-
-	function UpdateQueryString(key, value, url) {
-		if (!url) url = window.location.href;
-		var re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi"),
-			hash;
-
-		if (re.test(url)) {
-			if (typeof value !== 'undefined' && value !== null)
-				return url.replace(re, '$1' + key + "=" + value + '$2$3');
-			else {
-				hash = url.split('#');
-				url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
-				if (typeof hash[1] !== 'undefined' && hash[1] !== null)
-					url += '#' + hash[1];
-				return url;
-			}
-		} else {
-			if (typeof value !== 'undefined' && value !== null) {
-				var separator = url.indexOf('?') !== -1 ? '&' : '?';
-				hash = url.split('#');
-				url = hash[0] + separator + key + '=' + value;
-				if (typeof hash[1] !== 'undefined' && hash[1] !== null)
-					url += '#' + hash[1];
-				return url;
-			} else
-				return url;
-		}
-	}
-
-
-	var range = parseInt(s) + parseInt(n)
-	var baserange = parseInt(s) - parseInt(n)
-	if (baserange < 0) {
-		baserange = 0
-	}
-
-	var restarturl = UpdateQueryString("s", 0, null)
-	var lefturl = UpdateQueryString("s", baserange, null)
-	var righturl = UpdateQueryString("s", range + 1, null)
-
-	return html `
-	  <div style="text-align: center;">
-	  <a style="margin-right:5px" href="${restarturl}"> << </a> <a href="${lefturl}"> < </a>${s} to ${range} <a href="${righturl}"> ></a> of ${total_hits}
-      </div>
-		`;
-}
 
 // lit-html constant
 const nusearch = (barval, q) => {
@@ -97,7 +21,7 @@ const nusearch = (barval, q) => {
 
 	// At this point we need to see if count is 0 and do something about it.
 	if (count < 1) {
-		return html `<div style="text-align:center;margin-top:50px;position:relative"> 
+		return html`<div style="text-align:center;margin-top:50px;position:relative"> 
 			<img style="margin-left:40px;height:40px" src="./images/empty.svg">
 			<br>  Sorry, in the scope of items indexed there are no results.</div>`;
 	}
@@ -106,33 +30,52 @@ const nusearch = (barval, q) => {
 
 	var i;
 	for (i = 0; i < count; i++) {
-		var rurl = `${barval.Results.Bindings[i].s.Value}`;
-		var locationname = `${barval.Results.Bindings[i].locationname.Value}`;
-		var proj = `${barval.Results.Bindings[i].proj.Value}`;
-		var pi = `${barval.Results.Bindings[i].pi.Value}`;
-		var country = `${barval.Results.Bindings[i].country.Value}`;
-		var state_province = `${barval.Results.Bindings[i].state_province.Value}`;
-		var lat = `${barval.Results.Bindings[i].lat.Value}`;
-		var long = `${barval.Results.Bindings[i].long.Value}`;
+		var s = `${barval.Results.Bindings[i].s.Value}`;
+		var g = `${barval.Results.Bindings[i].g.Value}`;
+		var type = `${barval.Results.Bindings[i].type.Value}`;
+		var lit = `${barval.Results.Bindings[i].literal.Value}`;
 		var score = `${barval.Results.Bindings[i].score.Value}`;
-	
-		// Main Item div template
-		itemTemplates.push(html `<div class="resultitem" style="margin-top:15px">
-	    Project <a target="_blank" href="/collections/csdco/project/${proj}">${proj}</a> (<a href="./csdco.html?q=${proj}"><img style="height:15px" src="/images/reflect.png"></a>)
-		<br>
-		A project at ${locationname} 
-		(<a href="./csdco.html?q=${locationname}"><img style="height:15px" src="/images/reflect.png"></a>)
-		by: ${pi} location: ${state_province}, ${country}
-		<br/> 
-		Associated hole ID:<br/> <a target="_blank" href="${rurl}">${rurl}</a> 
-			<br/>
-	     <span>Spatial coodinates: ${lat}  ${long}... </span>
-		 <br/>
-	
-		<span style="font-size: smaller;" >(${score}  ) <span> </div>`);
+
+
+		// var locationname = `${barval.Results.Bindings[i].locationname.Value}`;
+		// var proj = `${barval.Results.Bindings[i].proj.Value}`;
+		// var pi = `${barval.Results.Bindings[i].pi.Value}`;
+		// var country = `${barval.Results.Bindings[i].country.Value}`;
+		// var state_province = `${barval.Results.Bindings[i].state_province.Value}`;
+		// var lat = `${barval.Results.Bindings[i].lat.Value}`;
+		// var long = `${barval.Results.Bindings[i].long.Value}`;
+		// var score = `${barval.Results.Bindings[i].score.Value}`;
+
+		// KEEP..  orignalMain Item div template
+		// 	itemTemplates.push(html `<div class="resultitem" style="margin-top:15px">
+		//     Project <a target="_blank" href="/collections/csdco/project/${proj}">${proj}</a> (<a href="./csdco.html?q=${proj}"><img style="height:15px" src="/images/reflect.png"></a>)
+		// 	<br>
+		// 	A project at ${locationname} 
+		// 	(<a href="./csdco.html?q=${locationname}"><img style="height:15px" src="/images/reflect.png"></a>)
+		// 	by: ${pi} location: ${state_province}, ${country}
+		// 	<br/> 
+		// 	Associated hole ID:<br/> <a target="_blank" href="${rurl}">${rurl}</a> 
+		// 		<br/>
+		//      <span>Spatial coodinates: ${lat}  ${long}... </span>
+		// 	 <br/>
+
+		// 	<span style="font-size: smaller;" >(${score}  ) <span> </div>`);
+		// }
+
+		itemTemplates.push(html`<div class="resultitem" style="margin-top:15px">
+
+		<br/> <a target="_blank" href="${s}">${s}</a> a ${type}
+			<br>
+			<details>
+   			 	<summary>${lit.substring(0,200)}...</summary>
+    			${lit}
+			</details>
+			
+			${score} in ${g}
+	      </div>`);
 	}
 
-	return html `
+	return html`
 	  <div>
 		   ${itemTemplates}
       </div>
@@ -140,7 +83,6 @@ const nusearch = (barval, q) => {
 };
 
 const query1 = (q, n, s) => {
-
 	return `
 	{
 		"search_request": {
@@ -165,7 +107,6 @@ const query1 = (q, n, s) => {
 		}
 	  }
 	  `
-
 }
 
 
@@ -173,7 +114,7 @@ const query1 = (q, n, s) => {
 window.onpopstate = event => {
 	console.log("opnpopstate seen")
 	console.log(event.state)
-	 //window.location.reload()
+	//window.location.reload()
 }
 
 
@@ -251,7 +192,8 @@ function blastsearchsimple(q, n, s) {
 	render(activesearch(), el)
 
 	//fetch(`http://geodex.org/api/v1/textindex/getnusearch?q=${data}`)
-	fetch(`https://opencoredata.org/api/beta/graph/csdco/search?q=${q}`)
+	// fetch(`https://opencoredata.org/api/beta/graph/csdco/search?q=${q}`)
+	fetch(`http://localhost:6789/api/beta/graph/csdco/search?q=${q}`)
 		.then(function (response) {
 			return response.json();
 		})
@@ -261,19 +203,6 @@ function blastsearchsimple(q, n, s) {
 			const navel = document.querySelector('#container1');
 			render(nusearch(myJson, q), el);
 			// render(navui(myJson.search_result.total_hits), navel);
-		});
-}
-
-
-function providerList() {
-	fetch('http://geodex.org/api/v1/typeahead/providers')
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (myJson) {
-			// console.log(myJson);
-			const el = document.querySelector('#container2');
-			render(providerTemplate(myJson), el);
 		});
 }
 

@@ -1,0 +1,17 @@
+
+.twocgrid {
+	display: grid;
+	/* grid-template-rows: auto ; */
+    /* grid-template-columns: 1fr 1fr;   */
+    grid-template-columns: auto auto; 
+	/* height: 100vh; */
+}
+
+.colone {
+    grid-column: 1/2;
+}
+
+.coltwo {
+    grid-column: 2/3
+}
+
