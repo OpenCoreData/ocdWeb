@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import {
     html,
     render
@@ -11,7 +13,7 @@ import {
             const resID = this.getAttribute('res-id');
 
             // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
-            var newstr = resID.replace(/opencoredata.org/i, '192.168.2.89:9900');
+            var endpoint = resID.replace(/opencoredata.org/i, '192.168.2.89:9900');
 
             // GET test
             function tj_providers(id) {
@@ -29,10 +31,8 @@ import {
                     });
             }
 
-
-
             // GET test call...
-            tj_providers(newstr).then((feature) => {
+            tj_providers(endpoint).then((feature) => {
                 this.attachShadow({ mode: 'open' });
 
                 // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
@@ -40,37 +40,45 @@ import {
 
                 this.shadowRoot.innerHTML = `
                 <div style="overflow-wrap: break-word;width=100%">
-                    Feature: <a href="${newid}"> 
-                    ${feature["http://opencoredata.org/voc/csdco/v1/hole_ID"]}</a>
-                    (IGSN: <a href="http://sesar.org/${feature["http://opencoredata.org/voc/csdco/v1/IGSN"]}">
-                    ${feature["http://opencoredata.org/voc/csdco/v1/IGSN"]}<a/> 
+                    <a href="${newid}">
+                    ${feature["Hole ID"]}</a>
+                    (IGSN: <a href="http://sesar.org/${feature["IGSN"]}">
+                    ${feature["IGSN"]}<a/>
                     )
-                    
-                    <br>
-                    PI(s): ${feature["http://opencoredata.org/voc/csdco/v1/pi"]}<br>
-                     ${feature["http://opencoredata.org/voc/csdco/v1/country"]} > 
-                     ${feature["http://opencoredata.org/voc/csdco/v1/county_Region"]} > 
-                     ${feature["http://opencoredata.org/voc/csdco/v1/location"]}
+                   (${feature["Date"]}) <br>
+                   PI(s): ${feature["PI"]}
+
+
+                    <table style="margin-top:15px;margin-bottom:15px;border:1px solid #333;">
+                    <thead>
+                    <tr>
+                    <th>Water Depth(m)</th>
+                    <th>Elevation (m)</th>
+                    <th>Depth Top (m)</th>
+                    <th>Depth Bottom (m)</th>
+                   </tr>
+                   <thead>
+                   <tr>
+                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["Water Depth"]} </td>
+                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["Elevation"]}</td>
+                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["MBLF top"]}</td>
+                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["MBLF bottom"]}</td>
+                    </tr>
+                    </table>
+
+
+                     ${feature["Country"]} >
+                     ${feature["County Region"]} >
+                     ${feature["Location"]}
                      <br>
                      <a target="_blank" href="https://www.google.com/maps/search/?api=1&zoom=4&basemap=terrain&query=${feature["http://www.w3.org/2003/01/geo/wgs84_pos#lat"]},${feature["http://www.w3.org/2003/01/geo/wgs84_pos#long"]}">
-                     (lat:  ${feature["http://www.w3.org/2003/01/geo/wgs84_pos#lat"]}
-                      long:  ${feature["http://www.w3.org/2003/01/geo/wgs84_pos#long"]}
+                     (lat:  ${feature["Lat"]}
+                      long:  ${feature["Long"]}
                     )
                     </a>
+                    <hr>
                 </div> `;
 
-                // var count = Object.keys(providers).length;
-                // const itemTemplates = [];
-                // var i;
-                // for (i = 0; i < count; i++) {
-                //     // console.log(providers[i].name)
-                //     itemTemplates.push(  `${providers[i].name}`);
-                //     // console.log(itemTemplates)
-                // }
-
-                // var h =  `<div>${itemTemplates}</div>`;
-                // this.shadowRoot.innerHTML = `${h}` ;
-                // this.shadowRoot.appendChild(this.cloneNode(h));
             });
         }
     }

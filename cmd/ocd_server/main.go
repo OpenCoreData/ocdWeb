@@ -85,8 +85,9 @@ func main() {
 	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.Redirection)
 	dxroute.HandleFunc(`/id/resource/csdco/feature/{HoleID}`, colls.CSDCOcollection) // DEPRECATE
 
+	// DOC routes
+	dxroute.Handle("/id/do/{ID}.zip", minioHandler(mc, do.DownloadPkg)).Methods("GET")
 	dxroute.Handle("/id/do/{ID}", minioHandler(mc, do.ObjectView)).Methods("GET")
-	//dxroute.HandleFunc("/id/do/{ID}", do.ObjectView)
 
 	http.Handle("/id/", dxroute)
 

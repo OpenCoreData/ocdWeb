@@ -12,8 +12,7 @@ import {
 
             // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
             var newstr = resID.replace(/opencoredata.org/i, '192.168.2.89:9900');
-            // var newstr = "http://192.168.2.89:9900/id/do/blavhlau6s74ma5rn4ng"
-            // console.log(newstr); 
+            // console.log(newstr);
 
             // GET test
             function tj_providers(id) {
@@ -24,7 +23,7 @@ import {
                         return response.json();
                     })
                     .then(function (myJson) {
-                        //console.log(myJson);
+                        console.log(myJson);
                         // console.log(JSON.stringify(myJson));
                         // return JSON.stringify(myJson);
                         return myJson;
@@ -35,12 +34,17 @@ import {
             tj_providers(newstr).then((feature) => {
                 this.attachShadow({ mode: 'open' });
 
+                // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
+                // var ns = feature["distribution"].contentUrl.replace(/opencoredata.org/i, '192.168.2.89:9900');
+                var ns = feature["distribution"].contentUrl.replace(/http:\/\/opencoredata.org\//i, '/');
+
+                console.log(ns);
 
                 this.shadowRoot.innerHTML = `
-                <div style="overflow-wrap: break-word;width=100%">
-                    Description: ${feature["description"]} <br>
-                    Distribution: <a target="_blank" href="${feature["distribution"].contentUrl}">
-                    Download Package Description</a> <br>
+                <div style="margin-top:10px;overflow-wrap: break-word;width=100%">
+                    ${feature["description"]}
+                    ( Download: <a href="${ns}.zip">zip</a>,
+                    <a target="_blank" href="${ns}">FDP</a> )
                 </div>
                   `;
 

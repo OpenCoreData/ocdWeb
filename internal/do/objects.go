@@ -21,14 +21,16 @@ import (
 )
 
 // TypeCheck is a list of parameters on a digital objects
+// This is what I send to the kernel
 type TypeCheck struct {
 	Type      string
+	OID       string
 	Graph     string
 	DOMeta    string
-	DOPkgMeta []string
+	PkgsMeta  []string
 	DOFeature []string
 	DOFDPs    []string
-	DOResProj string
+	DOResProj string // JSON-LD ?
 	Lat       string
 	Long      string
 	Bucket    string
@@ -91,11 +93,25 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/octet-stream")
 		}
 
+		// unless we see a particular request type for a particular bucket just copy
+		// and send.   How do we deal with the I want ZIP?   How do we register
+		// what an objct can offer?  Just more content types?
+		// Then go services are based on content type and service offering?
+
+		// Service routers
+		// if ct == zip and  oi.Type is frictionless data packages
+		// bytes = makeFDPZIP(FDP data package json)
+
+		// if ct == geojson and oi.Type(?) research project
+		// make geojson
+
+		// send the bytes
 		n, err := io.Copy(w, fo)
 		if err != nil {
 			log.Println("Issue with writing file to http response")
 			log.Println(err)
 		}
+
 		log.Printf("Sent %d bytes\n", n)
 	} else {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -108,18 +124,10 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 
-		// set the template we want to use
 		log.Printf("-------------- %s , %s --------------\n", oi.Bucket, oi.Type)
+		t := "web/templates/objectDOResProj.html"
 
-		var t string
-		if oi.Type == "http://opencoredata.org/voc/csdco/v1/Borehole" {
-			t = "web/templates/objectDOFeature.html"
-		}
-
-		if oi.Type == "http://schema.org/ResearchProject" {
-			t = "web/templates/objectDOResProj.html"
-		}
-
+		// TODO these are only for research project type ????
 		// if type == project or if type == do   (and so on)  should I do it this way?
 		oi.DOResProj = buf.String() //  ?? what is this?  project JSON-LD object
 		pf, _ := projResources(oid, "projfeatures")
@@ -128,8 +136,9 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 		// todo deal with these errors!
 		log.Printf("---- %v", pp)
 		oi.DOFeature = pf
-		oi.DOPkgMeta = pd
+		oi.PkgsMeta = pd
 		oi.DOFDPs = pp
+		oi.OID = oid
 
 		// TODO ?  Should I make the template name associated with the bucketname?  Makes it easy to alter the templates
 		ht, err := template.New("object template").ParseFiles(t) // open and parse a template text file
@@ -143,6 +152,15 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+// // IsAType template function to test its type?
+// func (d TypeCheck) IsAType(restype string) bool {
+// 	if restype == "http://schema.org/ResearchProject" {
+// 		return true
+// 	} else {
+// 		return false
+// 	}
+// }
 
 func getObjKern(id string) (TypeCheck, error) {
 	// Maps of types to buckets // the following needs to be in main and shared

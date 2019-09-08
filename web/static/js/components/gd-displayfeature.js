@@ -5,7 +5,7 @@ import {
     render
 } from './lit-html.js';
 
- 
+
 (function () {
     class SimpleGet extends HTMLElement {
         constructor() {
@@ -20,48 +20,55 @@ import {
             }
 
             // console.log(inputs);
-            // console.log(obj);
+            console.log("-----  gd-displayfeater");
+            console.log(obj);
 
             // var  count = Object.keys(obj).length;
             const detailsTemplate = [];
-           
-            detailsTemplate.push( html `<table>`);
+
+            detailsTemplate.push(html`<table>`);
             var item, subitem;
             for (item in obj) {
-                // console.log( item + "   " + obj[item]);  
-                detailsTemplate.push( html `
+                // need an if here to remove things with @
+                if (!item.includes("@")) {
+                    // test obj[item] is a URL  if so do a simple template push to include in
+                    // the following template
+                    const linkTemplate = [];
+                    var oi = obj[item];
+                     console.log(oi);
+                    if (oi.constructor === String) {
+                        console.log("string!");
+                        if (oi.includes("http://")) {
+                            linkTemplate.push(html`<a href="${obj[item]}>${obj[item]}</a>`);
+                        } else {
+                            linkTemplate.push(html`${obj[item]}`);
+                        }
+                    } else {
+                        console.log("not a string!");
+                        linkTemplate.push(html`${obj[item]}`);
+                    }
+                    detailsTemplate.push(html`
                 <tr>
                      <td>${item}</td><td> ${obj[item]} </td>
                 </tr>
-                `)  
-
-                // for (subitem in obj[item]) {
-                //     console.log(obj[item][subitem]);      
-                // }                
+                `);
+                }
             }
-            detailsTemplate.push( html `</table>`);
 
-
+            detailsTemplate.push(html`</table>`);
 
             var h = html`
                 <div style="overflow-wrap: break-word;width=100%">
-                    Feature: <a href="${obj["@id"]}"> 
-                    ${obj["http://opencoredata.org/voc/csdco/v1/hole_ID"]}</a><br>
-                    PI(s): ${obj["http://opencoredata.org/voc/csdco/v1/pi"]}<br><br>
-                     ${obj["http://opencoredata.org/voc/csdco/v1/country"]} > 
-                     ${obj["http://opencoredata.org/voc/csdco/v1/county_Region"]} > 
-                     ${obj["http://opencoredata.org/voc/csdco/v1/location"]}
+                    Feature: <a href="${obj["@id"]}">${obj["Hole ID"]}</a><br>
+                    PI(s): ${obj["PI"]}<br>
+                     ${obj["Country"]} : ${obj["County Region"]} : ${obj["Location"]} <br>
                      <br>
-                     <a target="_blank" href="https://www.google.com/maps/search/?api=1&zoom=4&basemap=terrain&query=${obj["http://www.w3.org/2003/01/geo/wgs84_pos#lat"]},${obj["http://www.w3.org/2003/01/geo/wgs84_pos#long"]}">
-                     (lat:  ${obj["http://www.w3.org/2003/01/geo/wgs84_pos#lat"]}
-                      long:  ${obj["http://www.w3.org/2003/01/geo/wgs84_pos#long"]}</a>
-                    )
-
+                     <a target="_blank" href="https://www.google.com/maps/search/?api=1&zoom=4&basemap=terrain&query=${obj["Lat"]},${obj["Long"]}">
+                     Google Map Link (lat:  ${obj["Lat"]}  long:  ${obj["Long"]}) </a>
+                
                     <hr>
-
                       ${detailsTemplate}
-
-                    </a>
+                 
                 </div> `;
 
             this.attachShadow({ mode: 'open' });

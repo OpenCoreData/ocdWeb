@@ -140,7 +140,7 @@ mc cat clear/csdco-do-packages-meta/bl4s1oqu6s77r4hp966g
 
 Use:
 
-
+```SPARQL
 PREFIX  xsd:    <http://www.w3.org/2001/XMLSchema#>
 PREFIX  dc:     <http://purl.org/dc/elements/1.1/>
 PREFIX  :       <.>
@@ -159,9 +159,10 @@ SELECT DISTINCT ?s ?description ?name ?license ?encodingFormat ?url ?type ?addit
         OPTIONAL { ?s <http://schema.org/identifier> ?identifier . }
     }
 }
-
+```
 
 The full FDP resource is
+```json
 {
 "name": "solar-system",
 "path": "http://example.com/solar-system.csv",
@@ -176,9 +177,10 @@ The full FDP resource is
 "sources": "",
 "licenses": ""
 }
-
+```
 
 These are the parameters we have....
+```turtle
 <http://schema.org/description>
 <http://schema.org/name>
 <http://schema.org/license>
@@ -189,5 +191,5 @@ These are the parameters we have....
 <http://schema.org/dateCreated>
 <http://schema.org/identifier>
 <http://schema.org/isRelatedTo>
-
+```
 

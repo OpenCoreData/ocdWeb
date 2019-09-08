@@ -29,6 +29,7 @@ import {
                         return response.json();
                     })
                     .then(function (myJson) {
+                        console.log("=== fdp viewer ===")
                         console.log(myJson);
                         // console.log(JSON.stringify(myJson));
                         // return JSON.stringify(myJson);
@@ -49,20 +50,11 @@ import {
                     href="${feature.resources[i].path}">${feature.resources[i].name}</a></div>`);
                 }
 
-                var h = html`<div>${detailsTemplate}</div>`;
+                var h = html`<div style="margin-top:10px">
+                <span>${feature.title}</span><br>
+                ${detailsTemplate}</div>`;
                 // this.shadowRoot.innerHTML = `${h}`;
-                render(detailsTemplate, this.shadowRoot);
-                // this.shadowRoot.innerHTML = html `<div style="overflow-wrap: break-word;width=100%">
-                //    Description: ${feature.description} <br>
-                //    ${detailsTemplate}
-                // </div> `;
-
-                // var inputs = feature["resources"];
-                // for (var i = 0; i < inputs.length; i++) {
-                //     this.shadowRoot.innerHTML = `<div style="overflow-wrap: break-word;width=100%">
-                //     File: ${inputs[i].name} <br>
-                //     </div>`;
-                // }
+                render(h, this.shadowRoot);
 
             });
         }
