@@ -13,6 +13,7 @@ ADD ./cmd/ocd_server/ocd_server  /
 # from the ignore file... we mount the volume via compose from the local FS
 ADD web/templates/  web/templates
 ADD web/empty_static web/static  
+# replace the above with a mkdir command
 
 # Add our binary
 CMD ["/ocd_server"]

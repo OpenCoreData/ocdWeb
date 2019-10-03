@@ -23,7 +23,8 @@ func MinioConnection() *minio.Client {
 
 // MinioConnectionDEV Set up minio and initialize client
 func MinioConnectionDEV() *minio.Client {
-	endpoint := "192.168.2.131:9000"
+	// endpoint := "192.168.2.131:9000"
+	endpoint := "localhost:9000"
 	accessKeyID := "AKIAIOSFODNN7EXAMPLE"
 	secretAccessKey := "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 

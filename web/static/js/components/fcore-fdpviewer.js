@@ -17,7 +17,7 @@ import {
             const resID = this.getAttribute('res-id');
 
             // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
-            var newstr = resID.replace(/opencoredata.org/i, '192.168.2.89:9900');
+            var newstr = resID.replace(/opencoredata.org/i, 'localhost:9900');
             // console.log(newstr);
 
             // GET test
@@ -61,5 +61,4 @@ import {
     }
     window.customElements.define('fcore-fdpviewer', SimpleGet);
 })();
-
 

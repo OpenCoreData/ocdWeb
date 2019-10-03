@@ -182,9 +182,9 @@ func (s *MyServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
 	// Stop here if its Preflighted OPTIONS request
-	// if req.Method == "OPTIONS" {
-	// 	return
-	// }
+	if req.Method == "OPTIONS" {
+		return
+	}
 
 	// Lets Gorilla work
 	s.r.ServeHTTP(rw, req)

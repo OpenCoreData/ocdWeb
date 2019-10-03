@@ -198,7 +198,7 @@
 	// Set up the ESRI tiles and the initial map object        
 	var tiles = L.tileLayer(
 		'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
-			maxZoom: 6,
+			maxZoom: 3,
 			attribution: '&copy; ESRI'
 		}),
 
@@ -206,7 +206,7 @@
 
 	var map = L.map('map', {
 		center: latlng,
-		zoom: 1,
+		zoom: 5,
 		layers: [tiles]
 	});
 

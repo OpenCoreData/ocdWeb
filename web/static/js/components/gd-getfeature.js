@@ -13,7 +13,7 @@ import {
             const resID = this.getAttribute('res-id');
 
             // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
-            var endpoint = resID.replace(/opencoredata.org/i, '192.168.2.89:9900');
+            var endpoint = resID.replace(/opencoredata.org/i, 'localhost:9900');
 
             // GET test
             function tj_providers(id) {
@@ -24,7 +24,7 @@ import {
                         return response.json();
                     })
                     .then(function (myJson) {
-                        //  console.log(myJson);
+                         console.log(myJson);
                         // console.log(JSON.stringify(myJson));
                         // return JSON.stringify(myJson);
                         return myJson;
