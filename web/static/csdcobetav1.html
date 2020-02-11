@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Search at Open Core</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width" initial-scale="1.0">
+	<link rel="stylesheet " href="./css/grid3.css ">
+	<!-- <link rel="stylesheet " href="./css/nav.css "> -->
+	<link rel="stylesheet " href="./css/loader.css ">
+	<link rel="stylesheet " href="./css/providers.css ">
+	<link rel="stylesheet " href="./css/circleimage.css">
+	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+
+
+	<!-- open search -->
+	<link type="application/opensearchdescription+xml" rel="search" title="OpenCore Search" href="./opensearch.xml" />
+
+	<link rel="shortcut icon" href="/images/gd.png">
+
+	<!-- use google  font -->
+	<link href="//fonts.googleapis.com/css?family=Open Sans&subset=latin" rel="stylesheet" type="text/css">
+
+	<style>
+		input[type=number]::-webkit-inner-spin-button,
+		input[type=number]::-webkit-outer-spin-button {
+			opacity: 1;
+		}
+
+		.resultitem {
+			padding: 10px;
+			border: .5px solid #e6e5e5;
+			border-radius: 5px;
+		}
+
+		* {
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		dl {
+			font: 1rem 'Fira Sans', sans-serif;
+			margin-top: 15px;
+		}
+
+		dl>dt {
+			margin-top: 10px;
+			font-weight: bold;
+			text-decoration: underline;
+		}
+	</style>
+
+	<script type="module" src="./js/csdcoSearchBeta.js"></script>
+
+</head>
+
+<body>
+	<div class="grid ">
+		<div class="title ">
+			<div id="navbar">
+				<nav class="container">
+					<div class="m1">
+						<a href="/" class="navLinks">Home</a>
+					</div>
+					<div class="m2">
+						<a href="csdco.html" class="navLinks">CSDCO</a>
+					</div>
+	
+					<div class="logo">
+					</div>
+	
+					<div class="m3">
+						<a href="/collections/matrix" class="navLinks">JRSO</a>
+					</div>
+					<div class="m4">
+						<a target="_blank" href="/voc/" class="navLinks">Dictionary</a>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<div class="header">CSDCO Search
+        		<label>
+				<input type="text" size="100%" id="q">
+			</label>
+			<div class="searchsettings">
+				<button id="update"> Search </button>
+				<input id="nn" type="number" min="5" max="200" step="5" value="50" />
+				<!-- <button id="providers"> Data Sources </button> -->
+				<!-- <label>
+					<input type="hidden" size="10" id="n">
+				</label>
+				<label>
+					<input type="hidden" size="10" value="0" id="s">
+				</label>
+				<label>
+					<input type="hidden" size="10" id="i">
+				</label> -->
+			</div>
+
+
+        
+        
+        </div>
+		<div class="lsidebar"> </div>
+		<div class="sidebar"> <div id="side1"></div></div>
+		<div class="content">
+
+			<div id="container1"></div>
+			<div id="container2"></div>
+
+				<div style="margin-top:30px">
+
+				
+				</div>
+
+
+			</div>
+		</div>
+		<div class="footer ">
+			<small>Project 418 is funded by the National Science Foundation through the EarthCube Science Support Office (ESSO)</small>
+
+
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+.wrapper {
+    display: grid;
+    grid-gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr) ) ;
+    /*	background-color: #fff;  */
+    color: #444;
+}
+
+.box {
+	/* background-color: #444; */
+	color: #444;
+	border-radius: 5px;
+        padding: 10px;
+	font-size: 100%;
+}
+

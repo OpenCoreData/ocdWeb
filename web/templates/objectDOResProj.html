@@ -16,7 +16,7 @@
 	<script type="module" src="/common/js/components/gd-getpackage.js"></script>
 	<script type="module" src="/common/js/components/fcore-fdpviewer.js"></script>
 	<script type="module" src="/common/js/components/gd-keywords.js"></script>
-	<script src="/common/js/components/gd-header.js"></script>
+	<script type="module" src="/common/js/components/gd-header.js"></script>
 	<script src="/common/js/components/gd-citation.js"></script>
 	<script src="/common/js/components/gd-abstract.js"></script>
 
@@ -88,7 +88,7 @@
 				</p>
 			</div>
 
-			<div style="margin-top: 15px">
+			<!-- <div style="margin-top: 15px">
 				<h3>Map</h3>
 				<p>
 					<div id="map"></div>
@@ -96,14 +96,14 @@
 						<h5>Building map... please wait...</h5>
 					</div>
 				</p>
-			</div>
+			</div> -->
 		</main>
 		{{end}}
 
 		{{if eq .Type "http://schema.org/ResearchProject"}}
 		<main>
 			<div style="margin-top: 15px">
-				<h3>Citation</h3>
+				<h3>About</h3>
 				<geodex-citation></geodex-citation>
 			</div>
 

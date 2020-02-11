@@ -21,7 +21,7 @@ const nusearch = (barval, q) => {
 
 	// At this point we need to see if count is 0 and do something about it.
 	if (count < 1) {
-		return html`<div style="text-align:center;margin-top:50px;position:relative"> 
+		return html`<div style="text-align:center;margin-top:50px;position:relative">
 			<img style="margin-left:40px;height:40px" src="./images/empty.svg">
 			<br>  Sorry, in the scope of items indexed there are no results.</div>`;
 	}
@@ -36,7 +36,6 @@ const nusearch = (barval, q) => {
 		var lit = `${barval.Results.Bindings[i].literal.Value}`;
 		var score = `${barval.Results.Bindings[i].score.Value}`;
 
-
 		// var locationname = `${barval.Results.Bindings[i].locationname.Value}`;
 		// var proj = `${barval.Results.Bindings[i].proj.Value}`;
 		// var pi = `${barval.Results.Bindings[i].pi.Value}`;
@@ -50,11 +49,11 @@ const nusearch = (barval, q) => {
 		// 	itemTemplates.push(html `<div class="resultitem" style="margin-top:15px">
 		//     Project <a target="_blank" href="/collections/csdco/project/${proj}">${proj}</a> (<a href="./csdco.html?q=${proj}"><img style="height:15px" src="/images/reflect.png"></a>)
 		// 	<br>
-		// 	A project at ${locationname} 
+		// 	A project at ${locationname}
 		// 	(<a href="./csdco.html?q=${locationname}"><img style="height:15px" src="/images/reflect.png"></a>)
 		// 	by: ${pi} location: ${state_province}, ${country}
-		// 	<br/> 
-		// 	Associated hole ID:<br/> <a target="_blank" href="${rurl}">${rurl}</a> 
+		// 	<br/>
+		// 	Associated hole ID:<br/> <a target="_blank" href="${rurl}">${rurl}</a>
 		// 		<br/>
 		//      <span>Spatial coodinates: ${lat}  ${long}... </span>
 		// 	 <br/>
@@ -70,7 +69,7 @@ const nusearch = (barval, q) => {
    			 	<summary>${lit.substring(0,200)}...</summary>
     			${lit}
 			</details>
-			
+
 			${score} in ${g}
 	      </div>`);
 	}
@@ -112,7 +111,7 @@ const query1 = (q, n, s) => {
 
 // popstate for history button
 window.onpopstate = event => {
-	console.log("opnpopstate seen")
+	console.log("onpopstate seen")
 	console.log(event.state)
 	//window.location.reload()
 }
@@ -145,7 +144,7 @@ ndo.value = n;
 sdo.value = s;
 ido.value = i;
 
-// if q is not null..   fire off a search, 
+// if q is not null..   fire off a search,
 if (q != null) {
 	searchActions();
 }
@@ -175,7 +174,7 @@ function searchActions() {
 
 	// Different search options
 	blastsearchsimple(q, n, s);
-	// threadSearch(q, n, s, i); 
+	// threadSearch(q, n, s, i);
 	// simpleSearch();
 
 	// updateNav();   // write to content div 1

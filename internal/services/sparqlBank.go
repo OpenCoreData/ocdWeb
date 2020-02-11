@@ -150,7 +150,8 @@ ORDER BY DESC(xsd:integer(?leg))
 // BasementTS is the dev triplestore
 func BasementTS() (*sparql.Repo, error) {
 	// repo, err := sparql.NewRepo("http://192.168.2.89:3030/doa/query",
-	repo, err := sparql.NewRepo("http://localhost:3030/doa/query",
+	// repo, err := sparql.NewRepo("http://localhost:3030/doa/query",
+	repo, err := sparql.NewRepo("http://triplestore.opencoredata.org/blazegraph/namespace/kb/sparql",
 		sparql.Timeout(time.Millisecond*15000),
 	)
 	if err != nil {

@@ -26,8 +26,8 @@
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.innerHTML = `
                     <div style="overflow-wrap: break-word;width=100%">
-                          ${obj.name},
-                         Version is ${version}
+                        ${obj.name},
+                         Version is ${version}.
                          Data set accessed ${today}
                          at <a href='${obj.url}'>${obj.url}</a>,      
                     </div>

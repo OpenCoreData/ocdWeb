@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Search at Open Core</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width" initial-scale="1.0">
+	<link rel="stylesheet " href="./css/grid3.css ">
+	<link rel="stylesheet " href="./css/nav.css ">
+	<link rel="stylesheet " href="./css/loader.css ">
+	<link rel="stylesheet " href="./css/providers.css ">
+	<link rel="stylesheet " href="./css/circleimage.css">
+
+	<!-- open search -->
+	<link type="application/opensearchdescription+xml" rel="search" title="OpenCore Search" href="./opensearch.xml" />
+
+	<link rel="shortcut icon" href="/images/gd.png">
+
+	<!-- use google  font -->
+	<link href="//fonts.googleapis.com/css?family=Open Sans&subset=latin" rel="stylesheet" type="text/css">
+
+	<style>
+		input[type=number]::-webkit-inner-spin-button,
+		input[type=number]::-webkit-outer-spin-button {
+			opacity: 1;
+		}
+
+		.resultitem {
+			padding: 10px;
+			border: .5px solid #e6e5e5;
+			border-radius: 5px;
+		}
+
+		* {
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		dl {
+			font: 1rem 'Fira Sans', sans-serif;
+			margin-top: 15px;
+		}
+
+		dl>dt {
+			margin-top: 10px;
+			font-weight: bold;
+			text-decoration: underline;
+		}
+	</style>
+
+	<script type="module" src="./js/csdcoSearchBeta.js"></script>
+
+</head>
+
+<body>
+	<div class="grid ">
+		<div class="title ">
+			<nav class="container">
+				<div class="m1">
+					<a href="/" class="navLinks">Home</a>
+				</div>
+				<div class="m2">
+					<a href="/about.html" class="navLinks">About</a>
+				</div>
+				<div class="logo">
+				</div>
+				<div class="m3minus">
+					<a target="_blank" href="https://github.com/earthcubearchitecture-project418/p418Docs" class="navLinks">Docs</a>
+				</div>
+				<div class="m4">
+					<a target="_blank" href="/voc/" class="navLinks">Vocab</a>
+				</div>
+			</nav>
+		</div>
+		<div class="header">CSDCO Search
+        		<label>
+				<input type="text" size="100%" id="q">
+			</label>
+			<div class="searchsettings">
+				<button id="update"> Search </button>
+				<input id="nn" type="number" min="5" max="200" step="5" value="15" />
+				<!-- <button id="providers"> Data Sources </button> -->
+				<label>
+					<input type="hidden" size="10" id="n">
+				</label>
+				<label>
+					<input type="hidden" size="10" value="0" id="s">
+				</label>
+				<label>
+					<input type="hidden" size="10" id="i">
+				</label>
+			</div>
+
+
+        
+        
+        </div>
+		<div class="lsidebar"> </div>
+		<div class="sidebar"> <div id="side1"></div></div>
+		<div class="content">
+
+			<div id="container1"></div>
+			<div id="container2"></div>
+
+				<div style="margin-top:30px">
+
+					<p style="margin-top:20px">
+						<details>
+							<summary>
+								Example searches
+							</summary>
+
+							<p>
+								<dl>
+									<dt>hikurangi margin</dt>
+									<dd>
+										A simple example. (
+										<a href="http://geodex.org/?q=hikurangi+margin&n=20&s=0&i=">try it</a>)
+									</dd>
+
+									<dt>hikrangi~ margin</dt>
+									<dd>
+										What if we are unsure of our spelling of a term? We can
+										<em>~</em> to request fuzzy matching on terms. (
+										<a href="http://geodex.org/?q=hikrangi~+margin&n=20&s=0&i=">try it</a>)
+
+									</dd>
+
+									<dt>ridge vents</dt>
+									<dd>
+										In search we can also see identifying and linking connections to frictionless packages. (
+										<a href="http://geodex.org/?q=ridge+vents&n=20&s=0&i=">try it</a>)
+
+									</dd>
+
+									<dt>sediment transport in rivers -Luquillo</dt>
+									<dd>
+										We can also request terms be removed with
+										<em>-</em>. Conversely, we can request terms be present with
+										<em>+</em>. (
+										<a href="http://geodex.org/?q=+sediment+transport+in+rivers+-Luquillo&n=20&s=0&i=">try it</a>)
+
+									</dd>
+
+									<dt>SO4 H2S</dt>
+									<dd>
+										This is a place holder example where we will try to link into the parameter descriptions. (
+										<a href="http://geodex.org/?q=SO4+H2S&n=20&s=0&i=">try it</a>)
+
+									</dd>
+								</dl>
+							</p>
+						</details>
+
+					</p>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="footer ">
+			<small>Project 418 is funded by the National Science Foundation through the EarthCube Science Support Office (ESSO)</small>
+
+
+		</div>
+	</div>
+</body>
+
+</html>

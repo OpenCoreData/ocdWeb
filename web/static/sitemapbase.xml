@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://opencoredata.org</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/community.html</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/about.html</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/contact.html</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/collections/matrix</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/collections/csdco</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/search</loc>
+    </url>
+    <url>
+        <loc>http://opencoredata.org/semapi.html</loc>
+    </url>
+</urlset>

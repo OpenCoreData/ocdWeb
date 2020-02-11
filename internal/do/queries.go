@@ -74,4 +74,17 @@ WHERE {
   ?s2 <http://schema.org/isRelatedTo> ?related .
   ?s2 <http://schema.org/url> ?url
 }
+
+
+# tag: sdograph
+SELECT DISTINCT ?res
+WHERE { GRAPH ?graph
+{
+     BIND ("http://opencoredata.org/id/do/{{.ID}}" AS ?o)
+	  {
+	     ?s ?p ?o .
+	     ?res <http://schema.org/distribution> ?s .
+	  }
+  }
+}
 `

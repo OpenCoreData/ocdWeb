@@ -1,0 +1,26 @@
+# Notes
+
+## About
+Just some notes on some sys admin updates for Dec 2019.  Nothing special.
+
+
+XSEDE instances
+root@opencore:~# docker ps
+CONTAINER ID        IMAGE                             COMMAND                  CREATED             STATUS                  PORTS                                                              NAMES
+f30ca82180c4        nawer/blazegraph                  "docker-entrypoint.s…"   4 months ago        Up 3 months             9999/tcp                                                           root_sparql_1
+e709e7b2a8f1        opencoredata/ocdservices:0.10.2   "/services"              4 months ago        Up 3 months             6789/tcp                                                           root_services_1
+6a59562a1628        opencoredata/ocdweb:0.10.3        "/ocd_server"            4 months ago        Up 3 months             9900/tcp                                                           root_web_1
+beba59265773        opencoredata/ocdsearch:0.9.6      "/ocdSearch"             4 months ago        Up 3 months             9900/tcp                                                           root_search_1
+9bade4228cde        traefik:latest                    "/traefik --web --do…"   5 months ago        Up 3 months             0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 0.0.0.0:8080->8080/tcp   root_traefik_1
+a6ad21b56c6b        mongo:latest                      "docker-entrypoint.s…"   5 months ago        Up 3 months             27017/tcp                                                          root_mongodb_1
+cb056eecec89        109649d2350d                      "./fuseki-server --c…"   5 months ago        Up 3 months             0.0.0.0:3030->3030/tcp                                             root_fuseki_1
+bfa51f4b7926        minio/minio:latest                "/usr/bin/docker-ent…"   5 months ago        Up 3 months (healthy)   0.0.0.0:9000->9000/tcp                                             root_s3_1
+
+
+TODO:
+
+Which triplestore am I using and for what graphs?
+
+* track down the use of the graph...
+* look at minio objects and run the graph load commands to get a initial droployment...
+

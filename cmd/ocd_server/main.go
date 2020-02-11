@@ -28,6 +28,8 @@ var minioVal, portVal, accessVal, secretVal, bucketVal string
 var sslVal bool
 
 func init() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile) // show file and line number
+
 	akey := os.Getenv("MINIO_ACCESS_KEY")
 	skey := os.Getenv("MINIO_SECRET_KEY")
 	mhost := os.Getenv("MINIO_HOST")
@@ -85,11 +87,11 @@ func main() {
 	dxroute.HandleFunc(`/id/resource/{resourcepath:[a-zA-Z0-9=\-\/]+}`, dx.Redirection)
 	dxroute.HandleFunc(`/id/resource/csdco/feature/{HoleID}`, colls.CSDCOcollection) // DEPRECATE
 
-	// DOC routes
+	// DO routes
 	dxroute.Handle("/id/do/{ID}.zip", minioHandler(mc, do.DownloadPkg)).Methods("GET")
 	dxroute.Handle("/id/do/{ID}", minioHandler(mc, do.ObjectView)).Methods("GET")
 
-	http.Handle("/id/", dxroute)
+	http.Handle("/id/", &MyServer{dxroute})
 
 	//Browser by id redirection to doc  (gets a specific dataset)  http://opencoredata.org/doc/dataset/JanusAgeDatapoint/108/668/B
 	docroute := mux.NewRouter()

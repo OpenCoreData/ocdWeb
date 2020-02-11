@@ -1,0 +1,205 @@
+{{define "T"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CSDCO</title>
+	<link rel="stylesheet" type="text/css" href="/common/css/csdcorestmpl.css">
+	<link rel="stylesheet" type="text/css" href="/common/nav.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/2cgrid.css">
+
+
+	<!-- Load the custom elements-->
+	<script type="module" src="/common/js/components/gd-header.js"></script>
+	<script type="module" src="/common/js/components/gd-schemadorg.js"></script>
+	<script type="module" src="/common/js/components/gd-getpackage.js"></script>
+	<script type="module" src="/common/js/components/fcore-fdpviewer.js"></script>
+
+	<!-- <script type="module" src="/common/js/components/gd-displayfeature.js"></script>
+	<script type="module" src="/common/js/components/gd-getfeature.js"></script>
+	<script type="module" src="/common/js/components/gd-keywords.js"></script>
+	<script src="/common/js/components/gd-citation.js"></script>
+	<script src="/common/js/components/gd-abstract.js"></script> -->
+
+	<!-- leaflet stuff -->
+	<link rel="stylesheet" href="/common/js/leaflet/leaflet.css" />
+	<script src="/common/js/leaflet/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.Default.css" />
+	<script src="/common/js/markercluster/dist/leaflet.markercluster-src.js"></script>
+
+
+	<style>
+		#map {
+			height: 500px;
+		}
+
+		leaflet-map {
+			height: 100%;
+		}
+	</style>
+
+	<script type="application/ld+json">
+	{{.DOResProj}}
+    </script>
+
+</head>
+
+
+<body>
+	<div class="ctnr">
+		<div id="navbar">
+			<nav class="container">
+				<div class="m1">
+					<a href="/" class="navLinks">Home</a>
+				</div>
+				<div class="m2">
+					<a href="/csdco.html" class="navLinks">CSDCO</a>
+				</div>
+
+				<div class="logo">
+				</div>
+
+				<div class="m3">
+					<a href="/collections/matrix" class="navLinks">JRSO</a>
+				</div>
+				<div class="m4">
+					<a target="_blank" href="/voc/" class="navLinks">Dictionary</a>
+				</div>
+			</nav>
+		</div>
+
+		<header>
+			<geodex-header></geodex-header>
+		</header>
+
+		<div id="subheader">
+		</div>
+
+		<div id="lkg">
+		</div>
+
+	
+
+		<main>
+
+			<div style="margin-top: 15px">
+				<h3>About</h3>
+				<geodex-schemadorg></geodex-schemadorg>
+			</div>
+
+			<div class="twocgrid">
+
+				<div class="colone">
+					<h3> Dataset File(s)</h3>
+					<p>
+						{{ range .DOFDPs }}
+						<fcore-fdpviewer res-id="{{.}}"></fcore-fdpviewer>
+						{{end}}
+					</p>
+				</div>
+
+				<div class="coltwo">
+					<h3> Dataset as ZIP</h3>
+					<p>
+						<!-- <geodex-getpackage res-id="{{.OID}}"></geodex-getpackage> -->
+                        <a href="{{.OID}}.zip">ZIP of dataset files</a>
+					</p>
+				</div>
+
+
+
+			 
+
+			</div>
+
+		</main>
+
+
+		<div id="kg">
+
+		</div>
+		<footer>Funded by the National Science Foundation</footer>
+	</div>
+</body>
+
+
+<!-- Leaflet code-->
+<script type="text/javascript">
+	// Create the map
+	//refs:  https://gist.github.com/alexgleith/7112515
+
+	// Old school ajax caller..  needs updating so not on main thread sync event
+	jQuery.extend({
+		getValues: function (url) {
+			var result = null;
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'json',
+				async: false,
+				success: function (data) {
+					result = data;
+				}
+			});
+			return result;
+		}
+	});
+
+	// Set up the ESRI tiles and the initial map object        
+	var tiles = L.tileLayer(
+		'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+			maxZoom: 3,
+			attribution: '&copy; ESRI'
+		}),
+
+		latlng = L.latLng(0.78, 102.37);
+
+	var map = L.map('map', {
+		center: latlng,
+		zoom: 5,
+		layers: [tiles]
+	});
+
+	// Get the ocean data
+	var geoJsonData = $.getValues("http://opencoredata.org/api/v1/spatial/continental/{{.OID}}");
+	var geojsonMarkerOptions = {
+		radius: 10,
+		fillColor: "rgb(255,0,195)",
+		color: "#fff",
+		weight: 2,
+		opacity: 1,
+		fillOpacity: 1
+	};
+
+	var geojson = L.geoJson(geoJsonData, {
+		pointToLayer: function (feature, latlng) {
+			var popupOptions = {
+				maxWidth: 300
+			};
+			var popupContent = "<a href='" + feature.properties.URI + "'>this</a>";
+			console.log(feature);
+			return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupContent, popupOptions);
+		}
+	});
+
+	// Marker cluster settings
+	var markers = L.markerClusterGroup({
+		spiderfyOnMaxZoom: false,
+		showCoverageOnHover: true,
+		zoomToBoundsOnClick: true,
+		disableClusteringAtZoom: 6
+	});
+
+	// Finish adding things to the map and present
+	// markers.addLayer(geojson);
+	map.addLayer(geojson);
+
+	map.fitBounds(geojson.getBounds());
+	// markers.addTo(map)
+	$("#info").fadeOut(500);
+</script>
+
+</html>
+{{end}}

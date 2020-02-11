@@ -13,7 +13,8 @@ import {
             const resID = this.getAttribute('res-id');
 
             // CAUTION DEV / DEMO HACK..  comment out in production!!!!!!
-            var endpoint = resID.replace(/opencoredata.org/i, 'localhost:9900');
+        //    var endpoint = resID.replace(/opencoredata.org/i, 'localhost:9900');
+        var endpoint = resID;
 
             // GET test
             function tj_providers(id) {
@@ -48,30 +49,27 @@ import {
                    (${feature["Date"]}) <br>
                    PI(s): ${feature["PI"]}
 
-
-                    <table style="margin-top:15px;margin-bottom:15px;border:1px solid #333;">
-                    <thead>
-                    <tr>
-                    <th>Water Depth(m)</th>
-                    <th>Elevation (m)</th>
-                    <th>Depth Top (m)</th>
-                    <th>Depth Bottom (m)</th>
-                   </tr>
-                   <thead>
+                    <table style="margin-top:15px;margin-bottom:15px;border:1px solid #333;">              
                    <tr>
-                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["Water Depth"]} </td>
-                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["Elevation"]}</td>
-                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["MBLF top"]}</td>
-                    <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["MBLF bottom"]}</td>
+                   <td>Water Depth(m)</td><td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["Water depth"]} </td>
+                    </tr>
+                    <tr>
+                    <td>Elevation (m)</td><td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["Elevation"]}</td>
+                    </tr>
+                    <tr>
+                    <td>Depth Top (m)</td> <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["MBLF top"]}</td>
+                    </tr>
+                    <tr>
+                    <td>Depth Bottom (m)</td> <td style="border-right: thin solid;border-left: thin solid; border-top: thin solid; border-bottom: thin solid;text-align: center;">${feature["MBLF bottom"]}</td>
                     </tr>
                     </table>
 
 
-                     ${feature["Country"]} >
-                     ${feature["County Region"]} >
+                     ${feature["Country"]} ,
+                     ${feature["County Region"]} ,
                      ${feature["Location"]}
                      <br>
-                     <a target="_blank" href="https://www.google.com/maps/search/?api=1&zoom=4&basemap=terrain&query=${feature["http://www.w3.org/2003/01/geo/wgs84_pos#lat"]},${feature["http://www.w3.org/2003/01/geo/wgs84_pos#long"]}">
+                     <a target="_blank" href="https://www.google.com/maps/search/?api=1&zoom=4&basemap=terrain&query=${feature["Lat"]},${feature["Long"]}">
                      (lat:  ${feature["Lat"]}
                       long:  ${feature["Long"]}
                     )

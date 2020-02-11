@@ -24,9 +24,10 @@ func MinioConnection() *minio.Client {
 // MinioConnectionDEV Set up minio and initialize client
 func MinioConnectionDEV() *minio.Client {
 	// endpoint := "192.168.2.131:9000"
-	endpoint := "localhost:9000"
-	accessKeyID := "AKIAIOSFODNN7EXAMPLE"
-	secretAccessKey := "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+	// endpoint := "localhost:9000"
+	endpoint := "oss.opencoredata.org"
+	accessKeyID := "AKIAIOSFODNN7JASUINM"
+	secretAccessKey := "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"
 
 	useSSL := false
 	minioClient, err := minio.New(endpoint, accessKeyID, secretAccessKey, useSSL)

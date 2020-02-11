@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 (function () {
     class GeoAbstract extends HTMLElement {
         constructor() {
@@ -20,15 +22,32 @@
 
             today = mm + '/' + dd + '/' + yyyy;
 
-            var version = 'Not Provided'; // override if set by the SDO
+            // var version = 'Not Provided'; // override if set by the SDO
 
-            //  still need  <span> Distribution org, </span>  <span> Release Date, </span>
+            // TODO check for no abstract and note that
+
+            // TODO If abstract is long use the details elements
+            var abstract = obj["csdco:abstract"];
+            var ablen = abstract.length;
+
             this.attachShadow({ mode: 'open' });
-            this.shadowRoot.innerHTML = `
-                    <div style="overflow-wrap: break-word;width=100%">
-                         ${obj["csdco:abstract"]},
-                    </div>
-                      `;
+
+            if (ablen > 1250 ) {
+                var summary = abstract.substring(0,1000);
+                var restof = abstract.substring(1000);
+                this.shadowRoot.innerHTML = `
+                <div style="overflow-wrap: break-word;width=100%">
+                <details><summary>${summary}</summary>  <p>${restof} </p></details>
+                </div>
+                  `;
+            } else {
+                this.shadowRoot.innerHTML = `
+                <div style="overflow-wrap: break-word;width=100%">
+                   <p> ${obj["csdco:abstract"]} </p>
+                </div>
+                  `;
+            }
+    
         }
     }
     window.customElements.define('geodex-abstract', GeoAbstract);

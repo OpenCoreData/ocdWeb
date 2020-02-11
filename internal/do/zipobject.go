@@ -93,7 +93,7 @@ func DownloadPkg(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 		// range on the stuct items that are objects and pass to addObject()
 		// sub in o
 		// TODO  WARNING on this line..   a place holder till deployed to where the DO byte stream are
-		err = addObject(mc, "000003a5ee30630237ae9690fd10a576b8bfb3d6c3e2ce541924522ef5b69f2c", fdp.Resources[i].Name, zw)
+		err = addObject(mc, o, fdp.Resources[i].Name, zw)
 		if err != nil {
 			log.Println(err)
 		}
@@ -107,20 +107,20 @@ func DownloadPkg(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 	// load it to the zip
 	cf, err := zw.Create("datapackage.json")
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	// copy the object contents to the zip Writer
 	n, err := io.Copy(cf, strings.NewReader(rel))
 	log.Printf("Copied %d bytes\n", n)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	// close the zip Writer to flush the contents to the ResponseWriter
 	err = zw.Close()
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 }
 
@@ -161,14 +161,14 @@ func addObject(mc *minio.Client, oid, name string, zw *zip.Writer) error {
 	// write straight to the http.ResponseWriter so can avoid local marshalling
 	cf, err := zw.Create(fmt.Sprintf("data/%s", name))
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	// copy the object contents to the zip Writer
 	n, err := io.Copy(cf, fo)
 	log.Printf("Copied %d bytes\n", n)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	return err

@@ -59,7 +59,8 @@ import {
 
             var h = html`
                 <div style="overflow-wrap: break-word;width=100%">
-                    Feature: <a href="${obj["@id"]}">${obj["Hole ID"]}</a><br>
+                    Feature of: <a href="${obj["about"]}">${obj["about"]}</a><br>
+                    Feature ID: <a href="${obj["@id"]}">${obj["Hole ID"]}</a><br>
                     PI(s): ${obj["PI"]}<br>
                      ${obj["Country"]} : ${obj["County Region"]} : ${obj["Location"]} <br>
                      <br>

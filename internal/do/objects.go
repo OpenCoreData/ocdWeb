@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/url"
 	"strings"
 
 	// "net/url"
@@ -34,6 +35,7 @@ type TypeCheck struct {
 	Lat       string
 	Long      string
 	Bucket    string
+	OrigName  string
 }
 
 // ObjectKernel is a list of parameters on a digital objects
@@ -83,12 +85,106 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 	// array and then check for a string when this should always work?
 	// oi.Bucket == "csdco-do" is also hackish..  need to review this routing..
 	// maybe the mux has some options I can leverage?
-	if !strings.Contains(ct, "text/html") || oi.Bucket == "csdco-do" || oi.Bucket == "csdco-do-packages" {
+	log.Println(ct)
+
+	// TODO  this whole routing issue is bad..   also..  my MUX likely can do this
+	// for and SAVE ME FROM THIS!  (sub routes...)
+
+	// TODO  (what about using accepts */*  ?)
+	if strings.Contains(ct, "text/html") && oi.Bucket == "csdco-do-packages" {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+		// If we are headed to an HTML template, then read be object to a buffer
+		// var buf bytes.Buffer
+		// nw := bufio.NewWriter(&buf)
+		// _, err = io.Copy(nw, fo)
+		// if err != nil {
+		// 	log.Println(err)
+		// }
+
+		log.Printf("Bucket: %s , Type: %s \n", oi.Bucket, oi.Type)
+		t := "web/templates/objectDODataSet.html"
+
+		// This is wrong.. needs to be the schema.org data graph for this
+		// resource..  not the resource itself
+		//  ?? what is this?  project JSON-LD object
+		pg, _ := projResources(oid, "sdograph") // get the meta data graph for a DO OID
+		u, err := url.Parse(pg[0])
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		pa := strings.Split(u.Path, "/")
+
+		log.Println("------------ sdo object I need -----------------")
+		fmt.Println(pa[len(pa)-1]) // need to pull this object
+		// take my OBJECT URI, parse the OID, get the file..  locate to oi.DOResProj (make this variable name more generic)
+
+		// Get a type check object from either a graph or object store inquiry.
+		oi, err := getObjKern(pa[len(pa)-1]) // returns TypeCheck{}
+		if err != nil {
+			log.Println(err)
+			oi, err = getByID(pa[len(pa)-1], mc)
+			if err != nil {
+				log.Println(err)
+			}
+		}
+
+		log.Println(oi.Bucket)
+		fo, err := mc.GetObject(oi.Bucket, pa[len(pa)-1], minio.GetObjectOptions{})
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		log.Println("------------ object (contents) -----------------")
+		var b bytes.Buffer
+		bw := bufio.NewWriter(&b)
+
+		_, err = io.Copy(bw, fo)
+		if err != nil {
+			log.Println(err)
+		}
+
+		log.Println(string(b.Bytes()))
+
+		oi.DOResProj = string(b.Bytes())
+
+		// TODO REMOVE..  just pass this URL as []string
+		pp, _ := projResources(oid, "projFDPs")
+		pp = append(pp, fmt.Sprintf("http://opencoredata.org/id/do/%s", oid))
+
+		// todo deal with these errors!
+		log.Printf("Project FDPs:  %v", pp)
+		// oi.DOFeature = pf
+		// oi.PkgsMeta = pd
+		oi.DOFDPs = pp
+		oi.OID = oid
+
+		// TODO ?  Should I make the template name associated with the bucketname?  Makes it easy to alter the templates
+		ht, err := template.New("object template").ParseFiles(t) // open and parse a template text file
+		if err != nil {
+			log.Printf("template parse failed: %s", err)
+		}
+
+		err = ht.ExecuteTemplate(w, "T", oi) // substitute fields in the template 't', with values from 'user' and write it out to 'w' which implements io.Writer
+		if err != nil {
+			log.Printf("htemplate execution failed: %s", err)
+		}
+
+		// send the bytes
+		// n, err := io.Copy(w, fo)
+		// if err != nil {
+		// 	log.Println("Issue with writing file to http response")
+		// 	log.Println(err)
+		// }
+		// log.Printf("NEW :   Sent %d bytes\n", n)
+	} else if !strings.Contains(ct, "text/html") || oi.Bucket == "csdco-do" || oi.Bucket == "csdco-do-packages" {
 		fmt.Println("You don't seem to be a browse, good luck with this")
 
 		// set default to octet stream?  but use stored if I have it
 		if oi.Type != "" {
 			w.Header().Set("Content-Type", oi.Type)
+			w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", oi.OrigName))
 		} else {
 			w.Header().Set("Content-Type", "application/octet-stream")
 		}
@@ -124,7 +220,7 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 
-		log.Printf("-------------- %s , %s --------------\n", oi.Bucket, oi.Type)
+		log.Printf("Bucket: %s , Type: %s \n", oi.Bucket, oi.Type)
 		t := "web/templates/objectDOResProj.html"
 
 		// TODO these are only for research project type ????
@@ -132,9 +228,9 @@ func ObjectView(mc *minio.Client, w http.ResponseWriter, r *http.Request) {
 		oi.DOResProj = buf.String() //  ?? what is this?  project JSON-LD object
 		pf, _ := projResources(oid, "projfeatures")
 		pd, _ := projResources(oid, "projdatasets")
-		pp, _ := projResources(oid, "projFDPs")
+		pp, _ := projResources(oid, "projFDPs") // need to be FDP directly
 		// todo deal with these errors!
-		log.Printf("---- %v", pp)
+		log.Printf("Project FDPs:  %v", pp)
 		oi.DOFeature = pf
 		oi.PkgsMeta = pd
 		oi.DOFDPs = pp
@@ -245,7 +341,7 @@ func getByID(id string, mc *minio.Client) (TypeCheck, error) {
 		// if err is nil, it means I found it, so I could set and break!
 		results.Bucket = m[i]
 		results.Type = objectStat.ContentType
-		log.Println(objectStat)
+		results.OrigName = objectStat.Metadata["X-Amz-Meta-Filename"][0]
 		break
 
 	}
@@ -269,6 +365,8 @@ func projResources(id, query string) ([]string, error) {
 	if err != nil {
 		log.Printf("%s\n", err)
 	}
+
+	log.Printf("\n %s \n", q)
 
 	res, err := repo.Query(q)
 	if err != nil {

@@ -1,0 +1,112 @@
+version: '2'
+
+ARG HOSTNAME=localhost
+ARG DVPATH=/home/fils
+
+services:
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    restart: on-failure
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+      - /mnt/dataVolumes/traefik/traefik.toml:/traefik.toml
+      - /mnt/dataVolumes/traefik/acme:/acme
+      - /mnt/dataVolumes/traefik/logs:/logs
+#    extra_hosts:
+#      - "opencore.dev:149.165.168.129"
+    networks:
+      - traefik_default
+
+  web:
+    image: opencoredata/ocdweb:0.9.12
+    env_file: 
+      - "./opencore-compose.env"
+    labels:
+      - "traefik.backend=web"
+      - "traefik.frontend.rule=Host:$HOSTNAME"
+      #- "traefik.frontend.rule=Host:149.165.168.129"
+      #- "traefik.frontend.rule=Host:opencore.dev"
+    restart: on-failure
+    volumes:
+      -  /mnt/dataVolumes/ocdweb/static/:/static
+    environment:
+      - MONGO_HOST=mongodb:27017
+    networks:
+      - traefik_default
+
+  services:
+    image: opencoredata/ocdservices:latest
+    labels:
+      - "traefik.backend=services"
+      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/api"
+      #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/api"
+    restart: on-failure
+    environment:
+      - MONGO_HOST=mongodb:27017
+    networks:
+      - traefik_default
+
+  s3:
+    image: minio/minio:latest
+    command: server /data
+    labels:
+      - "traefik.backend=s3"
+      - "traefik.frontend.rule=Host:oss.opencoredata.org"
+      - "traefik.port=9000"
+    ports:
+      - "9000:9000"
+    restart: on-failure
+    volumes:
+      - /mnt/dataVolumes/minio/data:/data 
+      - /mnt/dataVolumes/minio/config:/root/.minio 
+    environment:
+      - MINIO_ACCESS_KEY=AKIAIOSFODNN7JASUINM
+      - MINIO_SECRET_KEY=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
+    networks:
+      - traefik_default
+
+  sparql:
+    image: nawer/blazegraph
+    #image: opencoredata/blazegraph:0.5
+    labels:
+      - "traefik.backend=sparql"
+      - "traefik.port=9999" # force to pick 9999 ignore the 8080 admin port
+      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/blazegraph"
+      #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/blazegraph"
+    restart: on-failure
+    volumes:
+      -  /mnt/dataVolumes/triplestore:/var/lib/blazegraph
+    networks:
+      - traefik_default
+
+  mongodb:
+    image: mongo:latest
+    labels:
+      - "traefik.backend=mongodb"
+    restart: on-failure
+    volumes:
+      -  /mnt/dataVolumes/mongo/datadir/:/data/db
+    networks:
+      - traefik_default
+
+  search:
+    image: opencoredata/ocdsearch:0.9.6
+    labels:
+      - "traefik.backend=search"
+      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/search"
+      #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/search,/ocdsearchcommon"
+      - "traefik.port=9900" # force to pick 9800
+    restart: on-failure
+    volumes:
+      -  /mnt/dataVolumes/indexes/:/indexes
+    networks:
+      - traefik_default
+
+networks:
+  traefik_default:

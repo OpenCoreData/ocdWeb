@@ -1,11 +1,8 @@
 version: '2'
 
-ARG HOSTNAME=localhost
-ARG DVPATH=/home/fils
-
 services:
   traefik:
-    image: traefik
+    image: traefik:latest
     command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
     ports:
       - "80:80"
@@ -24,27 +21,58 @@ services:
       - traefik_default
 
   web:
-    image: opencoredata/ocdweb:0.9.12
+    image: opencoredata/ocdweb:0.10.3
     env_file: 
       - "./opencore-compose.env"
     labels:
       - "traefik.backend=web"
-      - "traefik.frontend.rule=Host:$HOSTNAME"
+      - "traefik.frontend.rule=Host:${HOST_NAME}"
       #- "traefik.frontend.rule=Host:149.165.168.129"
       #- "traefik.frontend.rule=Host:opencore.dev"
     restart: on-failure
     volumes:
-      -  /mnt/dataVolumes/ocdweb/static/:/static
+      -  /mnt/dataVolumes/ocdweb/static/:/web/static
     environment:
       - MONGO_HOST=mongodb:27017
     networks:
       - traefik_default
 
+  sparql:
+    image: nawer/blazegraph
+    #image: opencoredata/blazegraph:0.5
+    labels:
+      - "traefik.backend=sparql"
+      - "traefik.port=9999" # force to pick 9999 ignore the 8080 admin port
+      - "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/blazegraph"
+      #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/blazegraph"
+    restart: on-failure
+    volumes:
+      -  /mnt/dataVolumes/triplestore:/var/lib/blazegraph
+    networks:
+      - traefik_default
+
+  fuseki:
+    image: fcore/jena:0.1.4
+    labels:
+      - "traefik.backend=fuseki"
+      - "traefik.port=3030"
+      - "traefik.frontend.rule=Host:graph.opencoredata.org"
+      #- "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/blazegraph"
+    restart: on-failure
+    ports:
+      - "3030:3030"
+    volumes:
+      - /mnt/dataVolumes/jena/data:/data
+    networks:
+      - traefik_default
+    command: ["./fuseki-server", "--config=settings.ttl"]
+
+
   services:
-    image: opencoredata/ocdservices:latest
+    image: opencoredata/ocdservices:0.10.2
     labels:
       - "traefik.backend=services"
-      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/api"
+      - "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/api"
       #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/api"
     restart: on-failure
     environment:
@@ -63,25 +91,11 @@ services:
       - "9000:9000"
     restart: on-failure
     volumes:
-      - /mnt/dataVolumes/minio/data:/data 
-      - /mnt/dataVolumes/minio/config:/root/.minio 
+      - /mnt/dv/minio/data:/data 
+      - /mnt/dv/minio/config:/root/.minio 
     environment:
       - MINIO_ACCESS_KEY=AKIAIOSFODNN7JASUINM
       - MINIO_SECRET_KEY=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
-    networks:
-      - traefik_default
-
-  sparql:
-    image: nawer/blazegraph
-    #image: opencoredata/blazegraph:0.5
-    labels:
-      - "traefik.backend=sparql"
-      - "traefik.port=9999" # force to pick 9999 ignore the 8080 admin port
-      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/blazegraph"
-      #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/blazegraph"
-    restart: on-failure
-    volumes:
-      -  /mnt/dataVolumes/triplestore:/var/lib/blazegraph
     networks:
       - traefik_default
 
@@ -99,7 +113,7 @@ services:
     image: opencoredata/ocdsearch:0.9.6
     labels:
       - "traefik.backend=search"
-      - "traefik.frontend.rule=Host:$HOSTNAME;PathPrefix:/search"
+      - "traefik.frontend.rule=Host:${HOST_NAME};PathPrefix:/search"
       #- "traefik.frontend.rule=Host:opencore.dev;PathPrefix:/search,/ocdsearchcommon"
       - "traefik.port=9900" # force to pick 9800
     restart: on-failure

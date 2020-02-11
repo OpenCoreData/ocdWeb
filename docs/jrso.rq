@@ -1,0 +1,79 @@
+
+
+
+
+
+prefix jrso: <http://opencoredata.org/voc/janus/v1/>
+prefix schema: <http://schema.org/> 
+SELECT ?subj  ?p ?score  ?type  ?name ?relto ?addtype ?url  ?description 
+ WHERE { 
+   ?lit bds:search "leg 166 age model datum" . 
+   ?lit bds:matchAllTerms "false" . 
+   ?lit bds:relevance ?score . 
+   ?subj ?p ?lit . 
+   BIND (?subj as ?s) 
+   ?s rdf:type schema:Dataset .
+   OPTIONAL {?s schema:name ?name .} 
+   OPTIONAL {?s schema:isRelatedTo ?relto .} 
+   OPTIONAL {?s schema:additionalType ?addtype . } 
+   OPTIONAL {?s schema:url ?url . } 
+   OPTIONAL {?s schema:description ?description . } 
+ } 
+ORDER BY DESC(?score)  
+LIMIT 1000
+
+
+
+
+prefix jrso: <http://opencoredata.org/voc/janus/v1/>
+prefix schema: <http://schema.org/> 
+SELECT ?subj ?p ?score ?url  ?type  ?name ?relto ?addtype ?description 
+ WHERE { 
+   ?lit bds:search "leg 166 age model datum" . 
+   ?lit bds:matchAllTerms "false" . 
+   ?lit bds:relevance ?score . 
+   ?subj ?p ?lit . 
+   BIND (?subj as ?s) 
+   ?s rdf:type schema:Dataset .
+   ?s jrso:hasLeg "166" .
+   OPTIONAL {?s schema:name ?name .} 
+   OPTIONAL {?s schema:isRelatedTo ?relto .} 
+   OPTIONAL {?s schema:additionalType ?addtype . } 
+   OPTIONAL {?s schema:url ?url . } 
+   OPTIONAL {?s schema:description ?description . } 
+ } 
+ORDER BY DESC(?score)  
+LIMIT 1000
+
+
+
+
+
+
+
+p	o
+<http://opencoredata.org/voc/janus/v1/hasHole>	A
+<http://opencoredata.org/voc/janus/v1/hasLeg>	166
+<http://opencoredata.org/voc/janus/v1/hasSite>	1003
+<http://opencoredata.org/voc/janus/v1/measurement>	JanusAgeDatapoint
+schema:description	Leg 166 Site 1003 Hole A ( Janus Age Datapoint )  A fossil datums used to construct age models for holes.
+schema:distribution	t6271
+schema:keywords	DSDP, OPD, IODP, JanusAgeDatapoint
+schema:license	https://creativecommons.org/publicdomain/zero/1.0/
+schema:name	166_1003A_JanusAgeDatapoint_YBrcMYkc.csv
+schema:publisher	t6272
+schema:spatialCoverage	t6274
+schema:url	https://opencoredata.org/id/do/dced8a5be58491908c1d818f66613fb99818ac58a7426e339be38ca779f6cb7f
+schema:variableMeasured	t6273
+schema:variableMeasured	t6276
+schema:variableMeasured	t6277
+schema:variableMeasured	t6278
+schema:variableMeasured	t6279
+schema:variableMeasured	t6280
+schema:variableMeasured	t6281
+<http://www.w3.org/ns/ldp#inbox>	<http://opencoredata.org/id/ldn/dced8a5be58491908c1d818f66613fb99818ac58a7426e339be38ca779f6cb7f/inbox>
+rdf:type	<http://opencoredata.org/voc/janus/v1/Dataset>
+rdf:type	<http://opencoredata.org/voc/janus/v1/JanusAgeDatapoint>
+rdf:type	schema:Dataset
+
+
